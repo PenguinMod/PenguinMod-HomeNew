@@ -15,7 +15,7 @@
 	</a>
 
     <button class="navigation-button">
-        ThemeASwitcher
+        ThemeSwitcher
     </button>
 
     <a
@@ -40,7 +40,7 @@
         class="navigation-button-link"
     >
         <button tabindex="-1">
-            My Poops
+            My Stuff
         </button>
     </a>
     <a
