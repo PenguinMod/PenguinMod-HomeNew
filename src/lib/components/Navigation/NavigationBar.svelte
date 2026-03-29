@@ -8,10 +8,10 @@
 <div class="navigation-bar">
     <div class="navigation-bar-section navigation-options">
         <button class="navigation-button">
-            <Icon>dark_mode</Icon>
+            <Icon>language</Icon>
         </button>
         <button class="navigation-button">
-            <Icon>language</Icon>
+            <Icon>dark_mode</Icon>
         </button>
     </div>
     <div class="navigation-bar-section navigation-links">
