@@ -1,73 +1,85 @@
 <script>
-	import {
-        PUBLIC_API_URL,
-        PUBLIC_STUDIO_URL
-    } from "$env/static/public";
+	import { PUBLIC_API_URL, PUBLIC_STUDIO_URL } from "$env/static/public";
+
+    // Components
+    import Icon from "$lib/components/Icon/Component.svelte";
 </script>
 
 <div class="navigation-bar">
-	<a class="navigation-logo" href="/">
-		<img
-            class="navigation-logo-image"
-            src="/favicon.svg"
-            alt="PenguinMod"
-        />
-	</a>
+    <div class="navigation-bar-section navigation-options">
+        <button class="navigation-button">
+            <Icon>dark_mode</Icon>
+        </button>
+        <button class="navigation-button">
+            <Icon>language</Icon>
+        </button>
+    </div>
+    <div class="navigation-bar-section navigation-links">
+        <a class="navigation-logo" href="/">
+            <img
+                class="navigation-logo-image"
+                src="/favicon.svg"
+                alt="PenguinMod"
+            />
+        </a>
 
-    <button class="navigation-button">
-        ThemeSwitcher
-    </button>
-
-    <a
-        href={PUBLIC_STUDIO_URL}
-        class="navigation-button-link"
-    >
-        <button tabindex="-1">
-            Create
-        </button>
-    </a>
-    
-    <a
-        href={PUBLIC_STUDIO_URL}
-        class="navigation-button-link"
-    >
-        <button tabindex="-1">
-            Messages
-        </button>
-    </a>
-    <a
-        href={PUBLIC_STUDIO_URL}
-        class="navigation-button-link"
-    >
-        <button tabindex="-1">
-            My Stuff
-        </button>
-    </a>
-    <a
-        href={PUBLIC_STUDIO_URL}
-        class="navigation-button-link"
-    >
-        <button tabindex="-1">
-            Panel
-        </button>
-    </a>
-    
-    <a
-        href={PUBLIC_STUDIO_URL}
-        class="navigation-button-link"
-    >
-        <button tabindex="-1">
-            Sign in
-        </button>
-    </a>
-    <a
-        href={PUBLIC_STUDIO_URL}
-        class="navigation-button-link"
-    >
-        <button tabindex="-1">
-            Sign up
-        </button>
-    </a>
+        <!-- generic links -->
+        <a
+            href={PUBLIC_STUDIO_URL}
+            class="navigation-button-link"
+        >
+            <button tabindex="-1">
+                Create
+            </button>
+        </a>
+        
+        <!-- account buttons -->
+        <a
+            href={PUBLIC_STUDIO_URL}
+            class="navigation-button-link"
+        >
+            <button tabindex="-1">
+                <Icon>mail</Icon>
+            </button>
+        </a>
+        <a
+            href={PUBLIC_STUDIO_URL}
+            class="navigation-button-link"
+        >
+            <button tabindex="-1">
+                <Icon>folder</Icon>
+            </button>
+        </a>
+        <a
+            href={PUBLIC_STUDIO_URL}
+            class="navigation-button-link"
+        >
+            <button tabindex="-1">
+                <Icon>admin_panel_settings</Icon>
+            </button>
+        </a>
+        
+        <!-- login buttons -->
+        <a
+            href={PUBLIC_STUDIO_URL}
+            class="navigation-button-link"
+        >
+            <button tabindex="-1">
+                Sign in
+            </button>
+        </a>
+        <a
+            href={PUBLIC_STUDIO_URL}
+            class="navigation-button-link"
+        >
+            <button tabindex="-1">
+                Sign up
+            </button>
+        </a>
+    </div>
+    <div class="navigation-bar-section navigation-others">
+        <!-- events -->
+    </div>
 </div>
 
 <style>
@@ -79,14 +91,13 @@
         height: 3rem;
         
 		display: flex;
-		flex-wrap: nowrap;
 		flex-direction: row;
-		justify-content: center;
-		align-items: center;
+        justify-content: space-between;
 
         background: #00c3ff;
         color: white;
         overflow: hidden;
+        
         z-index: 1;
     }
     .navigation-bar > * {
@@ -97,10 +108,18 @@
         font-weight: bold;
         font-size: .85rem;
     }
+    .navigation-bar-section {
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+    }
 
     .navigation-logo {
         width: 3rem;
 		height: 3rem;
+        margin: 0 4px;
         
 		display: flex;
 		flex-direction: column;
@@ -110,11 +129,13 @@
     .navigation-logo-image {
         width: 85%;
 		height: 85%;
+
         transition: 0.15s ease;
     }
     .navigation-logo:hover .navigation-logo-image {
-        width: 97%;
-		height: 97%;
+        width: 95%;
+		height: 95%;
+
         transition: 0.15s ease;
     }
 
