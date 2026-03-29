@@ -1,5 +1,5 @@
 <script>
-    import NavigationBar from "$lib/Navigation/NavigationBar.svelte";
+    import NavigationBar from "$lib/components/Navigation/NavigationBar.svelte";
 
     let { children } = $props();
 </script>
