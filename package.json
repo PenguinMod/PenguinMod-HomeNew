@@ -9,10 +9,10 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''"
 	},
-    "dependencies": {
-        "penguinmod": "github:PenguinMod/PenguinMod-ApiModule",
-        "PenguinMod-SvelteUI": "github:PenguinMod/PenguinMod-SvelteUI"
-    },
+	"dependencies": {
+		"penguinmod": "github:PenguinMod/PenguinMod-ApiModule",
+		"PenguinMod-SvelteUI": "github:PenguinMod/PenguinMod-SvelteUI"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.16.0",
