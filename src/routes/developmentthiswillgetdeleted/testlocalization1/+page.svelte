@@ -18,20 +18,42 @@
      * @type {TranslationIndex.Key}
      */
     let translationKey = $state("lang.name");
+    let translationHtml = $state(false);
+    let translationReplacers = $state(false);
+    let translationReplacerKey = $state("");
+    let translationReplacerValue = $state("");
 </script>
 
 <h1>TranslationLoader &amp; LocalizedString</h1>
 <h2>{$StoreSettings.appLanguage} -&gt; {TranslationLoader.mapSavedLanguageCode($StoreSettings.appLanguage)}</h2>
 
+<LocalizedString
+    text={"Missing translation"}
+    key={translationKey}
+    html={translationHtml}
+    replacers={translationReplacers ? {
+        [translationReplacerKey]: translationReplacerValue
+    } : null}
+/>
+<hr />
 <select bind:value={translationKey}>
     {#each Object.keys(en) as translationKey}
         <option value={translationKey}>{translationKey}</option>
     {/each}
 </select>
-<LocalizedString
-    key={translationKey}
-    text={"Missing translation"}
-/>
+<br />
+<label>
+    <input type="checkbox" bind:checked={translationHtml} />
+    html (incompatible with replacers)
+</label>
+<br />
+<label>
+    <input type="checkbox" bind:checked={translationReplacers} />
+    replacers (re-check for re-render)
+</label>
+<br />
+<input type="text" bind:value={translationReplacerKey} placeholder="translationReplacerKey" />
+<input type="text" bind:value={translationReplacerValue} placeholder="translationReplacerValue" />
 
 <hr />
 
