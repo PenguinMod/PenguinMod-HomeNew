@@ -71,6 +71,13 @@ class Translator {
         'es-419',
         'ja-hira'
     ];
+
+    /**
+     * Maps a provided language code to a language supported by the translation API.
+     * Note that PenguinMod-Home supports different language codes from the translation API.
+     * @param {string} lc The language code.
+     * @returns {string} The closest language code, or `"en"` if entirely unsupported.
+     */
     static getClosestLanguageCode(lc) {
         if (typeof lc !== 'string') return 'en';
         lc = lc.toLowerCase();
@@ -79,13 +86,19 @@ class Translator {
         if (this.languageCodes.includes(split[0])) return split[0];
         return 'en';
     }
-    static async translate(text, lc) {
+
+    /**
+     * Translates a string of text using a translation API. It is not necessary to run `getClosestLanguageCode` before running this.
+     * @param {string} text The string of text to translate.
+     * @param {string | null} lc The language code. Will be mapped to the closest language code for the translation API.
+     * @returns {string} The translated string of text.
+     */
+    static async translate(text, lc = "en") {
         const languageCode = this.getClosestLanguageCode(lc);
-        const res = await fetch(`https://trampoline.turbowarp.org/translate/translate?language=${languageCode}&text=${encodeURIComponent(text)}`);
+        const res = await fetch(`https://trampoline.turbowarp.org/translate/translate?language=${encodeURIComponent(languageCode)}&text=${encodeURIComponent(text)}`);
         const json = await res.json();
-        if (!res.ok) {
-            throw new Error(json);
-        }
+
+        if (!res.ok) throw new Error(json);
         return json.result;
     }
 }

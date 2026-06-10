@@ -57,12 +57,12 @@ languageInfo.languageName = {
 languageInfo.languageJokeList = ["test","en-but-again","en-scream","en-reversed","en-flipped"];
 /**
  * The list of language codes that are marked as Right-To-Left languages.
- * This is specified in `scripts/translation-list.js`
+ * This is specified in `scripts/translation-index.js`
  */
 languageInfo.languageRtlList = ["he","fa","ar","en-reversed","en-flipped"];
 /**
  * Mapping of language codes that do not have translations, but map to similar languages that are.
- * This is specified in `scripts/translation-list.js`
+ * This is specified in `scripts/translation-index.js`
  */
 languageInfo.languageAlternative = {"nn":"no","nb":"no","es-es":"es","pt":"pt-br","fr-fr":"fr","nl-nl":"nl","ar-sa":"ar"};
 /**

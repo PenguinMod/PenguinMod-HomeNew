@@ -5,7 +5,7 @@
 
 /**
  * @fileoverview This generates joke-langs & testing stuff for src/lib/resources/localization/translation/language
- * Run this before indexing the folder or they wont be listed by translation-list.js
+ * Run this before indexing the folder or they wont be listed by translation-index.js
  * Make sure to tell finished-percentage to mark these language codes as 100% translated to avoid logs & stuff
  */
 import fs from "fs"

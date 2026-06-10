@@ -1,29 +1,43 @@
 <script>
-    import Locale from "$lib/resources/localization/locale.js";
+    // components
+    import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
 
-    let currentTime = $state(Date.now());
-    let milliseconds = $state(0);
-    let number = $state(0);
-    setInterval(() => {
-        currentTime = (Date.now());
-    }, 100);
+    import Locale from "$lib/resources/localization/locale.js";
+    import TranslationLoader from "$lib/resources/localization/translation/loader";
+    
+    import en from "$lib/resources/localization/translation/language/en.json";
+    import languageInfo from "$lib/resources/localization/translation/language/language-info";
+
+    import StoreSettings from "$lib/stores/settings";
+
+    const languageCodeSet = (langCode) => {
+        $StoreSettings.appLanguage = langCode;
+    };
+
+    /**
+     * @type {TranslationIndex.Key}
+     */
+    let translationKey = $state("lang.name");
 </script>
 
-<h1>Locale</h1>
-<h2>{Locale.browserLanguage}</h2>
-<p>{Locale.timestampToDateWithTime(currentTime)}</p>
-<p>{Locale.timestampToDate(currentTime)}</p>
-<p>{Locale.timestampToTime(currentTime)}</p>
-<p>{Locale.timestampToClock(currentTime)}</p>
-<hr>
-<input bind:value={milliseconds} type="range" min="0" step="0.000001" max="1000000000" style="width:90%" />
-<input bind:value={milliseconds} type="number" />
-<p>{Locale.millisecondsToUpcoming(milliseconds)}</p>
-<hr>
-<input bind:value={number} type="range" min="-1000000000" step="0.000001" max="1000000000" style="width:90%" />
-<input bind:value={number} type="number" />
-<p>{Locale.numberWithDelimiter(number)}</p>
-<p>{Locale.numberWithNotation(number)}</p>
-<hr>
-<p>{Locale.arrayToAndConjuction(["one", "two", "three"])}</p>
-<p>{Locale.arrayToOrConjuction(["one", "two", "three"])}</p>
+<h1>TranslationLoader &amp; LocalizedString</h1>
+<h2>{$StoreSettings.appLanguage} -&gt; {TranslationLoader.mapSavedLanguageCode($StoreSettings.appLanguage)}</h2>
+
+<select bind:value={translationKey}>
+    {#each Object.keys(en) as translationKey}
+        <option value={translationKey}>{translationKey}</option>
+    {/each}
+</select>
+<LocalizedString
+    key={translationKey}
+    text={"Missing translation"}
+/>
+
+<hr />
+
+<button onclick={() => languageCodeSet("browser")}>browser</button>
+<hr />
+{#each languageInfo.languageOrder as languageCode}
+    <button onclick={() => languageCodeSet(languageCode)}>{languageCode}: {languageInfo.languageName[languageCode]}</button>
+    <br />
+{/each}

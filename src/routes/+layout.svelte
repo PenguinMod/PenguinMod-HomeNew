@@ -3,11 +3,19 @@
 
     // Components
     import NavigationBar from "$lib/components/Navigation/NavigationBar.svelte";
+    
+    import TranslationLoader from "$lib/resources/localization/translation/loader";
 
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings.js";
 
     let { children } = $props();
+
+    $effect(() => {
+        const activeLanguage = $StoreSettings.appLanguage;
+        const intendedLanguage = TranslationLoader.mapSavedLanguageCode(activeLanguage);
+        TranslationLoader.initialize(intendedLanguage);
+    });
 </script>
 
 <NavigationBar />
