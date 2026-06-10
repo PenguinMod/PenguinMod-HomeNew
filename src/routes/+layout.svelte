@@ -26,6 +26,10 @@
         
         overflow: auto;
     }
+    :global(body.app-theme-dark) main {
+        background: #111;
+        color: white;
+    }
 
     .navigation-margin {
 		width: 100%;
