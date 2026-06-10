@@ -8,6 +8,8 @@ const defaultSettings = {
 
     // The theme of the site
     appTheme: "light",
+    // The language of the site
+    appLanguage: "en",
 
     // Alert IDs that have been dismissed
     alertDismissed: [],
