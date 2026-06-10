@@ -8,6 +8,8 @@
 		<meta property="og:image" content="https://penguinmod.com/favicon.ico">
 		<meta property="twitter:image" content="https://penguinmod.com/favicon.ico">
         
+        <link href="/css/markdown-alert.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/arduino-light.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols&display=swap" rel="stylesheet" />
 
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
@@ -15,7 +17,7 @@
 		%sveltekit.head%
 
         <style>
-            *:not(code) {
+            body {
                 font-family: Helvetica, Arial, sans-serif;
             }
 			a {
@@ -25,9 +27,9 @@
     		    color: #862aff;
     		}
             
-			.sb3-comment-label {
+			/* .sb3-comment-label {
 				fill: black !important;
-			}
+			} */
         </style>
 	</head>
 	<body data-sveltekit-preload-data="hover">

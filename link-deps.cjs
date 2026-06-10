@@ -6,9 +6,9 @@ const path = require("path");
 
 
 // CONFIG
-const pathPenguinModApiModule = "C:\Users\Jeremy\Documents\Projects\PenguinMod\PenguinMod-ApiModule";
-const pathPenguinModMarkDownNew = "C:\Users\Jeremy\Documents\Projects\PenguinMod\PenguinMod-MarkDownNew";
-const pathPenguinModSvelteUI = "C:\Users\Jeremy\Documents\Projects\PenguinMod\PenguinMod-SvelteUI";
+const pathPenguinModApiModule = "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-ApiModule";
+const pathPenguinModMarkDownNew = "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-MarkDownNew";
+const pathPenguinModSvelteUI = "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-SvelteUI";
 const nodeModulesPathPenguinModApiModule = path.join(__dirname, "node_modules/penguinmod");
 const nodeModulesPathPenguinModMarkDownNew = path.join(__dirname, "node_modules/PenguinMod-MarkDown");
 const nodeModulesPathPenguinModSvelteUI = path.join(__dirname, "node_modules/PenguinMod-SvelteUI");
@@ -36,10 +36,10 @@ if (fs.existsSync(pathPenguinModMarkDownNew) && fs.existsSync(nodeModulesPathPen
     console.warn("one of these is missing:", pathPenguinModMarkDownNew, nodeModulesPathPenguinModMarkDownNew);
 }
 // nodeModulesPathPenguinModSvelteUI
-if (fs.existsSync(pathPenguinModSvelteUI) && fs.existsSync(nodeModulesPathPenguinModSvelteUI)) {
-    fs.rmSync(nodeModulesPathPenguinModSvelteUI, { recursive: true, force: true });
-    fs.symlinkSync(pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
-    console.log("symlinked:", pathPenguinModSvelteUI, "to", nodeModulesPathPenguinModSvelteUI);
-} else {
-    console.warn("one of these is missing:", pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
-}
+// if (fs.existsSync(pathPenguinModSvelteUI) && fs.existsSync(nodeModulesPathPenguinModSvelteUI)) {
+//     fs.rmSync(nodeModulesPathPenguinModSvelteUI, { recursive: true, force: true });
+//     fs.symlinkSync(pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
+//     console.log("symlinked:", pathPenguinModSvelteUI, "to", nodeModulesPathPenguinModSvelteUI);
+// } else {
+//     console.warn("one of these is missing:", pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
+// }

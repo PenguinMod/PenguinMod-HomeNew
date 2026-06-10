@@ -7,10 +7,12 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''"
+		"prepare": "svelte-kit sync || echo ''",
+        "indexl10n": "node scripts/programatic-langs.js && node scripts/translation-list.js"
 	},
 	"dependencies": {
 		"penguinmod": "github:PenguinMod/PenguinMod-ApiModule",
+		"PenguinMod-MarkDown": "github:PenguinMod/PenguinMod-MarkDownNew",
 		"PenguinMod-SvelteUI": "github:PenguinMod/PenguinMod-SvelteUI"
 	},
 	"devDependencies": {
