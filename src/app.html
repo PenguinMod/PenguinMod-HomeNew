@@ -33,4 +33,26 @@
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
+    <script>
+        (() => {
+            'use strict';
+
+            const settingsUpdated = () => {
+                const stringStored = localStorage.getItem('pm:settings') || "{}";
+                const savedSettings = JSON.parse(stringStored);
+
+                const appTheme = savedSettings.appTheme || "light";
+
+                document.body.setAttribute("class", "");
+                document.body.classList.add(`app-theme-${appTheme}`);
+                if (appTheme === "dark")
+                    document.body.classList.add("penguinmodsvelteui-theme-dark");
+            }
+
+            settingsUpdated();
+            document.addEventListener("penguinmod-store-settings-updated", () => {
+                settingsUpdated();
+            });
+        })();
+    </script>
 </html>

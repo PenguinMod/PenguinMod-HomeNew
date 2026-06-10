@@ -3,6 +3,12 @@
 
     // Components
     import Icon from "$lib/components/Icon/Component.svelte";
+    
+    import StoreSettings from "$lib/stores/settings";
+
+    const optionThemeToggle = () => {
+        $StoreSettings.appTheme = $StoreSettings.appTheme === "light" ? "dark" : "light";
+    };
 </script>
 
 <div class="navigation-bar">
@@ -10,7 +16,7 @@
         <button class="navigation-button">
             <Icon>language</Icon>
         </button>
-        <button class="navigation-button">
+        <button class="navigation-button" onclick={optionThemeToggle}>
             <Icon>dark_mode</Icon>
         </button>
     </div>

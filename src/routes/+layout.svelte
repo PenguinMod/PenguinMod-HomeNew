@@ -1,5 +1,11 @@
 <script>
+    import { browser } from "$app/environment";
+
+    // Components
     import NavigationBar from "$lib/components/Navigation/NavigationBar.svelte";
+
+    import StateApplication from "$lib/state/app.svelte";
+    import StoreSettings from "$lib/stores/settings.js";
 
     let { children } = $props();
 </script>
