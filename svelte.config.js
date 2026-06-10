@@ -13,6 +13,9 @@ const config = {
             precompress: true,
             strict: true
         }),
+        prerender: {
+            handleHttpError: "warn"
+        }
     },
     compilerOptions: {
         runes: true,
