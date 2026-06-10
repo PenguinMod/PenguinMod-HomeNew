@@ -19,6 +19,7 @@ const languageInfo = {};
  */
 languageInfo.languageName = {
 "ar": "العربية",
+"bleh": "Bleh",
 "cs": "Čeština",
 "da": "Dansk",
 "de": "Deutsch",
@@ -54,7 +55,7 @@ languageInfo.languageName = {
  * The list of language codes that are marked as joke languages.
  * This is specified in `scripts/programatic-langs.js` even for non-automatically-generated languages.
  */
-languageInfo.languageJokeList = ["test","en-but-again","en-scream","en-reversed","en-flipped"];
+languageInfo.languageJokeList = ["test","en-but-again","en-scream","en-reversed","en-flipped","bleh"];
 /**
  * The list of language codes that are marked as Right-To-Left languages.
  * This is specified in `scripts/translation-index.js`
@@ -70,6 +71,7 @@ languageInfo.languageAlternative = {"nn":"no","nb":"no","es-es":"es","pt":"pt-br
  */
 languageInfo.languageJoke = {
 "ar": false,
+"bleh": true,
 "cs": false,
 "da": false,
 "de": false,
@@ -106,6 +108,7 @@ languageInfo.languageJoke = {
  */
 languageInfo.languageRtl = {
 "ar": true,
+"bleh": false,
 "cs": false,
 "da": false,
 "de": false,
@@ -142,6 +145,7 @@ languageInfo.languageRtl = {
  */
 languageInfo.languageOrder = [
 "id",
+"bleh",
 "cs",
 "da",
 "de",
@@ -178,6 +182,7 @@ languageInfo.languageOrder = [
  */
 languageInfo.finishedPercentage = {
 "ar": 1,
+"bleh": 1,
 "cs": 0.806910569105691,
 "da": 0.9806910569105691,
 "de": 0.3089430894308943,

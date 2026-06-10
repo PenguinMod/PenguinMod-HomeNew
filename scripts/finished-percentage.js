@@ -109,6 +109,7 @@ export function getLanguageFinishedPercentage(language, json) {
     if (language === "en-flipped") return 1;
     if (language === "en-scream") return 1;
     if (language === "test") return 1;
+    if (language === "bleh") return 1;
 
     let completedCount = 0;
     for (const key in en) {

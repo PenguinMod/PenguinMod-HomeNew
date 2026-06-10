@@ -124,6 +124,20 @@ const madeJokeLangs = [];
     madeJokeLangs.push("en-flipped");
     console.log("PROGRAMATIC LANGS: en-flipped");
 })();
+// bleh
+(() => {
+    const myLang = { "---_PROGRAMATIC": "true" };
+    for (const key in en) {
+        myLang[key] = String(en[key]).split(" ").map(word => {
+            if (word === word.toUpperCase()) return "BLEH";
+            if (word[0] === word[0].toUpperCase() && word.slice(1) === word.slice(1).toLowerCase()) return "Bleh";
+            return "bleh";
+        }).join(" ");
+    }
+    fs.writeFileSync(path.join(folderPath, "bleh.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("bleh");
+    console.log("PROGRAMATIC LANGS: bleh");
+})();
 
 
 fs.writeFileSync(path.join(folderPath, "jokelangs.txt"), `${JSON.stringify(madeJokeLangs)}`, "utf8");

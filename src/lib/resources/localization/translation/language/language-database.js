@@ -10,69 +10,71 @@
  *
  * Please notify a developer or make an issue if you would like to contribute to translating PenguinMod.
  */
-import _ar_json_0_1877014668174002 from "./ar.json";
-import _cs_json_0_7833972101509112 from "./cs.json";
-import _da_json_0_7656138220312714 from "./da.json";
-import _de_json_0_8067062822950977 from "./de.json";
-import _en_but_again_json_0_20464101112217037 from "./en-but-again.json";
-import _en_flipped_json_0_3126984438466409 from "./en-flipped.json";
-import _en_reversed_json_0_003852295023760499 from "./en-reversed.json";
-import _en_scream_json_0_3046167032044014 from "./en-scream.json";
-import _en_json_0_8109151733209456 from "./en.json";
-import _es_419_json_0_35427628123380495 from "./es-419.json";
-import _es_json_0_7411431263067128 from "./es.json";
-import _fa_json_0_5521067876197392 from "./fa.json";
-import _fr_ca_json_0_769006962045603 from "./fr-ca.json";
-import _fr_json_0_2831696281038474 from "./fr.json";
-import _he_json_0_942497550465641 from "./he.json";
-import _hr_json_0_7260556225171395 from "./hr.json";
-import _id_json_0_09852448926823043 from "./id.json";
-import _it_json_0_4366802941880883 from "./it.json";
-import _ja_json_0_42696679930515136 from "./ja.json";
-import _nl_json_0_9704275107544262 from "./nl.json";
-import _no_json_0_9890977628921698 from "./no.json";
-import _pl_json_0_4991720293507118 from "./pl.json";
-import _pt_br_json_0_03514284361767972 from "./pt-br.json";
-import _ro_json_0_22358456907806268 from "./ro.json";
-import _ru_json_0_27789288334347995 from "./ru.json";
-import _sk_json_0_2607776210011754 from "./sk.json";
-import _sv_json_0_8353205696734975 from "./sv.json";
-import _test_json_0_07779842847788676 from "./test.json";
-import _tr_json_0_6605907003996905 from "./tr.json";
-import _uk_json_0_6324472553654679 from "./uk.json";
-import _vi_json_0_9937972978751994 from "./vi.json";
+import _ar_json_0_3786038177373896 from "./ar.json";
+import _bleh_json_0_8189688719297714 from "./bleh.json";
+import _cs_json_0_629994638287507 from "./cs.json";
+import _da_json_0_32280923531514505 from "./da.json";
+import _de_json_0_24063823302090337 from "./de.json";
+import _en_but_again_json_0_5432240833349304 from "./en-but-again.json";
+import _en_flipped_json_0_22303277979195113 from "./en-flipped.json";
+import _en_reversed_json_0_9699218618998435 from "./en-reversed.json";
+import _en_scream_json_0_7610992209582086 from "./en-scream.json";
+import _en_json_0_3484614359612348 from "./en.json";
+import _es_419_json_0_6277720012408659 from "./es-419.json";
+import _es_json_0_3944859045952098 from "./es.json";
+import _fa_json_0_2171995583097197 from "./fa.json";
+import _fr_ca_json_0_27239037624563367 from "./fr-ca.json";
+import _fr_json_0_5189841943740641 from "./fr.json";
+import _he_json_0_3688206221197732 from "./he.json";
+import _hr_json_0_21927581847781386 from "./hr.json";
+import _id_json_0_9789297118884612 from "./id.json";
+import _it_json_0_6930187287809664 from "./it.json";
+import _ja_json_0_16321401401875435 from "./ja.json";
+import _nl_json_0_12480944735949207 from "./nl.json";
+import _no_json_0_6582747244961944 from "./no.json";
+import _pl_json_0_4428194491992212 from "./pl.json";
+import _pt_br_json_0_9205051895668968 from "./pt-br.json";
+import _ro_json_0_5314221470355458 from "./ro.json";
+import _ru_json_0_8554858829236078 from "./ru.json";
+import _sk_json_0_09467855618030141 from "./sk.json";
+import _sv_json_0_9466376534755632 from "./sv.json";
+import _test_json_0_02528451945451682 from "./test.json";
+import _tr_json_0_08063720191974544 from "./tr.json";
+import _uk_json_0_9171161614753949 from "./uk.json";
+import _vi_json_0_33545657040071153 from "./vi.json";
 export default {
-"ar": _ar_json_0_1877014668174002,
-"cs": _cs_json_0_7833972101509112,
-"da": _da_json_0_7656138220312714,
-"de": _de_json_0_8067062822950977,
-"en-but-again": _en_but_again_json_0_20464101112217037,
-"en-flipped": _en_flipped_json_0_3126984438466409,
-"en-reversed": _en_reversed_json_0_003852295023760499,
-"en-scream": _en_scream_json_0_3046167032044014,
-"en": _en_json_0_8109151733209456,
-"es-419": _es_419_json_0_35427628123380495,
-"es": _es_json_0_7411431263067128,
-"fa": _fa_json_0_5521067876197392,
-"fr-ca": _fr_ca_json_0_769006962045603,
-"fr": _fr_json_0_2831696281038474,
-"he": _he_json_0_942497550465641,
-"hr": _hr_json_0_7260556225171395,
-"id": _id_json_0_09852448926823043,
-"it": _it_json_0_4366802941880883,
-"ja": _ja_json_0_42696679930515136,
-"nl": _nl_json_0_9704275107544262,
-"no": _no_json_0_9890977628921698,
-"pl": _pl_json_0_4991720293507118,
-"pt-br": _pt_br_json_0_03514284361767972,
-"ro": _ro_json_0_22358456907806268,
-"ru": _ru_json_0_27789288334347995,
-"sk": _sk_json_0_2607776210011754,
-"sv": _sv_json_0_8353205696734975,
-"test": _test_json_0_07779842847788676,
-"tr": _tr_json_0_6605907003996905,
-"uk": _uk_json_0_6324472553654679,
-"vi": _vi_json_0_9937972978751994,
+"ar": _ar_json_0_3786038177373896,
+"bleh": _bleh_json_0_8189688719297714,
+"cs": _cs_json_0_629994638287507,
+"da": _da_json_0_32280923531514505,
+"de": _de_json_0_24063823302090337,
+"en-but-again": _en_but_again_json_0_5432240833349304,
+"en-flipped": _en_flipped_json_0_22303277979195113,
+"en-reversed": _en_reversed_json_0_9699218618998435,
+"en-scream": _en_scream_json_0_7610992209582086,
+"en": _en_json_0_3484614359612348,
+"es-419": _es_419_json_0_6277720012408659,
+"es": _es_json_0_3944859045952098,
+"fa": _fa_json_0_2171995583097197,
+"fr-ca": _fr_ca_json_0_27239037624563367,
+"fr": _fr_json_0_5189841943740641,
+"he": _he_json_0_3688206221197732,
+"hr": _hr_json_0_21927581847781386,
+"id": _id_json_0_9789297118884612,
+"it": _it_json_0_6930187287809664,
+"ja": _ja_json_0_16321401401875435,
+"nl": _nl_json_0_12480944735949207,
+"no": _no_json_0_6582747244961944,
+"pl": _pl_json_0_4428194491992212,
+"pt-br": _pt_br_json_0_9205051895668968,
+"ro": _ro_json_0_5314221470355458,
+"ru": _ru_json_0_8554858829236078,
+"sk": _sk_json_0_09467855618030141,
+"sv": _sv_json_0_9466376534755632,
+"test": _test_json_0_02528451945451682,
+"tr": _tr_json_0_08063720191974544,
+"uk": _uk_json_0_9171161614753949,
+"vi": _vi_json_0_33545657040071153,
 };
 
 /**!

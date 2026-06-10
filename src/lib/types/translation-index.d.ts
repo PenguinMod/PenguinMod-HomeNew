@@ -16,6 +16,7 @@ declare namespace TranslationIndex {
     /**
      * Which language codes are supported in PenguinMod-Home currently.
      * - `"ar"` = العربية
+     * - `"bleh"` = Bleh
      * - `"cs"` = Čeština
      * - `"da"` = Dansk
      * - `"de"` = Deutsch
@@ -48,6 +49,7 @@ declare namespace TranslationIndex {
      * - `"vi"` = Tiếng Việt
      */
     type LanguageCode = "ar"
+		| "bleh"
 		| "cs"
 		| "da"
 		| "de"
