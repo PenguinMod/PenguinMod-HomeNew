@@ -288,7 +288,8 @@
     }
     
     .section-language-warning {
-        width: 100%;
+        width: calc(100% - 10%);
+        padding: 0 5%;
         margin: 0px;
 
         display: flex;
@@ -298,6 +299,7 @@
 
         background: #ffd00073;
         color: black;
+        overflow-wrap: break-word;
 
         font-size: 18px;
         font-weight: bold;

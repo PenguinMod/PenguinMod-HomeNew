@@ -138,6 +138,48 @@ const madeJokeLangs = [];
     madeJokeLangs.push("bleh");
     console.log("PROGRAMATIC LANGS: bleh");
 })();
+// braille
+(() => {
+    const map = {
+        'a': '⠁', 'b': '⠃', 'c': '⠉', 'd': '⠙', 'e': '⠑', 'f': '⠋', 'g': '⠛', 'h': '⠓',
+        'i': '⠊', 'j': '⠚', 'k': '⠅', 'l': '⠇', 'm': '⠍', 'n': '⠝', 'o': '⠕', 'p': '⠏',
+        'q': '⠟', 'r': '⠗', 's': '⠎', 't': '⠞', 'u': '⠥', 'v': '⠧', 'w': '⠺', 'x': '⠭',
+        'y': '⠽', 'z': '⠵', ' ': ' '
+    };
+    const myLang = { "---_PROGRAMATIC": "true" };
+    for (const key in en) {
+        myLang[key] = String(en[key]).split("").map(char => map[char.toLowerCase()] || char).join("");
+    }
+    fs.writeFileSync(path.join(folderPath, "braille.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("braille");
+    console.log("PROGRAMATIC LANGS: braille");
+})();
+// really-big
+(() => {
+    const generateRandomBase64 = (length) => {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    };
+    const myLang = { "---_PROGRAMATIC": "true" };
+    for (const key in en) {
+        myLang[key] = generateRandomBase64(String(en[key]).length)
+            + " " + generateRandomBase64(String(en[key]).length)
+            + " " + generateRandomBase64(String(en[key]).length)
+            + " " + generateRandomBase64(String(en[key]).length)
+            + " " + generateRandomBase64(String(en[key]).length)
+            + " " + generateRandomBase64(String(en[key]).length)
+            + " " + generateRandomBase64(String(en[key]).length)
+            + " " + generateRandomBase64(String(en[key]).length);
+    }
+    myLang["lang.name"] = "REAlly big random stuff";
+    fs.writeFileSync(path.join(folderPath, "really-big.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("really-big");
+    console.log("PROGRAMATIC LANGS: really-big");
+})();
 
 
 fs.writeFileSync(path.join(folderPath, "jokelangs.txt"), `${JSON.stringify(madeJokeLangs)}`, "utf8");

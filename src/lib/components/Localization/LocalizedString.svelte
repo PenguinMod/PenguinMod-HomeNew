@@ -17,7 +17,7 @@
     /** @type {Properties} */
     let props = $props();
     let translationLang = $derived(props.lang
-        || (browser ? TranslationLoader.mapSavedLanguageCode($StoreSettings.appLanguage) : "en"));
+        || (browser ? TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage) : "en"));
     
     let mappedText = $derived(TranslationMapper.map(props.key, translationLang, props.text));
     let renderedText = $derived(mappedText)

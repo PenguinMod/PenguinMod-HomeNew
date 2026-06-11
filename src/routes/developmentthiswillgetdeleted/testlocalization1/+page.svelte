@@ -3,6 +3,7 @@
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
 
     import Locale from "$lib/resources/localization/locale.js";
+    import TranslationMapper from "$lib/resources/localization/translation/mapper";
     import TranslationLoader from "$lib/resources/localization/translation/loader";
     
     import en from "$lib/resources/localization/translation/language/en.json";
@@ -24,8 +25,8 @@
     let translationReplacerValue = $state("");
 </script>
 
-<h1>TranslationLoader &amp; LocalizedString</h1>
-<h2>{$StoreSettings.appLanguage} -&gt; {TranslationLoader.mapSavedLanguageCode($StoreSettings.appLanguage)}</h2>
+<h1>TranslationMapper &amp; LocalizedString</h1>
+<h2>{$StoreSettings.appLanguage} -&gt; {TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage)}</h2>
 
 <LocalizedString
     text={"Missing translation"}

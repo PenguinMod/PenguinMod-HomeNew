@@ -3,7 +3,9 @@
 
     // Components
     import Icon from "$lib/components/Icon/Component.svelte";
-    
+    import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
+    import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte.js";
+
     import StoreSettings from "$lib/stores/settings";
 
     const optionThemeToggle = () => {
@@ -13,10 +15,17 @@
 
 <div class="navigation-bar">
     <div class="navigation-bar-section navigation-options">
-        <button class="navigation-button">
+        <button
+            class="navigation-button"
+            {@attach LocalizedTooltip("navigation.language")}
+        >
             <Icon>language</Icon>
         </button>
-        <button class="navigation-button" onclick={optionThemeToggle}>
+        <button
+            class="navigation-button"
+            onclick={optionThemeToggle}
+            {@attach LocalizedTooltip("navigation.theme")}
+        >
             <Icon>dark_mode</Icon>
         </button>
     </div>
@@ -33,9 +42,13 @@
         <a
             href={PUBLIC_STUDIO_URL}
             class="navigation-button-link"
+            {@attach LocalizedTooltip("navigation.create")}
         >
             <button tabindex="-1">
-                Create
+                <LocalizedString
+                    text="Create"
+                    key="navigation.create"
+                />
             </button>
         </a>
         
@@ -43,6 +56,7 @@
         <a
             href={PUBLIC_STUDIO_URL}
             class="navigation-button-link"
+            {@attach LocalizedTooltip("messages.title")}
         >
             <button tabindex="-1">
                 <Icon>mail</Icon>
@@ -51,6 +65,7 @@
         <a
             href={PUBLIC_STUDIO_URL}
             class="navigation-button-link"
+            {@attach LocalizedTooltip("navigation.mystuff")}
         >
             <button tabindex="-1">
                 <Icon>folder</Icon>
@@ -69,17 +84,25 @@
         <a
             href={PUBLIC_STUDIO_URL}
             class="navigation-button-link"
+            {@attach LocalizedTooltip("navigation.login")}
         >
             <button tabindex="-1">
-                Sign in
+                <LocalizedString
+                    text="Sign in"
+                    key="navigation.login"
+                />
             </button>
         </a>
         <a
             href={PUBLIC_STUDIO_URL}
             class="navigation-button-link"
+            {@attach LocalizedTooltip("navigation.signup")}
         >
             <button tabindex="-1">
-                Sign up
+                <LocalizedString
+                    text="Sign up"
+                    key="navigation.signup"
+                />
             </button>
         </a>
     </div>
@@ -120,6 +143,17 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+    }
+
+    .navigation-options,
+    .navigation-others {
+        width: 25%;
+    }
+    .navigation-options {
+        justify-content: flex-start;
+    }
+    .navigation-others {
+        justify-content: flex-end;
     }
 
     .navigation-logo {

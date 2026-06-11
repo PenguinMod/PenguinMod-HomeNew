@@ -20,6 +20,7 @@ const languageInfo = {};
 languageInfo.languageName = {
 "ar": "العربية",
 "bleh": "Bleh",
+"braille": "⠑⠝⠛⠇⠊⠎⠓",
 "cs": "Čeština",
 "da": "Dansk",
 "de": "Deutsch",
@@ -42,6 +43,7 @@ languageInfo.languageName = {
 "no": "Norsk",
 "pl": "Polski",
 "pt-br": "Português (Brasil)",
+"really-big": "REAlly big random stuff",
 "ro": "Română",
 "ru": "Русский",
 "sk": "Slovenčina",
@@ -55,7 +57,7 @@ languageInfo.languageName = {
  * The list of language codes that are marked as joke languages.
  * This is specified in `scripts/programatic-langs.js` even for non-automatically-generated languages.
  */
-languageInfo.languageJokeList = ["test","en-but-again","en-scream","en-reversed","en-flipped","bleh"];
+languageInfo.languageJokeList = ["test","en-but-again","en-scream","en-reversed","en-flipped","bleh","braille","really-big"];
 /**
  * The list of language codes that are marked as Right-To-Left languages.
  * This is specified in `scripts/translation-index.js`
@@ -72,6 +74,7 @@ languageInfo.languageAlternative = {"nn":"no","nb":"no","es-es":"es","pt":"pt-br
 languageInfo.languageJoke = {
 "ar": false,
 "bleh": true,
+"braille": true,
 "cs": false,
 "da": false,
 "de": false,
@@ -94,6 +97,7 @@ languageInfo.languageJoke = {
 "no": false,
 "pl": false,
 "pt-br": false,
+"really-big": true,
 "ro": false,
 "ru": false,
 "sk": false,
@@ -109,6 +113,7 @@ languageInfo.languageJoke = {
 languageInfo.languageRtl = {
 "ar": true,
 "bleh": false,
+"braille": false,
 "cs": false,
 "da": false,
 "de": false,
@@ -131,6 +136,7 @@ languageInfo.languageRtl = {
 "no": false,
 "pl": false,
 "pt-br": false,
+"really-big": false,
 "ro": false,
 "ru": false,
 "sk": false,
@@ -144,6 +150,7 @@ languageInfo.languageRtl = {
  * The order that languages should be listed in alphabetically (A-Z).
  */
 languageInfo.languageOrder = [
+"braille",
 "id",
 "bleh",
 "cs",
@@ -164,6 +171,7 @@ languageInfo.languageOrder = [
 "no",
 "pl",
 "pt-br",
+"really-big",
 "ro",
 "sk",
 "sv",
@@ -183,6 +191,7 @@ languageInfo.languageOrder = [
 languageInfo.finishedPercentage = {
 "ar": 1,
 "bleh": 1,
+"braille": 1,
 "cs": 0.806910569105691,
 "da": 0.9806910569105691,
 "de": 0.3089430894308943,
@@ -205,6 +214,7 @@ languageInfo.finishedPercentage = {
 "no": 0.43902439024390244,
 "pl": 0.2306910569105691,
 "pt-br": 0.967479674796748,
+"really-big": 1,
 "ro": 0.35060975609756095,
 "ru": 0.9969512195121951,
 "sk": 0.24491869918699186,

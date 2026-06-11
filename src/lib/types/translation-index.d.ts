@@ -17,6 +17,7 @@ declare namespace TranslationIndex {
      * Which language codes are supported in PenguinMod-Home currently.
      * - `"ar"` = العربية
      * - `"bleh"` = Bleh
+     * - `"braille"` = ⠑⠝⠛⠇⠊⠎⠓
      * - `"cs"` = Čeština
      * - `"da"` = Dansk
      * - `"de"` = Deutsch
@@ -39,6 +40,7 @@ declare namespace TranslationIndex {
      * - `"no"` = Norsk
      * - `"pl"` = Polski
      * - `"pt-br"` = Português (Brasil)
+     * - `"really-big"` = REAlly big random stuff
      * - `"ro"` = Română
      * - `"ru"` = Русский
      * - `"sk"` = Slovenčina
@@ -50,6 +52,7 @@ declare namespace TranslationIndex {
      */
     type LanguageCode = "ar"
 		| "bleh"
+		| "braille"
 		| "cs"
 		| "da"
 		| "de"
@@ -72,6 +75,7 @@ declare namespace TranslationIndex {
 		| "no"
 		| "pl"
 		| "pt-br"
+		| "really-big"
 		| "ro"
 		| "ru"
 		| "sk"

@@ -13,8 +13,7 @@
 
     $effect(() => {
         const activeLanguage = $StoreSettings.appLanguage;
-        const intendedLanguage = TranslationLoader.mapSavedLanguageCode(activeLanguage);
-        TranslationLoader.initialize(intendedLanguage);
+        TranslationLoader.initialize(activeLanguage);
     });
 </script>
 

@@ -108,6 +108,8 @@ export function getLanguageFinishedPercentage(language, json) {
     if (language === "en-reversed") return 1;
     if (language === "en-flipped") return 1;
     if (language === "en-scream") return 1;
+    if (language === "really-big") return 1;
+    if (language === "braille") return 1;
     if (language === "test") return 1;
     if (language === "bleh") return 1;
 
