@@ -3,6 +3,7 @@
 
     // Components
     import Icon from "$lib/components/Icon/Component.svelte";
+    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte.js";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte.js";
 
@@ -199,5 +200,9 @@
         &:hover {
             background: rgba(0, 0, 0, 0.1);
         }
+    }
+    .navigation-button-link button img {
+        width: 20px;
+        height: 20px;
     }
 </style>

@@ -36,10 +36,10 @@ if (fs.existsSync(pathPenguinModMarkDownNew) && fs.existsSync(nodeModulesPathPen
     console.warn("one of these is missing:", pathPenguinModMarkDownNew, nodeModulesPathPenguinModMarkDownNew);
 }
 // nodeModulesPathPenguinModSvelteUI
-// if (fs.existsSync(pathPenguinModSvelteUI) && fs.existsSync(nodeModulesPathPenguinModSvelteUI)) {
-//     fs.rmSync(nodeModulesPathPenguinModSvelteUI, { recursive: true, force: true });
-//     fs.symlinkSync(pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
-//     console.log("symlinked:", pathPenguinModSvelteUI, "to", nodeModulesPathPenguinModSvelteUI);
-// } else {
-//     console.warn("one of these is missing:", pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
-// }
+if (fs.existsSync(pathPenguinModSvelteUI) && fs.existsSync(nodeModulesPathPenguinModSvelteUI)) {
+    fs.rmSync(nodeModulesPathPenguinModSvelteUI, { recursive: true, force: true });
+    fs.symlinkSync(pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
+    console.log("symlinked:", pathPenguinModSvelteUI, "to", nodeModulesPathPenguinModSvelteUI);
+} else {
+    console.warn("one of these is missing:", pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
+}

@@ -28,9 +28,7 @@
                         key="home.introduction2"
                     />
                 </p>
-                <Button kind="highlighted">
-                    <Icon>open_in_new</Icon>
-                    <div style="width:8px;"></div>
+                <Button icon="/icons/blocks-blue.svg" kind="highlighted" link={externalLinks.editor}>
                     <LocalizedString
                         text="Try it out"
                         key="home.tryout"
