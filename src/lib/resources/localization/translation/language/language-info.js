@@ -20,12 +20,14 @@ const languageInfo = {};
 languageInfo.languageName = {
 "ar": "العربية",
 "bleh": "Bleh",
-"braille": "⠑⠝⠛⠇⠊⠎⠓",
 "cs": "Čeština",
 "da": "Dansk",
 "de": "Deutsch",
+"en-braille": "⠑⠝⠛⠇⠊⠎⠓",
 "en-but-again": "English (but again)",
+"en-but-rtl": "English (right-to-left)",
 "en-flipped": "ɥsıʃƃuƎ",
+"en-leetspeak": "1337",
 "en-reversed": "hsilgnE",
 "en-scream": "ENGLISH!!!",
 "en": "English",
@@ -41,6 +43,7 @@ languageInfo.languageName = {
 "ja": "日本語",
 "nl": "Nederlands",
 "no": "Norsk",
+"nothing": "",
 "pl": "Polski",
 "pt-br": "Português (Brasil)",
 "really-big": "REAlly big random stuff",
@@ -52,17 +55,18 @@ languageInfo.languageName = {
 "tr": "Türkçe",
 "uk": "Українська",
 "vi": "Tiếng Việt",
+"zwspace": "​",
 };
 /**
  * The list of language codes that are marked as joke languages.
  * This is specified in `scripts/programatic-langs.js` even for non-automatically-generated languages.
  */
-languageInfo.languageJokeList = ["test","en-but-again","en-scream","en-reversed","en-flipped","bleh","braille","really-big"];
+languageInfo.languageJokeList = ["test","en-but-again","en-but-rtl","en-scream","en-reversed","en-flipped","bleh","en-braille","really-big","en-leetspeak","nothing","zwspace"];
 /**
  * The list of language codes that are marked as Right-To-Left languages.
  * This is specified in `scripts/translation-index.js`
  */
-languageInfo.languageRtlList = ["he","fa","ar","en-reversed","en-flipped"];
+languageInfo.languageRtlList = ["he","fa","ar","en-but-rtl","en-reversed","en-flipped"];
 /**
  * Mapping of language codes that do not have translations, but map to similar languages that are.
  * This is specified in `scripts/translation-index.js`
@@ -74,12 +78,14 @@ languageInfo.languageAlternative = {"nn":"no","nb":"no","es-es":"es","pt":"pt-br
 languageInfo.languageJoke = {
 "ar": false,
 "bleh": true,
-"braille": true,
 "cs": false,
 "da": false,
 "de": false,
+"en-braille": true,
 "en-but-again": true,
+"en-but-rtl": true,
 "en-flipped": true,
+"en-leetspeak": true,
 "en-reversed": true,
 "en-scream": true,
 "en": false,
@@ -95,6 +101,7 @@ languageInfo.languageJoke = {
 "ja": false,
 "nl": false,
 "no": false,
+"nothing": true,
 "pl": false,
 "pt-br": false,
 "really-big": true,
@@ -106,6 +113,7 @@ languageInfo.languageJoke = {
 "tr": false,
 "uk": false,
 "vi": false,
+"zwspace": true,
 };
 /**
  * Maps whether or not a language code is a Right-To-Left language.
@@ -113,12 +121,14 @@ languageInfo.languageJoke = {
 languageInfo.languageRtl = {
 "ar": true,
 "bleh": false,
-"braille": false,
 "cs": false,
 "da": false,
 "de": false,
+"en-braille": false,
 "en-but-again": false,
+"en-but-rtl": true,
 "en-flipped": true,
+"en-leetspeak": false,
 "en-reversed": true,
 "en-scream": false,
 "en": false,
@@ -134,6 +144,7 @@ languageInfo.languageRtl = {
 "ja": false,
 "nl": false,
 "no": false,
+"nothing": false,
 "pl": false,
 "pt-br": false,
 "really-big": false,
@@ -145,12 +156,16 @@ languageInfo.languageRtl = {
 "tr": false,
 "uk": false,
 "vi": false,
+"zwspace": false,
 };
 /**
  * The order that languages should be listed in alphabetically (A-Z).
  */
 languageInfo.languageOrder = [
-"braille",
+"nothing",
+"zwspace",
+"en-braille",
+"en-leetspeak",
 "id",
 "bleh",
 "cs",
@@ -158,6 +173,7 @@ languageInfo.languageOrder = [
 "de",
 "en",
 "en-but-again",
+"en-but-rtl",
 "en-scream",
 "es",
 "es-419",
@@ -191,12 +207,14 @@ languageInfo.languageOrder = [
 languageInfo.finishedPercentage = {
 "ar": 1,
 "bleh": 1,
-"braille": 1,
 "cs": 0.806910569105691,
 "da": 0.9806910569105691,
 "de": 0.3089430894308943,
+"en-braille": 1,
 "en-but-again": 1,
+"en-but-rtl": 1,
 "en-flipped": 1,
+"en-leetspeak": 1,
 "en-reversed": 1,
 "en-scream": 1,
 "en": 1,
@@ -212,6 +230,7 @@ languageInfo.finishedPercentage = {
 "ja": 1,
 "nl": 0.948170731707317,
 "no": 0.43902439024390244,
+"nothing": 1,
 "pl": 0.2306910569105691,
 "pt-br": 0.967479674796748,
 "really-big": 1,
@@ -223,6 +242,7 @@ languageInfo.finishedPercentage = {
 "tr": 0.9949186991869918,
 "uk": 0.36890243902439024,
 "vi": 0.8302845528455285,
+"zwspace": 1,
 };
 export default languageInfo;
 

@@ -17,12 +17,14 @@ declare namespace TranslationIndex {
      * Which language codes are supported in PenguinMod-Home currently.
      * - `"ar"` = العربية
      * - `"bleh"` = Bleh
-     * - `"braille"` = ⠑⠝⠛⠇⠊⠎⠓
      * - `"cs"` = Čeština
      * - `"da"` = Dansk
      * - `"de"` = Deutsch
+     * - `"en-braille"` = ⠑⠝⠛⠇⠊⠎⠓
      * - `"en-but-again"` = English (but again)
+     * - `"en-but-rtl"` = English (right-to-left)
      * - `"en-flipped"` = ɥsıʃƃuƎ
+     * - `"en-leetspeak"` = 1337
      * - `"en-reversed"` = hsilgnE
      * - `"en-scream"` = ENGLISH!!!
      * - `"en"` = English
@@ -38,6 +40,7 @@ declare namespace TranslationIndex {
      * - `"ja"` = 日本語
      * - `"nl"` = Nederlands
      * - `"no"` = Norsk
+     * - `"nothing"` = 
      * - `"pl"` = Polski
      * - `"pt-br"` = Português (Brasil)
      * - `"really-big"` = REAlly big random stuff
@@ -49,15 +52,18 @@ declare namespace TranslationIndex {
      * - `"tr"` = Türkçe
      * - `"uk"` = Українська
      * - `"vi"` = Tiếng Việt
+     * - `"zwspace"` = ​
      */
     type LanguageCode = "ar"
 		| "bleh"
-		| "braille"
 		| "cs"
 		| "da"
 		| "de"
+		| "en-braille"
 		| "en-but-again"
+		| "en-but-rtl"
 		| "en-flipped"
+		| "en-leetspeak"
 		| "en-reversed"
 		| "en-scream"
 		| "en"
@@ -73,6 +79,7 @@ declare namespace TranslationIndex {
 		| "ja"
 		| "nl"
 		| "no"
+		| "nothing"
 		| "pl"
 		| "pt-br"
 		| "really-big"
@@ -83,7 +90,8 @@ declare namespace TranslationIndex {
 		| "test"
 		| "tr"
 		| "uk"
-		| "vi";
+		| "vi"
+		| "zwspace";
     /**
      * A listing of all valid text strings.
      */

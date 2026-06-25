@@ -25,6 +25,7 @@ const rtlLanguages = [
     "fa",                          // Persian
     "ar",                          // Arabic
 
+    "en-but-rtl",                  // joke (programatic): English (right-to-left)
     "en-reversed",                 // joke (programatic): English (reversed)
     "en-flipped",                  // joke (programatic): English (flipped)
 ];

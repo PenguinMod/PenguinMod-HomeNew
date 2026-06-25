@@ -10,75 +10,83 @@
  *
  * Please notify a developer or make an issue if you would like to contribute to translating PenguinMod.
  */
-import _ar_json_0_3886879932529912 from "./ar.json";
-import _bleh_json_0_4178113643917001 from "./bleh.json";
-import _braille_json_0_027749545141413368 from "./braille.json";
-import _cs_json_0_8278678348290502 from "./cs.json";
-import _da_json_0_42635926316181627 from "./da.json";
-import _de_json_0_0029245309800816077 from "./de.json";
-import _en_but_again_json_0_9696158867495932 from "./en-but-again.json";
-import _en_flipped_json_0_6856997418461681 from "./en-flipped.json";
-import _en_reversed_json_0_43209662716152764 from "./en-reversed.json";
-import _en_scream_json_0_01947340644929163 from "./en-scream.json";
-import _en_json_0_7467665473485949 from "./en.json";
-import _es_419_json_0_7177583037109654 from "./es-419.json";
-import _es_json_0_28158262396548617 from "./es.json";
-import _fa_json_0_11539076367727286 from "./fa.json";
-import _fr_ca_json_0_1937169302413455 from "./fr-ca.json";
-import _fr_json_0_4789514944456501 from "./fr.json";
-import _he_json_0_026727116601800383 from "./he.json";
-import _hr_json_0_17908219321438912 from "./hr.json";
-import _id_json_0_817986604947281 from "./id.json";
-import _it_json_0_5439136584797652 from "./it.json";
-import _ja_json_0_8165774994147981 from "./ja.json";
-import _nl_json_0_1092541524247701 from "./nl.json";
-import _no_json_0_06489883103948091 from "./no.json";
-import _pl_json_0_6700660739667779 from "./pl.json";
-import _pt_br_json_0_8428122312008208 from "./pt-br.json";
-import _really_big_json_0_24624934944214538 from "./really-big.json";
-import _ro_json_0_0429670672004927 from "./ro.json";
-import _ru_json_0_9886820059901436 from "./ru.json";
-import _sk_json_0_9236003288911665 from "./sk.json";
-import _sv_json_0_42525011194523055 from "./sv.json";
-import _test_json_0_8510439812423995 from "./test.json";
-import _tr_json_0_7200297179237003 from "./tr.json";
-import _uk_json_0_8725218469344129 from "./uk.json";
-import _vi_json_0_41659069697887774 from "./vi.json";
+import _ar_json_0_797949121013505 from "./ar.json";
+import _bleh_json_0_4768077834925355 from "./bleh.json";
+import _cs_json_0_587752595603608 from "./cs.json";
+import _da_json_0_14762279841678283 from "./da.json";
+import _de_json_0_7497857866360398 from "./de.json";
+import _en_braille_json_0_9073864754488621 from "./en-braille.json";
+import _en_but_again_json_0_14059763600667408 from "./en-but-again.json";
+import _en_but_rtl_json_0_4267017424726345 from "./en-but-rtl.json";
+import _en_flipped_json_0_35614908762880004 from "./en-flipped.json";
+import _en_leetspeak_json_0_3375890704280857 from "./en-leetspeak.json";
+import _en_reversed_json_0_0832257382842585 from "./en-reversed.json";
+import _en_scream_json_0_5428850398617935 from "./en-scream.json";
+import _en_json_0_6790609594362722 from "./en.json";
+import _es_419_json_0_14940726807241078 from "./es-419.json";
+import _es_json_0_889911104095612 from "./es.json";
+import _fa_json_0_6175094079149137 from "./fa.json";
+import _fr_ca_json_0_08671694061016266 from "./fr-ca.json";
+import _fr_json_0_2802840247295102 from "./fr.json";
+import _he_json_0_331681134693125 from "./he.json";
+import _hr_json_0_35595563436503497 from "./hr.json";
+import _id_json_0_3435457162640727 from "./id.json";
+import _it_json_0_13886370481100196 from "./it.json";
+import _ja_json_0_9620254646169559 from "./ja.json";
+import _nl_json_0_4839614248763897 from "./nl.json";
+import _no_json_0_9619330744659491 from "./no.json";
+import _nothing_json_0_027941410667539746 from "./nothing.json";
+import _pl_json_0_9660602836699421 from "./pl.json";
+import _pt_br_json_0_2508542166889529 from "./pt-br.json";
+import _really_big_json_0_9168405969649773 from "./really-big.json";
+import _ro_json_0_8674896306228155 from "./ro.json";
+import _ru_json_0_014549877080386464 from "./ru.json";
+import _sk_json_0_024256927717231314 from "./sk.json";
+import _sv_json_0_739297714460281 from "./sv.json";
+import _test_json_0_28631650760413185 from "./test.json";
+import _tr_json_0_37223549711823845 from "./tr.json";
+import _uk_json_0_5348532939878268 from "./uk.json";
+import _vi_json_0_6662363396770514 from "./vi.json";
+import _zwspace_json_0_37075644570659083 from "./zwspace.json";
 export default {
-"ar": _ar_json_0_3886879932529912,
-"bleh": _bleh_json_0_4178113643917001,
-"braille": _braille_json_0_027749545141413368,
-"cs": _cs_json_0_8278678348290502,
-"da": _da_json_0_42635926316181627,
-"de": _de_json_0_0029245309800816077,
-"en-but-again": _en_but_again_json_0_9696158867495932,
-"en-flipped": _en_flipped_json_0_6856997418461681,
-"en-reversed": _en_reversed_json_0_43209662716152764,
-"en-scream": _en_scream_json_0_01947340644929163,
-"en": _en_json_0_7467665473485949,
-"es-419": _es_419_json_0_7177583037109654,
-"es": _es_json_0_28158262396548617,
-"fa": _fa_json_0_11539076367727286,
-"fr-ca": _fr_ca_json_0_1937169302413455,
-"fr": _fr_json_0_4789514944456501,
-"he": _he_json_0_026727116601800383,
-"hr": _hr_json_0_17908219321438912,
-"id": _id_json_0_817986604947281,
-"it": _it_json_0_5439136584797652,
-"ja": _ja_json_0_8165774994147981,
-"nl": _nl_json_0_1092541524247701,
-"no": _no_json_0_06489883103948091,
-"pl": _pl_json_0_6700660739667779,
-"pt-br": _pt_br_json_0_8428122312008208,
-"really-big": _really_big_json_0_24624934944214538,
-"ro": _ro_json_0_0429670672004927,
-"ru": _ru_json_0_9886820059901436,
-"sk": _sk_json_0_9236003288911665,
-"sv": _sv_json_0_42525011194523055,
-"test": _test_json_0_8510439812423995,
-"tr": _tr_json_0_7200297179237003,
-"uk": _uk_json_0_8725218469344129,
-"vi": _vi_json_0_41659069697887774,
+"ar": _ar_json_0_797949121013505,
+"bleh": _bleh_json_0_4768077834925355,
+"cs": _cs_json_0_587752595603608,
+"da": _da_json_0_14762279841678283,
+"de": _de_json_0_7497857866360398,
+"en-braille": _en_braille_json_0_9073864754488621,
+"en-but-again": _en_but_again_json_0_14059763600667408,
+"en-but-rtl": _en_but_rtl_json_0_4267017424726345,
+"en-flipped": _en_flipped_json_0_35614908762880004,
+"en-leetspeak": _en_leetspeak_json_0_3375890704280857,
+"en-reversed": _en_reversed_json_0_0832257382842585,
+"en-scream": _en_scream_json_0_5428850398617935,
+"en": _en_json_0_6790609594362722,
+"es-419": _es_419_json_0_14940726807241078,
+"es": _es_json_0_889911104095612,
+"fa": _fa_json_0_6175094079149137,
+"fr-ca": _fr_ca_json_0_08671694061016266,
+"fr": _fr_json_0_2802840247295102,
+"he": _he_json_0_331681134693125,
+"hr": _hr_json_0_35595563436503497,
+"id": _id_json_0_3435457162640727,
+"it": _it_json_0_13886370481100196,
+"ja": _ja_json_0_9620254646169559,
+"nl": _nl_json_0_4839614248763897,
+"no": _no_json_0_9619330744659491,
+"nothing": _nothing_json_0_027941410667539746,
+"pl": _pl_json_0_9660602836699421,
+"pt-br": _pt_br_json_0_2508542166889529,
+"really-big": _really_big_json_0_9168405969649773,
+"ro": _ro_json_0_8674896306228155,
+"ru": _ru_json_0_014549877080386464,
+"sk": _sk_json_0_024256927717231314,
+"sv": _sv_json_0_739297714460281,
+"test": _test_json_0_28631650760413185,
+"tr": _tr_json_0_37223549711823845,
+"uk": _uk_json_0_5348532939878268,
+"vi": _vi_json_0_6662363396770514,
+"zwspace": _zwspace_json_0_37075644570659083,
 };
 
 /**!

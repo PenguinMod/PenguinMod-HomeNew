@@ -103,13 +103,16 @@ for (const key in en) {
 export function getLanguageFinishedPercentage(language, json) {
     // english is literally what we speak
     if (language === "en") return 1;
-    // joke langs
+    // programatic joke langs
     if (language === "en-but-again") return 1;
+    if (language === "en-but-rtl") return 1;
     if (language === "en-reversed") return 1;
     if (language === "en-flipped") return 1;
     if (language === "en-scream") return 1;
+    if (language === "en-leetspeak") return 1;
+    if (language === "en-braille") return 1;
     if (language === "really-big") return 1;
-    if (language === "braille") return 1;
+    if (language === "nothing") return 1;
     if (language === "test") return 1;
     if (language === "bleh") return 1;
 

@@ -13,10 +13,17 @@ import path from "path"
 const folderPath = path.join(import.meta.dirname, "../src/lib/resources/localization/translation/language/");
 
 import en from '../src/lib/resources/localization/translation/language/en.json' with { type: "json" };
+import randomNumbers from "./random-numbers.js";
 
+// LIST OF TRANSLATED JOKE LANGS (programatic ones are added in the functions below):
 const madeJokeLangs = [];
 // NOTE: If we ever wanted to add a joke lang that is NOT programatic, then add it to the list like so:
 // madeJokeLangs.push("lolcat");
+
+// LANGUAGES:
+// NOTE: This is structured so we never re-use anything between langs
+// NOTE: Never use anything 100% random so that languages stay consistent across generations. Use a random func that doesn't get affected by other languages also using it. (see really-big for an example)
+// NOTE: Programatic languages that edit English text should be prefixed with en- (this applies to other languages also)
 
 // test
 (() => {
@@ -39,6 +46,18 @@ const madeJokeLangs = [];
     fs.writeFileSync(path.join(folderPath, "en-but-again.json"), JSON.stringify(myLang, null, 4), "utf8");
     madeJokeLangs.push("en-but-again");
     console.log("PROGRAMATIC LANGS: en-but-again");
+})();
+// en-but-rtl
+(() => {
+    // NOTE: This is a copy of en.json because RTL is defined in translation-index
+    const myLang = { "---_PROGRAMATIC": "true" };
+    for (const key in en) {
+        myLang[key] = en[key];
+    }
+    myLang["lang.name"] = "English (right-to-left)";
+    fs.writeFileSync(path.join(folderPath, "en-but-rtl.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("en-but-rtl");
+    console.log("PROGRAMATIC LANGS: en-but-rtl");
 })();
 // en-scream
 (() => {
@@ -138,29 +157,35 @@ const madeJokeLangs = [];
     madeJokeLangs.push("bleh");
     console.log("PROGRAMATIC LANGS: bleh");
 })();
-// braille
+// en-braille
 (() => {
     const map = {
         'a': '⠁', 'b': '⠃', 'c': '⠉', 'd': '⠙', 'e': '⠑', 'f': '⠋', 'g': '⠛', 'h': '⠓',
         'i': '⠊', 'j': '⠚', 'k': '⠅', 'l': '⠇', 'm': '⠍', 'n': '⠝', 'o': '⠕', 'p': '⠏',
         'q': '⠟', 'r': '⠗', 's': '⠎', 't': '⠞', 'u': '⠥', 'v': '⠧', 'w': '⠺', 'x': '⠭',
-        'y': '⠽', 'z': '⠵', ' ': ' '
+        'y': '⠽', 'z': '⠵'
     };
     const myLang = { "---_PROGRAMATIC": "true" };
     for (const key in en) {
         myLang[key] = String(en[key]).split("").map(char => map[char.toLowerCase()] || char).join("");
     }
-    fs.writeFileSync(path.join(folderPath, "braille.json"), JSON.stringify(myLang, null, 4), "utf8");
-    madeJokeLangs.push("braille");
-    console.log("PROGRAMATIC LANGS: braille");
+    fs.writeFileSync(path.join(folderPath, "en-braille.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("en-braille");
+    console.log("PROGRAMATIC LANGS: en-braille");
 })();
 // really-big
 (() => {
+    let currentIndex = 0;
+    const lutRandom = () => {
+        currentIndex = (currentIndex + 1) % randomNumbers.length;
+        return randomNumbers[currentIndex];
+    };
+    
     const generateRandomBase64 = (length) => {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
         let result = '';
         for (let i = 0; i < length; i++) {
-            result += chars.charAt(Math.floor(Math.random() * chars.length));
+            result += chars.charAt(Math.floor(lutRandom() * chars.length));
         }
         return result;
     };
@@ -179,6 +204,50 @@ const madeJokeLangs = [];
     fs.writeFileSync(path.join(folderPath, "really-big.json"), JSON.stringify(myLang, null, 4), "utf8");
     madeJokeLangs.push("really-big");
     console.log("PROGRAMATIC LANGS: really-big");
+})();
+// en-leetspeak
+(() => {
+    const leetMap = {
+        'a': '4', 'A': '4',
+        'e': '3', 'E': '3',
+        'i': '1', 'I': '1',
+        'o': '0', 'O': '0',
+        's': '5', 'S': '5',
+        't': '7', 'T': '7'
+    };
+    const myLang = { "---_PROGRAMATIC": "true" };
+    for (const key in en) {
+        myLang[key] = String(en[key])
+            .split('')
+            .map(char => leetMap[char] || char)
+            .join('');
+    }
+    myLang["lang.name"] = "1337";
+    fs.writeFileSync(path.join(folderPath, "en-leetspeak.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("en-leetspeak");
+    console.log("PROGRAMATIC LANGS: en-leetspeak");
+})();
+// nothing
+(() => {
+    // NOTE: This language probably renders default text only
+    const myLang = { "---_PROGRAMATIC": "true" };
+    for (const key in en) {
+        myLang[key] = "";
+    }
+    fs.writeFileSync(path.join(folderPath, "nothing.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("nothing");
+    console.log("PROGRAMATIC LANGS: nothing");
+})();
+// zwspace
+(() => {
+    // NOTE: This language is just what "nothing" is probably expected to be visually
+    const myLang = { "---_PROGRAMATIC": "true" };
+    for (const key in en) {
+        myLang[key] = "\u200B";
+    }
+    fs.writeFileSync(path.join(folderPath, "zwspace.json"), JSON.stringify(myLang, null, 4), "utf8");
+    madeJokeLangs.push("zwspace");
+    console.log("PROGRAMATIC LANGS: zwspace");
 })();
 
 
