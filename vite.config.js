@@ -1,3 +1,5 @@
+import path from 'path';
+
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
@@ -9,8 +11,15 @@ export default defineConfig({
     },
     server: {
         watch: {
-            // Force Vite to watch the linked library files
-            ignored: ['!**/node_modules/PenguinMod-SvelteUI/**']
+            ignored: [
+                '!**/node_modules/PenguinMod-SvelteUI/**',
+                '!**/node_modules/PenguinMod-SvelteUI/dist/index.js',
+            ]
         }
     },
+    resolve: {
+        alias: {
+            'PenguinMod-SvelteUI': path.resolve('node_modules/PenguinMod-SvelteUI/dist/index.js')
+        }
+    }
 });
