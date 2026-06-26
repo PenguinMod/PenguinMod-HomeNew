@@ -7,6 +7,8 @@
     let props = $props();
     
     import externalLinks from "$lib/resources/external-links";
+
+    // TODO: Fetch the basic api once and save into session storage
 </script>
 
 <Category {...props}>

@@ -5,6 +5,8 @@
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
 
     let props = $props();
+    
+    // TODO: Fetch the basic api once and save into session storage
 </script>
 
 <Category {...props}>
