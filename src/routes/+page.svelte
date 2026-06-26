@@ -1,10 +1,11 @@
 <script>
     // components
-    import { Button } from "PenguinMod-SvelteUI";
+    import { Button, Category } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
+    import MyFeed from "$lib/components/CategoryHome/MyFeed.svelte";
+    import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
+    import PenguinNews from "$lib/components/CategoryHome/PenguinNews.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
-    
-    import TranslationLoader from "$lib/resources/localization/translation/loader";
 
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings.js";
@@ -71,6 +72,11 @@
         </div>
     {/if}
     
+    <!-- Category sections -->
+    <WhatsNew />
+    <PenguinNews />
+    <MyFeed />
+
     <h1>Coming soon...</h1>
     <p>Dun dun...</p>
     <h1>Coming soon...</h1>
