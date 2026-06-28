@@ -1,6 +1,6 @@
 <script>
     // components
-    import { Button, Category } from "PenguinMod-SvelteUI";
+    import { Button, Category, SwappableHolder } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import MyFeed from "$lib/components/CategoryHome/MyFeed.svelte";
     import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
@@ -14,6 +14,7 @@
 </script>
 
 <main>
+    <!-- onboarding banner (logged out only) -->
     <div class="section-onboarding">
         <div class="section-onboarding-studio">
             <div class="section-onboarding-studio-inner">
@@ -59,6 +60,7 @@
             </div>
         </div>
     </div>
+    <!-- Translation banner -->
     {#if !(($StoreSettings.appLanguage === "browser") || ($StoreSettings.appLanguage === "en"))}
         <div class="section-language-warning">
             <Icon>translate</Icon>
@@ -71,43 +73,82 @@
             </p>
         </div>
     {/if}
+
+    <!-- Scratch Note -->
+    <p class="section-scratchnote">
+        <LocalizedString
+            text="Scratch Note: Please don't mention PenguinMod on Scratch, we have different rules compared to Scratch! 😅"
+            key="home.scratchnote"
+        />
+    </p>
     
     <!-- Category sections -->
-    <WhatsNew />
-    <PenguinNews />
-    <MyFeed />
-
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
-    <h1>Coming soon...</h1>
-    <p>Dun dun...</p>
+    <div class="section-categories">
+        <!-- feeds -->
+        <div class="section-categories-feeds">
+            <!-- TODO: Logged in only -->
+            <!-- <MyFeed /> -->
+            <!-- TODO: Logged out only -->
+            <div class="section-categories-feeds-logout">
+                <div class="section-categories-feeds-logout-left">
+                    <WhatsNew />
+                </div>
+                <div class="section-categories-feeds-logout-right">
+                    <PenguinNews />
+                </div>
+            </div>
+        </div>
+        
+        <!-- front page projects -->
+        <div class="section-categories-projects">
+            <!-- Latest featured projects -->
+            <Category>
+                {#snippet header()}
+                    <LocalizedString
+                        text="Latest featured projects"
+                        key="home.sections.weeklyfeatured"
+                    />
+                {/snippet}
+                <h1>Coming soon...</h1>
+                <p>Dun dun...</p>
+            </Category>
+            <!-- Projects people want Featured -->
+            <Category>
+                {#snippet header()}
+                    <LocalizedString
+                        text="Projects people want Featured"
+                        key="home.sections.mostvoted"
+                    />
+                {/snippet}
+                <h1>Coming soon...</h1>
+                <p>Dun dun...</p>
+            </Category>
+            <!-- Projects marked as # -->
+            <Category>
+                {#snippet header()}
+                    <LocalizedString
+                        text="Projects marked as #$1"
+                        key="home.sections.sortedbytag"
+                    />
+                {/snippet}
+                <h1>Coming soon...</h1>
+                <p>Dun dun...</p>
+            </Category>
+            <!-- Latest projects -->
+            <Category>
+                {#snippet header()}
+                    <LocalizedString
+                        text="Latest projects"
+                        key="home.sections.todaysprojects"
+                    />
+                {/snippet}
+                <h1>Coming soon...</h1>
+                <p>Dun dun...</p>
+            </Category>
+        </div>
+    </div>
     
+    <!-- footer -->
     <div class="section-footer">
         <p style="margin-block-end: 2px;">
             <LocalizedString
@@ -311,6 +352,48 @@
     }
     :global(body.app-theme-dark) .section-language-warning {
         color: white;
+    }
+
+    .section-scratchnote {
+        width: 100%;
+        margin-block-end: 0.35em;
+
+        text-align: center;
+        font-weight: bold;
+        font-style: italic;
+    }
+    
+    .section-categories {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section-categories-feeds {
+        width: 75%;
+        max-width: 1500px;
+    }
+    .section-categories-feeds-login,
+    .section-categories-feeds-logout {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+    }
+    .section-categories-feeds-logout-left,
+    .section-categories-feeds-login-right,
+    .section-categories-feeds-logout-right {
+        width: 50%;
+    }
+
+    .section-categories-projects {
+        width: 75%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .section-footer {
