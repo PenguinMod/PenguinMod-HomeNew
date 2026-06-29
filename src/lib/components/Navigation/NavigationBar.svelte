@@ -7,7 +7,9 @@
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte.js";
 
+    import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings";
+    import StoreSession from "$lib/stores/session";
 
     const optionThemeToggle = () => {
         $StoreSettings.appTheme = $StoreSettings.appTheme === "light" ? "dark" : "light";
@@ -54,58 +56,64 @@
         </a>
         
         <!-- account buttons -->
-        <a
-            href={PUBLIC_STUDIO_URL}
-            class="navigation-button-link"
-            {@attach LocalizedTooltip("messages.title")}
-        >
-            <button tabindex="-1">
-                <Icon>mail</Icon>
-            </button>
-        </a>
-        <a
-            href={PUBLIC_STUDIO_URL}
-            class="navigation-button-link"
-            {@attach LocalizedTooltip("navigation.mystuff")}
-        >
-            <button tabindex="-1">
-                <Icon>folder</Icon>
-            </button>
-        </a>
-        <a
-            href={PUBLIC_STUDIO_URL}
-            class="navigation-button-link"
-        >
-            <button tabindex="-1">
-                <Icon>admin_panel_settings</Icon>
-            </button>
-        </a>
+        {#if StateApplication.loggedInProcessed && $StoreSettings.loggedIn}
+            <a
+                href={PUBLIC_STUDIO_URL}
+                class="navigation-button-link"
+                {@attach LocalizedTooltip("messages.title")}
+            >
+                <button tabindex="-1">
+                    <Icon>mail</Icon>
+                </button>
+            </a>
+            <a
+                href={PUBLIC_STUDIO_URL}
+                class="navigation-button-link"
+                {@attach LocalizedTooltip("navigation.mystuff")}
+            >
+                <button tabindex="-1">
+                    <Icon>folder</Icon>
+                </button>
+            </a>
+            {#if $StoreSession.userCachedAdmin || $StoreSession.userCachedMod}
+                <a
+                    href={PUBLIC_STUDIO_URL}
+                    class="navigation-button-link"
+                >
+                    <button tabindex="-1">
+                        <Icon>admin_panel_settings</Icon>
+                    </button>
+                </a>
+            {/if}
+        {/if}
         
         <!-- login buttons -->
-        <a
-            href={PUBLIC_STUDIO_URL}
-            class="navigation-button-link"
-            {@attach LocalizedTooltip("navigation.login")}
-        >
-            <button tabindex="-1">
-                <LocalizedString
-                    text="Sign in"
-                    key="navigation.login"
-                />
-            </button>
-        </a>
-        <a
-            href={PUBLIC_STUDIO_URL}
-            class="navigation-button-link"
-            {@attach LocalizedTooltip("navigation.signup")}
-        >
-            <button tabindex="-1">
-                <LocalizedString
-                    text="Sign up"
-                    key="navigation.signup"
-                />
-            </button>
-        </a>
+        {#if StateApplication.loggedInProcessed && !($StoreSettings.loggedIn)}
+            <a
+                href={PUBLIC_STUDIO_URL}
+                class="navigation-button-link"
+                {@attach LocalizedTooltip("navigation.login")}
+            >
+                <button tabindex="-1">
+                    <LocalizedString
+                        text="Sign in"
+                        key="navigation.login"
+                    />
+                </button>
+            </a>
+            <a
+                href={PUBLIC_STUDIO_URL}
+                class="navigation-button-link"
+                {@attach LocalizedTooltip("navigation.signup")}
+            >
+                <button tabindex="-1">
+                    <LocalizedString
+                        text="Sign up"
+                        key="navigation.signup"
+                    />
+                </button>
+            </a>
+        {/if}
     </div>
     <div class="navigation-bar-section navigation-others">
         <!-- events -->

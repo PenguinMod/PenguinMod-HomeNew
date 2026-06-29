@@ -19,8 +19,9 @@ class Authenticator {
         // get the current user info
         const userInfo = await PenguinModClient.users.getInfo();
         // TODO: See if the api can return these all in getInfo()
-        const messageCount = await PenguinModClient.users.getMessageCount();
+        const messageCount = await PenguinModClient.users.getUnreadMessageCount();
         const userProfile = await PenguinModClient.users.getProfile(userInfo.username);
+        console.log(userInfo, messageCount, userProfile);
         StoreSession.set({
             ...currentSession,
             userCachedTime: Date.now(),
@@ -31,14 +32,15 @@ class Authenticator {
             userCachedRank: userInfo.rank,
             userCachedCanRankUp: userProfile.canrankup,
             userCachedSupporter: userInfo.donator,
-            userCachedMod: false,
-            userCachedAdmin: false,
+            userCachedMod: userInfo.approver,
+            userCachedAdmin: userInfo.admin,
         });
     }
     /**
      * Marks the cached user info as outdated.
      */
     static dirtyUserInfo() {
+        if (!browser) return;
         const currentSession = get(StoreSession);
         StoreSession.set({
             ...currentSession,
@@ -49,9 +51,11 @@ class Authenticator {
      * Checks if the cached user info is outdated, and grabs the new information if so.
      */
     static async updateOutdatedUserInfo() {
+        if (!browser) return;
         const currentSession = get(StoreSession);
         const elapsedTime = Date.now() - currentSession.userCachedTime;
         if (elapsedTime < CACHE_USER_INFO) return;
+
         // it has been CACHE_USER_INFO ms
         await this.cacheUserInfo();
     }
