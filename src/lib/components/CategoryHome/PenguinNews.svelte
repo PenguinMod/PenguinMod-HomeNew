@@ -1,8 +1,14 @@
 <script>
+    import { browser } from "$app/environment";
+
     // components
     import { Category } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
+    
+    import TranslationMapper from "$lib/resources/localization/translation/mapper";
+
+    import StoreSettings from "$lib/stores/settings";
 
     let props = $props();
 </script>
@@ -35,12 +41,6 @@
         <h2 style="margin-block:4px;">
             All The Mods Game Jam has ended!
         </h2>
-        <img
-            src="https://penguinmod.com/events/news/allthemods2026.webp?r=1"
-            alt="All The Mods 2026"
-            style="width:100%;border-radius:8px;"
-        />
-        <hr />
         <div style="width:100%">
             <p>
                 Thanks for participating in the event! Rankings will be announced
@@ -51,12 +51,21 @@
                 All The Mods on itch.io
             </a>
         </div>
+        <hr />
+        <img
+            src="https://penguinmod.com/events/news/allthemods2026.webp?r=1"
+            alt="All The Mods 2026"
+            style="width:100%;border-radius:8px;"
+        />
     </div>
     {#snippet footer()}
-        <!-- TODO: This should only display outside of english -->
-        <LocalizedString
-            text="PenguinNews is not translated in your language. Sorry! :("
-            key="home.sections.informational.notranslation"
-        />
+        {#if browser && TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage) !== "en"}
+            <LocalizedString
+                text="PenguinNews is not translated in your language. Sorry! :("
+                key="home.sections.informational.notranslation"
+            />
+        {:else}
+            TODO: This should be a fun fact
+        {/if}
     {/snippet}
 </Category>

@@ -22,5 +22,15 @@ const PenguinModClient = new PenguinModAPI({
     apiUrl: apiUrl,
     token: userToken,
 });
+if (browser) {
+    PenguinModClient.injectOptions = (options) => {
+        return {
+            headers: {
+                "PenguinMod-Frontend": location.host,
+                "PenguinMod-FrontendType": "PenguinMod-HomeNew",
+            },
+        };
+    };
+}
 
 export default PenguinModClient;

@@ -29,7 +29,7 @@
             onclick={optionThemeToggle}
             {@attach LocalizedTooltip("navigation.theme")}
         >
-            <Icon>dark_mode</Icon>
+            <Icon style={$StoreSettings.appTheme === "light" ? "" : "font-variation-settings: 'FILL' 1;"}>dark_mode</Icon>
         </button>
     </div>
     <div class="navigation-bar-section navigation-links">

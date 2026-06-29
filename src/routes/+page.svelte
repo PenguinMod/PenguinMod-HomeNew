@@ -1,4 +1,6 @@
 <script>
+    import { browser } from "$app/environment";
+
     // components
     import { Button, Category, SwappableHolder } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
@@ -6,62 +8,70 @@
     import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
     import PenguinNews from "$lib/components/CategoryHome/PenguinNews.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
+    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte";
+    import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte";
+
+    import TranslationMapper from "$lib/resources/localization/translation/mapper";
 
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings.js";
+    import StoreSession from "$lib/stores/session";
 
     import externalLinks from "$lib/resources/external-links";
 </script>
 
 <main>
     <!-- onboarding banner (logged out only) -->
-    <div class="section-onboarding">
-        <div class="section-onboarding-studio">
-            <div class="section-onboarding-studio-inner">
-                <p>
-                    <LocalizedString
-                        text="Block-based coding with tons of capabilities"
-                        key="home.introduction1"
-                    />
-                </p>
-                <p>
-                    <LocalizedString
-                        text="Built off of Scratch and TurboWarp"
-                        key="home.introduction2"
-                    />
-                </p>
-                <Button icon="/icons/blocks-blue.svg" kind="highlighted" link={externalLinks.editor}>
-                    <LocalizedString
-                        text="Try it out"
-                        key="home.tryout"
-                    />
-                </Button>
+    {#if !StateApplication.loggedInProcessed || !($StoreSettings.loggedIn)}
+        <div class="section-onboarding">
+            <div class="section-onboarding-studio">
+                <div class="section-onboarding-studio-inner">
+                    <p>
+                        <LocalizedString
+                            text="Block-based coding with tons of capabilities"
+                            key="home.introduction1"
+                        />
+                    </p>
+                    <p>
+                        <LocalizedString
+                            text="Built off of Scratch and TurboWarp"
+                            key="home.introduction2"
+                        />
+                    </p>
+                    <Button icon="/icons/blocks-blue.svg" kind="highlighted" link={externalLinks.editor}>
+                        <LocalizedString
+                            text="Try it out"
+                            key="home.tryout"
+                        />
+                    </Button>
+                </div>
+            </div>
+            <div class="section-onboarding-showoff">
+                <div class="section-onboarding-showoff-inner">
+                    {#if !StateApplication.loggedInProcessed}
+                        <img
+                            src="https://penguinmod.com/penguins/frontpage.svg"
+                            alt="PenguinMod"
+                        />
+                    {:else if !($StoreSettings.loggedIn)}
+                        <iframe
+                            class="section-onboarding-showoff-inner-video"
+                            width="560"
+                            height="315"
+                            src="https://www.youtube-nocookie.com/embed/g8zwb4W3G8Q"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            frameborder="0"
+                        ></iframe>
+                    {/if}
+                </div>
             </div>
         </div>
-        <div class="section-onboarding-showoff">
-            <div class="section-onboarding-showoff-inner">
-                <!-- TODO: Logged in only -->
-                <!-- <iframe
-                    class="section-onboarding-showoff-inner-video"
-                    width="560"
-                    height="315"
-                    src="https://www.youtube-nocookie.com/embed/g8zwb4W3G8Q"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    frameborder="0"
-                ></iframe> -->
-                <!-- TODO: Logged out only -->
-                <img
-                    src="https://penguinmod.com/penguins/frontpage.svg"
-                    alt="PenguinMod"
-                />
-            </div>
-        </div>
-    </div>
+    {/if}
     <!-- Translation banner -->
-    {#if !(($StoreSettings.appLanguage === "browser") || ($StoreSettings.appLanguage === "en"))}
+    {#if browser && TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage) !== "en"}
         <div class="section-language-warning">
             <Icon>translate</Icon>
             <div style="width:4px;"></div>
@@ -86,17 +96,154 @@
     <div class="section-categories">
         <!-- feeds -->
         <div class="section-categories-feeds">
-            <!-- TODO: Logged in only -->
-            <!-- <MyFeed /> -->
-            <!-- TODO: Logged out only -->
-            <div class="section-categories-feeds-logout">
-                <div class="section-categories-feeds-logout-left">
-                    <WhatsNew />
+            {#if StateApplication.loggedInProcessed && $StoreSettings.loggedIn}
+                <div class="section-categories-feeds-login">
+                    <div class="section-categories-feeds-login-left">
+                        <!-- user profile header -->
+                        <div class="section-categories-feeds-login-left-username">
+                            <a href={`/profile/${$StoreSession.userCachedDisplayName}`}>
+                                <img
+                                    src="https://projects.penguinmod.com/api/v1/users/getpfp?username=jeremygamer13"
+                                    alt={$StoreSession.userCachedDisplayName}
+                                    title={$StoreSession.userCachedDisplayName}
+                                />
+                                <div>
+                                    <h1>
+                                        <LocalizedString
+                                            text="Hello, $1!"
+                                            key="home.welcome"
+                                            replacers={{
+                                                "$1": $StoreSession.userCachedDisplayName,
+                                            }}
+                                        />
+                                    </h1>
+                                    {#if $StoreSession.userCachedBio}
+                                        <p style="opacity: 0.7;">
+                                            “{$StoreSession.userCachedBio}”
+                                        </p>
+                                    {:else}
+                                        <p>
+                                            <LocalizedString
+                                                text="My Account"
+                                                key="account.title"
+                                            />
+                                        </p>
+                                    {/if}
+                                </div>
+                            </a>
+                        </div>
+                        <!-- profile actions -->
+                        <div class="section-categories-feeds-login-left-actions">
+                            <!-- Create Button -->
+                            <a
+                                title="Create"
+                                href={externalLinks.editor}
+                                {@attach LocalizedTooltip("navigation.create")}
+                            >
+                                <button
+                                    title="Create"
+                                    {@attach LocalizedTooltip("navigation.create")}
+                                >
+                                    <div></div>
+                                    <span>
+                                        <Icon style="font-variation-settings: 'FILL' 1;">design_services</Icon>
+                                        <LocalizedString
+                                            text="Create"
+                                            key="navigation.create"
+                                        />
+                                    </span>
+                                </button>
+                            </a>
+                            <!-- My Stuff Button -->
+                            <a
+                                title="My Stuff"
+                                href="/mystuff"
+                                {@attach LocalizedTooltip("mystuff.title")}
+                            >
+                                <button
+                                    title="My Stuff"
+                                    {@attach LocalizedTooltip("mystuff.title")}
+                                >
+                                    <div></div>
+                                    <span>
+                                        <Icon style="font-variation-settings: 'FILL' 1;">folder</Icon>
+                                        <LocalizedString
+                                            text="My Stuff"
+                                            key="mystuff.title"
+                                        />
+                                    </span>
+                                </button>
+                            </a>
+                            <!-- Settings Button -->
+                            <a
+                                title="Settings"
+                                href="/settings"
+                                {@attach LocalizedTooltip("account.settings.title")}
+                            >
+                                <button
+                                    title="Settings"
+                                    {@attach LocalizedTooltip("account.settings.title")}
+                                >
+                                    <div></div>
+                                    <span>
+                                        <Icon style="font-variation-settings: 'FILL' 1;">settings</Icon>
+                                        <LocalizedString
+                                            text="Settings"
+                                            key="account.settings.title"
+                                        />
+                                    </span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="section-categories-feeds-login-right">
+                        <SwappableHolder>
+                            {#snippet holderWhatsNew()}
+                                <div class="section-categories-feeds-login-right-container">
+                                    <WhatsNew />
+                                </div>
+                            {/snippet}
+                            {#snippet holderPenguinNews()}
+                                <div class="section-categories-feeds-login-right-container">
+                                    <PenguinNews />
+                                </div>
+                            {/snippet}
+                            {#snippet holderMyFeed()}
+                                <div class="section-categories-feeds-login-right-container">
+                                    <MyFeed />
+                                </div>
+                            {/snippet}
+                            {#snippet swapWhatsNew()}
+                                <LocalizedString
+                                    text="What's new?"
+                                    key="home.sections.whatsnew"
+                                />
+                            {/snippet}
+                            {#snippet swapPenguinNews()}
+                                <LocalizedString
+                                    text="PenguinNews"
+                                    key="home.sections.informational"
+                                />
+                            {/snippet}
+                            {#snippet swapMyFeed()}
+                                <LocalizedString
+                                    text="My Feed"
+                                    key="home.sections.feed"
+                                />
+                            {/snippet}
+                        </SwappableHolder>
+                    </div>
                 </div>
-                <div class="section-categories-feeds-logout-right">
-                    <PenguinNews />
+            {:else if !StateApplication.loggedInProcessed || !($StoreSettings.loggedIn)}
+                <div class="section-categories-feeds-logout">
+                    <div class="section-categories-feeds-logout-left">
+                        <WhatsNew />
+                    </div>
+                    <div class="section-categories-feeds-logout-right">
+                        <PenguinNews />
+                    </div>
                 </div>
-            </div>
+            {/if}
         </div>
         
         <!-- front page projects -->
@@ -382,10 +529,172 @@
         display: flex;
         flex-direction: row;
     }
+    .section-categories-feeds-login {
+        align-items: center;
+    }
+    .section-categories-feeds-login-left,
     .section-categories-feeds-logout-left,
     .section-categories-feeds-login-right,
     .section-categories-feeds-logout-right {
         width: 50%;
+    }
+    .section-categories-feeds-login-right-container,
+    .section-categories-feeds-login-right :global(*[data-penguinmodsvelteui-swappableholder-header="true"]) {
+        width: 100%;
+    }
+    
+    .section-categories-feeds-login-left {
+        /* we kinda just have to assume this is a good height... */
+        height: 360px;
+
+        display: flex;
+        flex-direction: column;
+    }
+    .section-categories-feeds-login-left > div {
+        width: 100%;
+    }
+
+    .section-categories-feeds-login-left-username > a {
+        width: 100%;
+        height: 6em;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        color: inherit;
+        text-decoration: none;
+    }
+    .section-categories-feeds-login-left-username > a img {
+        width: 6em;
+        height: 6em;
+        margin-inline-end: 8px;
+
+        border-radius: 16px;
+        /* bouba kiki is stupid annoying marketing but it kinda works here so */
+        corner-shape: squircle;
+    }
+    .section-categories-feeds-login-left-username > a > div {
+        width: calc(100% - (6em + 8px));
+    }
+    .section-categories-feeds-login-left-username > a > div h1,
+    .section-categories-feeds-login-left-username > a > div p {
+        width: 100%;
+        margin-block: 4px;
+    }
+    .section-categories-feeds-login-left-username > a > div h1 {
+        height: 1.1em;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .section-categories-feeds-login-left-username > a > div p {
+        width: 100%;
+        max-height: calc(6em - (2em + 4px + 4px + 4px));
+
+        font-style: italic;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .section-categories-feeds-login-left-actions {
+        width: 100%;
+        height: calc(100% - 6em);
+        margin-top: 8px;
+    }
+    .section-categories-feeds-login-left-actions > a {
+        display: block;
+        width: 100%;
+        height: calc(100% / 3);
+
+        color: inherit;
+        text-decoration: none;
+    }
+    .section-categories-feeds-login-left-actions > a > button {
+        position: relative;
+        width: 100%;
+        height: calc(100% - 1px);
+        border: 0;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        color: inherit;
+        background: transparent;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+        font-weight: bold;
+        font-size: 2em;
+        
+        cursor: pointer;
+    }
+    .section-categories-feeds-login-left-actions > a > button > span {
+        display: flex;
+        align-items: center;
+    }
+    .section-categories-feeds-login-left-actions > a > button > span > :global(span) {
+        font-size: 1.5em;
+        margin: 0 8px;
+    }
+    .section-categories-feeds-login-left-actions > a:last-child > button {
+        border-bottom: initial;
+    }
+    :global(body.app-theme-dark) .section-categories-feeds-login-left-actions > a > button {
+        border-bottom-color: rgba(255, 255, 255, .1);
+    }
+    .section-categories-feeds-login-left-actions > a > button > * {
+        z-index: 5;
+    }
+    .section-categories-feeds-login-left-actions > a > button:hover {
+        color: white;
+    }
+    .section-categories-feeds-login-left-actions > a > button > div {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0%;
+        height: 100%;
+        
+        outline: 0;
+        border-radius: 8px;
+
+        transition: 0.2s ease-in-out;
+        transition-property: width outline-width;
+        z-index: 0;
+    }
+    :global(html[dir="rtl"]) .section-categories-feeds-login-left-actions > a > button > div {
+        left: initial;
+        right: 0;
+    }
+    .section-categories-feeds-login-left-actions > a > button:hover > div {
+        width: 100%;
+        outline-style: solid;
+        outline-width: 4px;
+
+        transition: 0.1s ease-out;
+        transition-property: width outline-width;
+    }
+    
+    .section-categories-feeds-login-left-actions > a:nth-child(1) > button > div {
+        background: #00c3ff;
+        outline-color: #00c3ff55;
+    }
+    .section-categories-feeds-login-left-actions > a:nth-child(2) > button > div {
+        background: #FFAB00;
+        outline-color: #FFAB0055;
+    }
+    .section-categories-feeds-login-left-actions > a:nth-child(3) > button > div {
+        background: #808080;
+        outline-color: #80808055;
+    }
+    .section-categories-feeds-login-left-actions > a > button:active > div {
+        filter: brightness(0.9);
+        transform: scaleY(0.9);
+    }
+    :global(body.app-theme-dark) .section-categories-feeds-login-left-actions > a > button > div {
+        opacity: 0.75;
     }
 
     .section-categories-projects {

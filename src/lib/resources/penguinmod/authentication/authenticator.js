@@ -28,6 +28,7 @@ class Authenticator {
             userCachedId: userInfo.id,
             userCachedUsername: userInfo.username,
             userCachedDisplayName: userInfo.real_username,
+            userCachedBio: userProfile.bio,
             userCachedUnreadCount: messageCount,
             userCachedRank: userInfo.rank,
             userCachedCanRankUp: userProfile.canrankup,

@@ -14,6 +14,8 @@ const defaultSession = {
     userCachedUsername: "",
     // User cache - The user's name (displayed)
     userCachedDisplayName: "",
+    // User cache - The user's bio (generally try not to depend on this)
+    userCachedBio: "",
     // User cache - The amount of unread messages the user has
     userCachedUnreadCount: 0,
     // User cache - The user's rank
@@ -29,6 +31,7 @@ const defaultSession = {
 };
 
 // NOTE: uses sessionStorage
+// TODO: Session storage might be different between tabs.. thats a problem
 const session = writable(defaultSession);
 if (browser) {
     const stringStored = sessionStorage.getItem('pm:session');

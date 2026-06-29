@@ -2,12 +2,12 @@
     let props = $props();
 </script>
 
-<span class="material-symbols" style={props.style}>
+<span class="material-symbols-outlined" style={props.style}>
     {@render props.children?.()}
 </span>
 
 <style>
-    .material-symbols {
+    .material-symbols-outlined {
         user-select: none;
     }
 </style>
