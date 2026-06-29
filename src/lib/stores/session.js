@@ -31,7 +31,7 @@ const defaultSession = {
 };
 
 // NOTE: uses sessionStorage
-// TODO: Session storage might be different between tabs.. thats a problem
+// TODO: Session storage might be different between tabs.. thats a problem. Probably we will use BroadcastChannel to tell other tabs what the right info is on set.
 const session = writable(defaultSession);
 if (browser) {
     const stringStored = sessionStorage.getItem('pm:session');
