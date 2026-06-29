@@ -3,6 +3,8 @@ import { writable } from 'svelte/store';
 import tryCatch from '$lib/resources/try-catch';
 
 const defaultSettings = {
+    // Whether or not the user is logged in
+    loggedIn: false,
     // The logged-in user's token
     token: "",
 

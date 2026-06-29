@@ -22,6 +22,10 @@ const defaultSession = {
     userCachedCanRankUp: false,
     // User cache - Whether or not the user is a supporter
     userCachedSupporter: false,
+    // User cache - Whether or not the user is a moderator
+    userCachedMod: false,
+    // User cache - Whether or not the user is an admin
+    userCachedAdmin: false,
 };
 
 // NOTE: uses sessionStorage

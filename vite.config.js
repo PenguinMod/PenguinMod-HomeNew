@@ -6,8 +6,16 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	plugins: [sveltekit()],
     optimizeDeps: {
-        include: ['PenguinMod-SvelteUI'],
+        include: [
+            'PenguinMod-SvelteUI',
+            'penguinmod'
+        ],
         force: true
+    },
+    ssr: {
+        external: [
+            'penguinmod'
+        ],
     },
     server: {
         watch: {

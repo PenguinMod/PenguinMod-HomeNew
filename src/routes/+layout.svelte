@@ -4,16 +4,21 @@
     // Components
     import NavigationBar from "$lib/components/Navigation/NavigationBar.svelte";
     
-    import TranslationLoader from "$lib/resources/localization/translation/loader";
+    import TranslationLoader from "$lib/resources/localization/translation/loader.js";
+    import Authenticator from "$lib/resources/penguinmod/authentication/authenticator.js";
 
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings.js";
+    import StoreSession from "$lib/stores/session.js";
 
     let { children } = $props();
 
     $effect(() => {
         const activeLanguage = $StoreSettings.appLanguage;
         TranslationLoader.initialize(activeLanguage);
+    });
+    $effect(async () => {
+        await Authenticator.updateOutdatedUserInfo();
     });
 </script>
 
