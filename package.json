@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-        "indexl10n": "node scripts/programatic-langs.js && node scripts/translation-index.js"
+		"indexl10n": "node scripts/programatic-langs.js && node scripts/translation-index.js"
 	},
 	"dependencies": {
 		"penguinmod": "github:PenguinMod/PenguinMod-ApiModule",
