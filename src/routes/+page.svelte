@@ -38,7 +38,7 @@
                             key="home.introduction2"
                         />
                     </p>
-                    <Button icon="/icons/blocks-blue.svg" kind="highlighted" link={externalLinks.editor}>
+                    <Button icon="/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
                         <LocalizedString
                             text="Try it out"
                             key="home.tryout"
