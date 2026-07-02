@@ -2,21 +2,18 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 import tryCatch from '$lib/resources/try-catch';
 
+/**
+ * @type {StoreSettingsInterface}
+ */
 export const defaultSettings = {
-    /** Whether or not the user is logged in */
     loggedIn: false,
-    /** The logged-in user's token */
     token: "",
 
-    /** The theme of the site */
     appTheme: "light",
-    /** The language of the site */
     appLanguage: "browser",
 
-    /** Alert IDs that have been dismissed */
     alertDismissed: [],
-    /** The last status alert text dismissed (should be reset on no status alert) */
-    alertStatusDismissed: "",
+    alertStatusDismissed: [],
 };
 
 // NOTE: uses localStorage

@@ -1,12 +1,12 @@
 import { browser } from "$app/environment";
 import { get } from "svelte/store";
 
-import Locale from "../locale";
+import Locale from "$lib/resources/localization/locale.js";
 
 import StoreSettings from "$lib/stores/settings";
 
-import languageInfo from "./language/language-info";
-import languageDatabase from "./language/language-database";
+import languageInfo from "$lib/resources/localization/translation/language/language-info.js";
+import languageDatabase from "$lib/resources/localization/translation/language/language-database.js";
 
 class TranslationMapper {
     /**

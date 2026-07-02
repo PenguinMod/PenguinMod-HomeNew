@@ -4,6 +4,11 @@ declare namespace PenguinModBasicAPITypes {
      */
     interface StatusUpdate {
         /**
+         * The unique identifier for this update.
+         */
+        id: string;
+
+        /**
          * Whether or not this status update is active, like ongoing maintenance or unexpected errors.
          */
         active: boolean;

@@ -2,37 +2,30 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 import tryCatch from '$lib/resources/try-catch';
 
+/**
+ * @type {StoreSessionInterface}
+ */
 export const defaultSession = {
-    /** The last time the status endpoint was fetched */
     alertStatusCachedTime: 0,
+    alertStatusCachedAlerts: [],
 
-    /** User cache - last time the user info was actually fetched (reset on logout) */
     userCachedTime: 0,
-    /** User cache - The user's ID */
     userCachedId: "",
-    /** User cache - The user's name (lowercase) */
     userCachedUsername: "",
-    /** User cache - The user's name (displayed) */
     userCachedDisplayName: "",
-    /** User cache - The user's bio (generally try not to depend on this) */
-    userCachedBio: "",
-    /** User cache - The amount of unread messages the user has */
+    userCachedBio: "", // TODO: Remove (see  todo elsewhere)
     userCachedUnreadCount: 0,
-    /** User cache - The user's rank */
     userCachedRank: 0,
-    /** User cache - Whether or not the user can rank up */
     userCachedCanRankUp: false,
-    /** User cache - Whether or not the user is a supporter */
     userCachedSupporter: false,
-    /** User cache - Whether or not the user is a moderator */
     userCachedMod: false,
-    /** User cache - Whether or not the user is an admin */
     userCachedAdmin: false,
     
-    /** User feed cache - last time the user feed was actually fetched */
     userFeedCachedTime: 0,
-    /** User feed cache - The fetched user feed */
-    userFeedCachedData: false,
+    userFeedCachedData: [],
+
+    frontpageUpdatesCachedTime: 0,
+    frontpageUpdatesCachedUpdates: [],
 };
 
 // NOTE: uses sessionStorage

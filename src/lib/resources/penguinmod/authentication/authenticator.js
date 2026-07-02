@@ -1,8 +1,10 @@
 import { browser } from "$app/environment";
 import { get } from "svelte/store";
 
-import PenguinModClient from "../client";
-import { CACHE_USER_INFO } from "../cache-time";
+import PenguinModClient from "$lib/resources/penguinmod/client.js";
+
+import CacheHelper from "$lib/resources/cache/cache-helper.js";
+import { CACHE_USER_INFO } from "$lib/resources/cache/cache-time.js";
 
 import StoreSettings from "$lib/stores/settings";
 import StoreSession from "$lib/stores/session";
@@ -13,25 +15,17 @@ class Authenticator {
      */
     static async cacheUserInfo() {
         const currentSettings = get(StoreSettings);
-        const currentSession = get(StoreSession);
         const token = currentSettings.token;
 
         // get the current user info
         const userInfo = await PenguinModClient.users.getInfo();
-        // TODO: See if the api can return these all in getInfo()
-        const messageCount = await PenguinModClient.users.getUnreadMessageCount();
-        const userProfile = await PenguinModClient.users.getProfile(userInfo.username);
-        console.log(userInfo, messageCount, userProfile);
-        StoreSession.set({
-            ...currentSession,
-            userCachedTime: Date.now(),
+        CacheHelper.update({
             userCachedId: userInfo.id,
             userCachedUsername: userInfo.username,
             userCachedDisplayName: userInfo.real_username,
-            userCachedBio: userProfile.bio,
-            userCachedUnreadCount: messageCount,
+            userCachedUnreadCount: userInfo.messageCount,
             userCachedRank: userInfo.rank,
-            userCachedCanRankUp: userProfile.canrankup,
+            userCachedCanRankUp: userInfo.canrankup,
             userCachedSupporter: userInfo.donator,
             userCachedMod: userInfo.approver,
             userCachedAdmin: userInfo.admin,
@@ -42,10 +36,8 @@ class Authenticator {
      */
     static dirtyUserInfo() {
         if (!browser) return;
-        const currentSession = get(StoreSession);
-        StoreSession.set({
-            ...currentSession,
-            userCachedTime: 0,
+        CacheHelper.reset({
+            userCachedTime: true,
         });
     }
     /**
@@ -53,9 +45,7 @@ class Authenticator {
      */
     static async updateOutdatedUserInfo() {
         if (!browser) return;
-        const currentSession = get(StoreSession);
-        const elapsedTime = Date.now() - currentSession.userCachedTime;
-        if (elapsedTime < CACHE_USER_INFO) return;
+        if (!CacheHelper.isExpired("userCachedTime", CACHE_USER_INFO)) return;
 
         // it has been CACHE_USER_INFO ms
         await this.cacheUserInfo();
@@ -109,8 +99,11 @@ class Authenticator {
             token: "",
         });
 
-        // dirty cache
+        // dirty user cache & other user-related content
         this.dirtyUserInfo();
+        CacheHelper.reset({
+            userFeedCachedTime: true,
+        });
     }
 }
 

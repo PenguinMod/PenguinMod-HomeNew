@@ -1,9 +1,9 @@
 import { browser } from '$app/environment';
 
-import Locale from '../locale';
-import TranslationMapper from './mapper';
+import Locale from '$lib/resources/localization/locale.js';
+import TranslationMapper from '$lib/resources/localization/translation/mapper.js';
 
-import languageInfo from "./language/language-info";
+import languageInfo from "$lib/resources/localization/translation/language/language-info.js";
 
 class TranslationLoader {
     /**

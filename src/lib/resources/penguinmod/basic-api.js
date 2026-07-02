@@ -1,6 +1,6 @@
 import { PUBLIC_BASIC_API_URL } from "$env/static/public";
 
-import externalLinks from "../external-links.js";
+import externalLinks from "$lib/resources/external-links.js";
 
 class PenguinModBasicAPI {
     /**
@@ -21,6 +21,7 @@ class PenguinModBasicAPI {
         // NOTE: if this api ever updates to returns an array then return that directly
         return json.type === "empty" ? [] : [{
             // NOTE: this is extra info that maybe the api should return later
+            id: `temporary id ${json.text}`,
             active: true,
             detail: externalLinks.status,
             date: Date.now(),
