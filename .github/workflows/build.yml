@@ -20,13 +20,10 @@ jobs:
       with:
         node-version: 22.x
         cache: 'npm'
+    - name: Setup .env
+      run: cp .env.template .env
     - run: npm ci
     - run: npm run build
-      env:
-        PUBLIC_API_URL: ${{ vars.PUBLIC_API_URL }}
-        PUBLIC_STUDIO_URL: ${{ vars.PUBLIC_STUDIO_URL }}
-        PUBLIC_MAX_UPLOAD_SIZE: ${{ vars.PUBLIC_MAX_UPLOAD_SIZE }}
-        PUBLIC_CAPTCHA_ENABLED: ${{ vars.PUBLIC_CAPTCHA_ENABLED }}
     - name: Upload GitHub Pages artifact
       uses: actions/upload-pages-artifact@v3.0.1
       with:
