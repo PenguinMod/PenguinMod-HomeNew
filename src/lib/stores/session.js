@@ -31,6 +31,8 @@ export const defaultSession = {
     
     /** User feed cache - last time the user feed was actually fetched */
     userFeedCachedTime: 0,
+    /** User feed cache - The fetched user feed */
+    userFeedCachedData: false,
 };
 
 // NOTE: uses sessionStorage
