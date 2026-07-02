@@ -26,6 +26,9 @@ export const defaultSession = {
 
     frontpageUpdatesCachedTime: 0,
     frontpageUpdatesCachedUpdates: [],
+
+    frontpageProjectsCachedTime: 0,
+    frontpageProjectsCachedResult: {},
 };
 
 // NOTE: uses sessionStorage

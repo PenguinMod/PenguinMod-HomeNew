@@ -28,6 +28,8 @@ class CacheHelper {
             newSession.userFeedCachedTime = Date.now();
         if (!newDataKeys.includes("frontpageUpdatesCachedTime") && newDataKeys.find(key => key.startsWith("frontpageUpdatesCached")))
             newSession.frontpageUpdatesCachedTime = Date.now();
+        if (!newDataKeys.includes("frontpageProjectsCachedTime") && newDataKeys.find(key => key.startsWith("frontpageProjectsCached")))
+            newSession.frontpageProjectsCachedTime = Date.now();
 
         // save that
         StoreSession.set(newSession);

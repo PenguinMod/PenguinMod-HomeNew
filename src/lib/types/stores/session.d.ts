@@ -32,10 +32,15 @@ declare interface StoreSessionInterface {
     /** User feed cache - last time the user feed was actually fetched */
     userFeedCachedTime: number,
     /** User feed cache - The fetched user feed */
-    userFeedCachedData: any[], // TODO: Figure out how to get FeedItem here (TS lang server thinks it doesnt exist)
+    userFeedCachedData: FeedItem[], // TODO: Figure out how to get FeedItem here (TS lang server thinks it doesnt exist)
 
     /** The last time the basic API updates endpoint was fetched */
     frontpageUpdatesCachedTime: number,
     /** The basic API updates that have been cached */
     frontpageUpdatesCachedUpdates: PenguinModBasicAPITypes.Update[],
+    
+    /** The last time the frontpage endpoint was fetched */
+    frontpageProjectsCachedTime: number,
+    /** The basic API updates that have been cached */
+    frontpageProjectsCachedResult: FrontPageResults, // TODO: Figure out how to get FrontPageResults here (TS lang server thinks it doesnt exist)
 };
