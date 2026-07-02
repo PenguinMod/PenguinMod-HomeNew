@@ -11,13 +11,42 @@
     import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte";
     import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte";
 
+    import { CACHE_FRONTPAGE_PROJECTS } from "$lib/resources/cache/cache-time";
+    import CacheHelper from "$lib/resources/cache/cache-helper";
     import TranslationMapper from "$lib/resources/localization/translation/mapper";
+    import PenguinModClient from "$lib/resources/penguinmod/client";
 
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings.js";
     import StoreSession from "$lib/stores/session";
 
     import externalLinks from "$lib/resources/external-links";
+
+    // front page project listings
+    let frontPageLoading = $state(true);
+    let frontPageError = $state(null);
+    const loadingAttempt = async () => {
+        await fetch("https://httpbin.org/status/429");
+        if (!CacheHelper.isExpired("frontpageProjectsCachedTime", CACHE_FRONTPAGE_PROJECTS)) return;
+
+        const frontPage = await PenguinModClient.projects.getFrontPage();
+        CacheHelper.update({
+            frontpageProjectsCachedResult: frontPage,
+        });
+    };
+    $effect(async () => {
+        // NOTE: Front page shows more if logged in and mod
+        if (!StateApplication.loggedInProcessed) return;
+        
+        try {
+            await loadingAttempt();
+        } catch (err) {
+            console.error(err);
+            frontPageError = err;
+        } finally {
+            frontPageLoading = false;
+        }
+    });
 </script>
 
 <main>
@@ -249,6 +278,31 @@
         
         <!-- front page projects -->
         <div class="section-categories-projects">
+            <!-- snippet for each section to reuse -->
+            {#snippet projectRow(section)}
+                {#if frontPageError}
+                    TODO: Render 429 separately from other errors (fetch https://httpbin.org/status/429)
+                {:else if frontPageLoading}
+                    TODO: Loading spinner
+                {:else if $StoreSession.frontpageProjectsCachedResult[section].length <= 0}
+                    <div class="section-categories-projects-rowtext">
+                        <Icon style="font-size:48px">indeterminate_question_box</Icon>
+                        <p>
+                            <LocalizedString
+                                text="No projects found. Why not upload one?"
+                                key="mystuff.none"
+                            />
+                        </p>
+                    </div>
+                {:else}
+                    <div>
+                        {#each $StoreSession.frontpageProjectsCachedResult[section] as project}
+                            {JSON.stringify(project)}
+                        {/each}
+                    </div>
+                {/if}
+            {/snippet}
+
             <!-- Latest featured projects -->
             <Category>
                 {#snippet header()}
@@ -257,8 +311,7 @@
                         key="home.sections.weeklyfeatured"
                     />
                 {/snippet}
-                <h1>Coming soon...</h1>
-                <p>Dun dun...</p>
+                {@render projectRow("featured")}
             </Category>
             <!-- Projects people want Featured -->
             <Category>
@@ -271,17 +324,28 @@
                 <h1>Coming soon...</h1>
                 <p>Dun dun...</p>
             </Category>
-            <!-- Projects marked as # -->
-            <Category>
-                {#snippet header()}
-                    <LocalizedString
-                        text="Projects marked as #$1"
-                        key="home.sections.sortedbytag"
-                    />
-                {/snippet}
-                <h1>Coming soon...</h1>
-                <p>Dun dun...</p>
-            </Category>
+            {#if
+                frontPageLoading || frontPageError
+                || !($StoreSession.frontpageProjectsCachedResult.selectedTag)
+                /* TODO: Check if selected tag section is empty and dont render if so */
+            }
+                <!-- nada dont display the # section -->
+            {:else}
+                <!-- Projects marked as # -->
+                <Category>
+                    {#snippet header()}
+                        <LocalizedString
+                            text="Projects marked as #$1"
+                            key="home.sections.sortedbytag"
+                            replacers={{
+                                "$1": ($StoreSession.frontpageProjectsCachedResult.selectedTag).replace("#", ""),
+                            }}
+                        />
+                    {/snippet}
+                    <h1>Coming soon...</h1>
+                    <p>Dun dun...</p>
+                </Category>
+            {/if}
             <!-- Latest projects -->
             <Category>
                 {#snippet header()}
@@ -704,6 +768,15 @@
 
         display: flex;
         flex-direction: column;
+        align-items: center;
+    }
+    .section-categories-projects-rowtext {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
 

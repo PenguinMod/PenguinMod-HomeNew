@@ -27,7 +27,7 @@
     };
     onMount(async () => {
         if (loading) return;
-        loading = true;
+        loading = true; // TODO: remove these loading false then true then false things
         
         try {
             await loadingAttempt();

@@ -17,3 +17,8 @@ export const CACHE_BASIC_API_UPDATES = 10 * 60 * 1000; // 10 minutes
  * How long to cache status updates for.
  */
 export const CACHE_BASIC_API_STATUS = 5 * 60 * 1000; // 5 minutes
+
+/**
+ * How long to cache front page projects for.
+ */
+export const CACHE_FRONTPAGE_PROJECTS = 5 * 60 * 1000; // 5 minutes

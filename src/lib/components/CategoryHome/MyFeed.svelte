@@ -30,7 +30,7 @@
     };
     onMount(async () => {
         if (!($StoreSettings.loggedIn)) return;
-        if (loading) return;
+        if (loading) return; // TODO: remove these loading false then true then false things
         loading = true;
         
         try {
