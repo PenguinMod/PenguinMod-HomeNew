@@ -28,6 +28,11 @@ export default {
      * PenguinMod's packager page
      */
     packager: `${PUBLIC_STUDIO_URL}/PenguinMod-Packager/`,
+    
+    /**
+     * PenguinMod's status page
+     */
+    status: "https://status.penguinmod.com/",
 
     /**
      * PenguinMod's official wiki

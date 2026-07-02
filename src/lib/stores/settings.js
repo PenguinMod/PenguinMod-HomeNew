@@ -2,20 +2,20 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 import tryCatch from '$lib/resources/try-catch';
 
-const defaultSettings = {
-    // Whether or not the user is logged in
+export const defaultSettings = {
+    /** Whether or not the user is logged in */
     loggedIn: false,
-    // The logged-in user's token
+    /** The logged-in user's token */
     token: "",
 
-    // The theme of the site
+    /** The theme of the site */
     appTheme: "light",
-    // The language of the site
+    /** The language of the site */
     appLanguage: "browser",
 
-    // Alert IDs that have been dismissed
+    /** Alert IDs that have been dismissed */
     alertDismissed: [],
-    // The last status alert text dismissed (should be reset on no status alert)
+    /** The last status alert text dismissed (should be reset on no status alert) */
     alertStatusDismissed: "",
 };
 

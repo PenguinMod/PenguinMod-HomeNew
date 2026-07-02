@@ -2,32 +2,35 @@ import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 import tryCatch from '$lib/resources/try-catch';
 
-const defaultSession = {
-    // The last time the status endpoint was fetched
-    alertStatusFetch: 0,
+export const defaultSession = {
+    /** The last time the status endpoint was fetched */
+    alertStatusCachedTime: 0,
 
-    // User cache - last time the user info was actually fetched (reset on logout)
+    /** User cache - last time the user info was actually fetched (reset on logout) */
     userCachedTime: 0,
-    // User cache - The user's ID
+    /** User cache - The user's ID */
     userCachedId: "",
-    // User cache - The user's name (lowercase)
+    /** User cache - The user's name (lowercase) */
     userCachedUsername: "",
-    // User cache - The user's name (displayed)
+    /** User cache - The user's name (displayed) */
     userCachedDisplayName: "",
-    // User cache - The user's bio (generally try not to depend on this)
+    /** User cache - The user's bio (generally try not to depend on this) */
     userCachedBio: "",
-    // User cache - The amount of unread messages the user has
+    /** User cache - The amount of unread messages the user has */
     userCachedUnreadCount: 0,
-    // User cache - The user's rank
+    /** User cache - The user's rank */
     userCachedRank: 0,
-    // User cache - Whether or not the user can rank up
+    /** User cache - Whether or not the user can rank up */
     userCachedCanRankUp: false,
-    // User cache - Whether or not the user is a supporter
+    /** User cache - Whether or not the user is a supporter */
     userCachedSupporter: false,
-    // User cache - Whether or not the user is a moderator
+    /** User cache - Whether or not the user is a moderator */
     userCachedMod: false,
-    // User cache - Whether or not the user is an admin
+    /** User cache - Whether or not the user is an admin */
     userCachedAdmin: false,
+    
+    /** User feed cache - last time the user feed was actually fetched */
+    userFeedCachedTime: 0,
 };
 
 // NOTE: uses sessionStorage
