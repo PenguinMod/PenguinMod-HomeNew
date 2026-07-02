@@ -48,6 +48,7 @@
         width: 100%;
         height: 100%;
         
+        /* TODO: The navbar should not be above the scrollbar */
         overflow: auto;
     }
     :global(body.app-theme-dark) main {

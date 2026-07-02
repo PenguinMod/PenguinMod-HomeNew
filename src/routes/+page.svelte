@@ -646,6 +646,7 @@
         border-bottom-color: rgba(255, 255, 255, .1);
     }
     .section-categories-feeds-login-left-actions > a > button > * {
+        /* TODO: This renders above the navbar */
         z-index: 5;
     }
     .section-categories-feeds-login-left-actions > a > button:hover {
