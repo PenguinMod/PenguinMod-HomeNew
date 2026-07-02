@@ -102,6 +102,7 @@
                         <!-- user profile header -->
                         <div class="section-categories-feeds-login-left-username">
                             <a href={`/profile/${$StoreSession.userCachedDisplayName}`}>
+                                <!-- TODO: use the right avatar URL (probably add getPfpUrl to api module) -->
                                 <img
                                     src="https://projects.penguinmod.com/api/v1/users/getpfp?username=jeremygamer13"
                                     alt={$StoreSession.userCachedDisplayName}
