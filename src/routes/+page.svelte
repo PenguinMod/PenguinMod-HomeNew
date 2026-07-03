@@ -56,6 +56,7 @@
 <main>
     <!-- onboarding banner (logged out only) -->
     {#if !StateApplication.loggedInProcessed || !($StoreSettings.loggedIn)}
+        <!-- TODO: UNIMPORTANT: Consider redesigning the onboarding to: not mention platforms as a key part; be a bit more engaging; actually differ in design from the original by a bit? -->
         <div class="section-onboarding">
             <div class="section-onboarding-studio">
                 <div class="section-onboarding-studio-inner">
@@ -82,11 +83,13 @@
             <div class="section-onboarding-showoff">
                 <div class="section-onboarding-showoff-inner">
                     {#if !StateApplication.loggedInProcessed}
+                        <!-- TODO: This should link to the active origin URL, not penguinmod.com -->
                         <img
                             src="https://penguinmod.com/penguins/frontpage.svg"
                             alt="PenguinMod"
                         />
                     {:else if !($StoreSettings.loggedIn)}
+                        <!-- TODO: Add a wrapper around this where the video doesnt literally embed til you click or something so we can display YouTube privacy disclaimer -->
                         <iframe
                             class="section-onboarding-showoff-inner-video"
                             width="560"

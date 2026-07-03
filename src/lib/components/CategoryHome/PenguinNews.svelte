@@ -22,7 +22,7 @@
         />
     {/snippet}
     {#snippet headerSecondary()}
-        <!-- NOTE: Remove target="_blank" if page leads to penguinmod.com -->
+        <!-- NOTE: Remove target="_blank" if page leads to a pm domain -->
         <a
             href={"https://itch.io/jam/all-the-mods-game-jam"}
             target="_blank"
@@ -31,7 +31,7 @@
                 text="See more"
                 key="home.seemore"
             />
-            <!-- NOTE: remove this if the page leads to penguinmod.com -->
+            <!-- NOTE: remove this if the page leads to a pm domain -->
             <Icon style="font-size:0.9rem;display:inline">
                 open_in_new
             </Icon>
@@ -52,6 +52,7 @@
             </a>
         </div>
         <hr />
+        <!-- TODO: This should link to the active origin URL, not penguinmod.com -->
         <img
             src="https://penguinmod.com/events/news/allthemods2026.webp?r=1"
             alt="All The Mods 2026"
