@@ -22,11 +22,13 @@ if (browser) {
     const stringStored = localStorage.getItem('pm:settings');
     const saved = tryCatch(() => JSON.parse(stringStored));
     if (saved) {
+        // NOTE: Make sure we fallback to defaults if the stored data is missing some keys
         settings.set({
             ...defaultSettings,
             ...(saved ?? {}),
         });
 
+        // NOTE: We use document events incase we have a reason to listen to these updates outside of Svelte
         document.dispatchEvent(new CustomEvent("penguinmod-store-settings-updated"));
     }
     settings.subscribe((value) => {
@@ -35,4 +37,5 @@ if (browser) {
     });
 }
 
+// NOTE: UNIMPORTANT: Should we just rename this to StoreSettings to match every usage of it?
 export default settings;

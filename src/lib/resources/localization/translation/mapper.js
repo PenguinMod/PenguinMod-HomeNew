@@ -26,6 +26,9 @@ class TranslationMapper {
     }
     /**
      * Map a `TranslationIndex.Key` to `TranslationIndex.Text` depending on the current language code.
+     * 
+     * In general, this is the function that should be used across the codebase for translating text
+     * outside of LocalizedString or other helpers.
      * @param {TranslationIndex.Key} key Which text string to grab.
      * @param {TranslationIndex.Text | null} defaultText Text to fallback to if no translation exists.
      * @returns {TranslationIndex.Text} The text string in the specified language.

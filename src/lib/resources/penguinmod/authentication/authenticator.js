@@ -29,6 +29,7 @@ class Authenticator {
             userCachedSupporter: userInfo.donator,
             userCachedMod: userInfo.approver,
             userCachedAdmin: userInfo.admin,
+            // TODO: There are likely more important fields relating to emails & birthday to cache
         });
     }
     /**
@@ -47,7 +48,7 @@ class Authenticator {
         if (!browser) return;
         if (!CacheHelper.isExpired("userCachedTime", CACHE_USER_INFO)) return;
 
-        // it has been CACHE_USER_INFO ms
+        // it has been CACHE_USER_INFO ms and we should recache the info now
         await this.cacheUserInfo();
     }
 
@@ -61,15 +62,16 @@ class Authenticator {
         const currentSettings = get(StoreSettings);
 
         // test that we can actually log in
+        // NOTE: if this fails, that's really odd that we got this far into whatever login method gave us this token
         PenguinModClient.setToken(token);
         await PenguinModClient.users.getInfo();
 
-        // cache the user info
+        // cache the user info so the site can actually use this account's info immediately
         this.dirtyUserInfo();
         await this.cacheUserInfo();
 
         // save this in settings
-        // NOTE: this is the real finalizing step
+        // NOTE: this is the real finalizing step, because loggedIn officially states we're ready to use this account (as long as StateApplication agrees)
         StoreSettings.set({
             ...currentSettings,
             loggedIn: true,

@@ -7,6 +7,11 @@ import en from '../src/lib/resources/localization/translation/language/en.json' 
 
 const logWhenLangMissingTranslation = true;
 
+/**
+ * Which tranlsation strings are the same text in ALL languages.
+ * Some generic translation strings or brand names may also be included here
+ * because they likely don't vary in a lot of languages.
+ */
 const sameInAll = [
     "---notes1", // translation note
     "---notes2", // translation note
@@ -35,6 +40,10 @@ const sameInAll = [
     "licensing.license.ccbyncnd", // license name
     "licensing.license.ccbyncnd.long", // license name
 ];
+/**
+ * Which tranlsation strings are the same text as English in certain languages.
+ * Usually ask the translators on these ones
+ */
 const sameInLanguage = {
     "da": [
         "generic.ok",
@@ -104,6 +113,7 @@ export function getLanguageFinishedPercentage(language, json) {
     // english is literally what we speak
     if (language === "en") return 1;
     // programatic joke langs
+    // TODO: UNIMPORTANT: should we just figure out some way to omit these
     if (language === "en-but-again") return 1;
     if (language === "en-but-rtl") return 1;
     if (language === "en-reversed") return 1;
@@ -115,6 +125,7 @@ export function getLanguageFinishedPercentage(language, json) {
     if (language === "nothing") return 1;
     if (language === "test") return 1;
     if (language === "bleh") return 1;
+    // TODO: UNIMPORTANT: How are we going to handle non-programatic joke langs in the future that heavily use English?
 
     let completedCount = 0;
     for (const key in en) {

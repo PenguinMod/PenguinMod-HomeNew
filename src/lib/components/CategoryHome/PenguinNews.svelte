@@ -65,7 +65,7 @@
                 key="home.sections.informational.notranslation"
             />
         {:else}
-            TODO: This should be a fun fact
+            TODO: UNIMPORTANT: This should be a fun fact
         {/if}
     {/snippet}
 </Category>

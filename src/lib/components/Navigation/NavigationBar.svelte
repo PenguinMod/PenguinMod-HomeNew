@@ -18,6 +18,7 @@
 
 <div class="navigation-bar">
     <div class="navigation-bar-section navigation-options">
+        <!-- TODO: This should open a menu that shows a language picker -->
         <button
             class="navigation-button"
             {@attach LocalizedTooltip("navigation.language")}
@@ -54,9 +55,14 @@
                 />
             </button>
         </a>
+
+        <!-- TODO: Search bar should be here. Should probably be its own element if we want to attach autofill and stuff to it -->
+        <!-- TODO: Add search suggestions like ext gallery, but they'll be like "Search for projects, search for users, etc" -->
+        <!-- TODO: Add some autofill & standards in general for the selectors used in legacy home -->
         
         <!-- account buttons -->
         {#if StateApplication.loggedInProcessed && $StoreSettings.loggedIn}
+            <!-- TODO: This should link to the messages tab -->
             <a
                 href={PUBLIC_STUDIO_URL}
                 class="navigation-button-link"
@@ -66,6 +72,7 @@
                     <Icon>mail</Icon>
                 </button>
             </a>
+            <!-- TODO: This should link to the my stuff tab -->
             <a
                 href={PUBLIC_STUDIO_URL}
                 class="navigation-button-link"
@@ -76,6 +83,8 @@
                 </button>
             </a>
             {#if $StoreSession.userCachedAdmin || $StoreSession.userCachedMod}
+                <!-- TODO: This should link to the admin panell -->
+                <!-- NOTE: We dont translate admin-only elements -->
                 <a
                     href={PUBLIC_STUDIO_URL}
                     class="navigation-button-link"
@@ -89,6 +98,8 @@
         
         <!-- login buttons -->
         {#if StateApplication.loggedInProcessed && !($StoreSettings.loggedIn)}
+            <!-- TODO: Link to the sign in page -->
+            <!-- TODO: When redirecting to the sign in page, we should preserve ALL of the "referrer" URL. ALL of it. -->
             <a
                 href={PUBLIC_STUDIO_URL}
                 class="navigation-button-link"
@@ -101,6 +112,8 @@
                     />
                 </button>
             </a>
+            <!-- TODO: Link to the sign up page -->
+            <!-- TODO: When redirecting to the sign up page, we should preserve ALL of the "referrer" URL. ALL of it. -->
             <a
                 href={PUBLIC_STUDIO_URL}
                 class="navigation-button-link"
@@ -117,6 +130,7 @@
     </div>
     <div class="navigation-bar-section navigation-others">
         <!-- events -->
+        <!-- TODO: UNIMPORTANT: Test out filling this bar with multiple events later. -->
     </div>
 </div>
 
@@ -136,6 +150,7 @@
         color: white;
         overflow: hidden;
         
+        /* TODO: we should probably consider using a big z-index but there's problems with portals & popups potentially */
         z-index: 1;
     }
     .navigation-bar > * {
@@ -165,6 +180,7 @@
         justify-content: flex-end;
     }
 
+    /* NOTE: Unlike legacy home, we intend on not shifting the entire UI on logo hover */
     .navigation-logo {
         width: 3rem;
 		height: 3rem;

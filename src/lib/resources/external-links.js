@@ -2,7 +2,9 @@ import { PUBLIC_STUDIO_URL } from "$env/static/public";
 
 export default {
     /**
-     * PenguinMod's editor page
+     * PenguinMod's editor page within the studio domain.
+     * 
+     * This should only be used in a context of "visit the editor" with no specific target
      */
     editor: `${PUBLIC_STUDIO_URL}/editor.html`,
 
@@ -62,5 +64,6 @@ export default {
     /**
      * PenguinMod's issues page
      */
+    // TODO: UNIMPORTANT: maybe we should make PenguinMod-Issues finally,,
     issues: "https://github.com/PenguinMod/PenguinMod-Home/issues",
 }

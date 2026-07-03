@@ -7,6 +7,7 @@ import { GOOGLE_SHEETS_KEY } from "./sheet-token.js";
 const KEY = GOOGLE_SHEETS_KEY;
 import fs from 'fs/promises'
 
+// TODO: UNIMPORTANT: We might need a generic or at least diff version of this to grab things like translated LoadingTips in separate sheets from the big important one?
 // get the index sheet for what all pages exist
 fetch(`https://sheets.googleapis.com/v4/spreadsheets/114K0H8ZbAA5r0APKLbybgHDcEVmsrQP5HRwKT589A9c?key=${KEY}`)
     .then(req => req.json())
@@ -42,6 +43,7 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/114K0H8ZbAA5r0APKLbybgHDcEV
             timeZoneName: "long",
         })}`;
         const langObject = Object.fromEntries(cells.values);
+        // NOTE: These are intended for maintenance rather than use in PM
         langObject["---_SHEET_TITLE"] = String(sheet.name);
         langObject["---_PULL_TIMESTAMP"] = String(Date.now());
         langObject["---_PULL_DATE"] = String(pullDate);

@@ -1,4 +1,12 @@
+/**
+ * Handles automatic translation of English text to another language.
+ */
 class Translator {
+    /**
+     * The list of language codes supported by the translation API we use.
+     * 
+     * Currently, these should match the Scratch Translation API languages.
+     */
     static languageCodes = [
         'en',
         'cy',
@@ -86,6 +94,8 @@ class Translator {
         if (this.languageCodes.includes(split[0])) return split[0];
         return 'en';
     }
+    // TODO: We should probably cache translated text somewhere
+    // TODO: UNIMPORTANT: Do we need a, isTranslationAvailable endpoint, to determine if the language is non-english AND supported?
 
     /**
      * Translates a string of text using a translation API. It is not necessary to run `getClosestLanguageCode` before running this.

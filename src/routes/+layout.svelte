@@ -15,21 +15,28 @@
 
     let { children } = $props();
     
+    // Initialize translations by default.
     $effect(() => {
         const activeLanguage = $StoreSettings.appLanguage;
         TranslationLoader.initialize(activeLanguage);
     });
+    // Do some checking & processing of the login state, and then telling the other pages that it's safe to touch it
     $effect(async () => {
-        // set loggedInProcessed
+        // if we are logged in, we: need to check for cache expiry; update cache if so; if cache update failed, see if we got logged out
         if ($StoreSettings.loggedIn) {
             try {
                 await Authenticator.updateOutdatedUserInfo();
             } catch (err) {
                 // assume we got logged out if Reauthenticate
-                if (err instanceof PenguinModAPIError && err.message === "Reauthenticate")
+                if (err instanceof PenguinModAPIError && err.message === "Reauthenticate") {
                     await Authenticator.logout();
+                } else {
+                    console.error(err);
+                }
             }
         }
+
+        // when loggedInProcessed is true, it's safe to start using user cache & user token, likely just any user stuff
         StateApplication.loggedInProcessed = true;
     });
 </script>

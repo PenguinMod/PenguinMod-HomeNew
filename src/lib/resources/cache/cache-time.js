@@ -1,3 +1,5 @@
+// NOTE: Any future additions to the session cache should add a cache-time entry
+// NOTE: We are allowed to reset cached data before this time, especially for settings updates or specific interactions
 /**
  * How long to cache logged-in user info for.
  */

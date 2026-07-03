@@ -18,6 +18,7 @@ import randomNumbers from "./random-numbers.js";
 // LIST OF TRANSLATED JOKE LANGS (programatic ones are added in the functions below):
 const madeJokeLangs = [];
 // NOTE: If we ever wanted to add a joke lang that is NOT programatic, then add it to the list like so:
+// TODO: UNIMPORTANT: this is a little scuffed maybe we shouldnt have it work like that
 // madeJokeLangs.push("lolcat");
 
 // LANGUAGES:

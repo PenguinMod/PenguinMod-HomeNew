@@ -39,18 +39,22 @@
         (() => {
             'use strict';
 
+            // NOTE: We need to parse settings here because no fancy svelte (svelte ALWAYS has some FOUC)
             const settingsUpdated = () => {
                 const stringStored = localStorage.getItem('pm:settings') || "{}";
                 const savedSettings = JSON.parse(stringStored);
 
+                // NOTE: We call "dark mode" as "dark theme" incase we add others (which is VERY Unlikely but might aswell keep it possible)
                 const appTheme = savedSettings.appTheme || "light";
 
+                // NOTE: PM Home listens to theme on body, but We need to tell SvelteUI to render everything in dark mode with *its* class, because the global SvelteUI theme class is better than manually passing our appTheme into each element (what a surprise)
                 document.body.setAttribute("class", "");
                 document.body.classList.add(`app-theme-${appTheme}`);
                 if (appTheme === "dark")
                     document.body.classList.add("penguinmodsvelteui-theme-dark");
             }
 
+            // NOTE: We use StoreSettings' generous document event to listen for dark theme swaps
             settingsUpdated();
             document.addEventListener("penguinmod-store-settings-updated", () => {
                 settingsUpdated();

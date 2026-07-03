@@ -19,6 +19,7 @@ class CacheHelper {
         };
 
         // set cache times if not specified
+        // NOTE: Any future additions to the session cache should add a Time entry, and account for it here
         const newDataKeys = Object.keys(newData);
         if (!newDataKeys.includes("alertStatusCachedTime") && newDataKeys.find(key => key.startsWith("alertStatusCached")))
             newSession.alertStatusCachedTime = Date.now();

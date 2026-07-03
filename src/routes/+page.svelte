@@ -292,6 +292,7 @@
                         style={frontPageRatelimited ? "" : "color:red"}
                     >
                         {#if frontPageRatelimited}
+                            <!-- TODO: UNIMPORTANT: PenguinSVG: penguin with some sort of thing that shows "hey wait some time" -->
                             <Icon style="font-size:48px">schedule</Icon>
                             <p>
                                 <LocalizedString
@@ -300,6 +301,7 @@
                                 />
                             </p>
                         {:else}
+                            <!-- TODO: UNIMPORTANT: PenguinSVG: server down penguin -->
                             <Icon style="font-size:48px">frame_exclamation</Icon>
                             <p>
                                 <LocalizedString
@@ -311,6 +313,7 @@
                     </div>
                 {:else if $StoreSession.frontpageProjectsCachedResult[section].length <= 0}
                     <div class="section-categories-projects-rowtext">
+                        <!-- TODO: UNIMPORTANT: PenguinSVG: a creative penguin like making something? -->
                         <Icon style="font-size:48px">indeterminate_question_box</Icon>
                         <p>
                             <LocalizedString
@@ -408,7 +411,7 @@
                 key="home.footer.notaffiliated"
             />
         </p>
-        <!-- TODO: Markdown -->
+        <!-- TODO: UNIMPORTANT: Markdown -->
         <p style="margin-block-start: 2px;">
             <LocalizedString
                 text={"Scratch is a project of the Scratch Foundation. It is available for free at {{LINK}}."}

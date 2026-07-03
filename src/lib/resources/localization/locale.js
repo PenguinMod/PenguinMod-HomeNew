@@ -2,6 +2,7 @@ import { browser } from '$app/environment';
 
 class Locale {
     static get browserLanguage() {
+        // NOTE: we assume scraper, and scraper should get an en-US display
         if (!browser) return "en-US";
         return navigator.language;
     }

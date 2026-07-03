@@ -1,3 +1,22 @@
+/**
+ * @fileoverview This script links the following modules to node_modules:
+ * - PenguinMod-ApiModule (penguinmod)
+ * - PenguinMod-MarkDownNew (PenguinMod-MarkDown)
+ * - PenguinMod-SvelteUI
+ * 
+ * How to use this:
+ * - Download all the specified repos, and change the hardcoded URLs to the ones on your system
+ * - Install all the dependencies for PM Home first
+ * - Install all the dependencies for these modules
+ * - For SvelteUI specifically, you need to recompile with `npm run prepack` each time you make changes
+ * - MAKE SURE THAT the nodeModulesPath for all of these exist before running.
+ *   - If you get an error about paths not existing, its likely that you ran the script once as non-admin/sudo, and you need to reinstall the modules for pm home to fix it
+ * - Run this script with `node link-deps.cjs` as administrator
+ *   - If you get an error about paths not existing, its likely that you ran the script once as non-admin/sudo, and you need to reinstall the modules for pm home to fix it
+ * 
+ * For SvelteUI specifically, you need to recompile with `npm run prepack` each time you make changes
+ */
+/** */
 const fs = require("fs");
 const path = require("path");
 
