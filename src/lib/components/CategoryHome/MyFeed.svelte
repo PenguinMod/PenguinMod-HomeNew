@@ -21,6 +21,7 @@
     let loading = $state(false);
     let failed = $state(false);
     const loadingAttempt = async () => {
+        // NOTE: We only actually ask the API if our own cache is expired (or doesnt exist, which is also counted as expired)
         if (!CacheHelper.isExpired("userFeedCachedTime", CACHE_USER_FEED)) return;
 
         const myFeed = await PenguinModClient.users.getMyFeed();
@@ -46,6 +47,7 @@
     // text handlers
     const getFeedText = (type, author, content) => {
         switch (type) {
+            // TODO: At some point we should stop including removed projects in the feed.
             case "follow":
                 return TranslationMapper.mapCurrent("feed.following", "$1 followed you")
                     .replaceAll("$1", author);
@@ -68,8 +70,10 @@
             case "remix":
                 return `${PUBLIC_STUDIO_URL}/#${content.id}`;
             case "posted":
+                // TODO: UNIMPORTANT: posts arent really planned for PM, and if they are added, do we really want them all to appear on the profile page?
                 return `/profile/${author}?post=${content.id}`;
             default:
+                // TODO: /profile/author must be valid
                 return `/profile/${author}`;
         }
     };
@@ -84,6 +88,7 @@
         />
     {/snippet}
     {#if !($StoreSettings.loggedIn)}
+        <!-- NOTE: This state should never render, but we'll handle it nicely anyways -->
         <div class="category-textdisplay">
             <p>
                 <Icon style="font-size:48px">chat_error</Icon>
@@ -101,6 +106,7 @@
         {:else if failed}
             <div class="category-textdisplay" style="color:red">
                 <p>
+                    <!-- TODO: UNIMPORTANT: PenguinSVG: penguin with an overloaded mailbox -->
                     <Icon style="font-size:48px">cloud_alert</Icon>
                 </p>
                 <p>
@@ -130,9 +136,11 @@
                 {:else}
                     <div class="category-textdisplay">
                         <p>
+                            <!-- TODO: UNIMPORTANT: PenguinSVG: penguin with a caught up mailbox -->
                             <Icon style="font-size:48px">chat_dashed</Icon>
                         </p>
                         <p>
+                            <!-- TODO: UNIMPORTANT: This should be like "Seems like no one's home. Follow more users, and their activity will appear here." -->
                             <LocalizedString
                                 text="Nothing yet!"
                                 key="generic.noneyet"
