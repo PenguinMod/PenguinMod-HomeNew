@@ -1,8 +1,11 @@
 <script>
     import { browser } from "$app/environment";
+    import { PUBLIC_STUDIO_URL } from "$env/static/public";
+    
+    import { PenguinModAPIError } from "penguinmod";
 
     // components
-    import { Button, Category, SwappableHolder } from "PenguinMod-SvelteUI";
+    import { Button, Category, SwappableHolder, Project } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import MyFeed from "$lib/components/CategoryHome/MyFeed.svelte";
     import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
@@ -25,8 +28,8 @@
     // front page project listings
     let frontPageLoading = $state(true);
     let frontPageError = $state(null);
+    let frontPageRatelimited = $state(false);
     const loadingAttempt = async () => {
-        await fetch("https://httpbin.org/status/429");
         if (!CacheHelper.isExpired("frontpageProjectsCachedTime", CACHE_FRONTPAGE_PROJECTS)) return;
 
         const frontPage = await PenguinModClient.projects.getFrontPage();
@@ -43,6 +46,7 @@
         } catch (err) {
             console.error(err);
             frontPageError = err;
+            frontPageRatelimited = (err instanceof PenguinModAPIError) && err.httpCode === 429;
         } finally {
             frontPageLoading = false;
         }
@@ -280,10 +284,31 @@
         <div class="section-categories-projects">
             <!-- snippet for each section to reuse -->
             {#snippet projectRow(section)}
-                {#if frontPageError}
-                    TODO: Render 429 separately from other errors (fetch https://httpbin.org/status/429)
-                {:else if frontPageLoading}
+                {#if frontPageLoading}
                     TODO: Loading spinner
+                {:else if frontPageError}
+                    <div
+                        class="section-categories-projects-rowtext"
+                        style={frontPageRatelimited ? "" : "color:red"}
+                    >
+                        {#if frontPageRatelimited}
+                            <Icon style="font-size:48px">schedule</Icon>
+                            <p>
+                                <LocalizedString
+                                    text="Please wait before trying to access this page again."
+                                    key="navigation.error.429"
+                                />
+                            </p>
+                        {:else}
+                            <Icon style="font-size:48px">frame_exclamation</Icon>
+                            <p>
+                                <LocalizedString
+                                    text="Whoops! Our server's having some problems. Try again later."
+                                    key="home.server.error"
+                                />
+                            </p>
+                        {/if}
+                    </div>
                 {:else if $StoreSession.frontpageProjectsCachedResult[section].length <= 0}
                     <div class="section-categories-projects-rowtext">
                         <Icon style="font-size:48px">indeterminate_question_box</Icon>
@@ -295,9 +320,26 @@
                         </p>
                     </div>
                 {:else}
-                    <div>
+                    <div class="section-categories-projects-row">
                         {#each $StoreSession.frontpageProjectsCachedResult[section] as project}
-                            {JSON.stringify(project)}
+                            <!-- TODO: use the right project thumbnail URL (probably add getProjectThumbnailUrl to api module) -->
+                            <!-- TODO: use the right avatar URL (probably add getPfpUrl to api module) -->
+                            <!-- TODO: User display should allow 3 hrefs for the user pfp & bottom text -->
+                            <!-- TODO: Project needs some way to display fromDonator -->
+                            <Project
+                                src="https://projects.penguinmod.com/api/v1/projects/getproject?projectID=5410268069&requestType=thumbnail"
+                                userSrc="https://projects.penguinmod.com/api/v1/users/getpfp?username=jeremygamer13"
+                                href={`${PUBLIC_STUDIO_URL}/#${project.id}`}
+                                glint={project.featured ? "featured" : null}
+                            >
+                                {#snippet textTop()}
+                                    <!-- TODO: This should be rendered with inline untrusted markdown -->
+                                    {project.title}
+                                {/snippet}
+                                {#snippet textBottom()}
+                                    {project.author.username}
+                                {/snippet}
+                            </Project>
                         {/each}
                     </div>
                 {/if}
@@ -321,13 +363,13 @@
                         key="home.sections.mostvoted"
                     />
                 {/snippet}
-                <h1>Coming soon...</h1>
-                <p>Dun dun...</p>
+                {@render projectRow("voted")}
             </Category>
             {#if
                 frontPageLoading || frontPageError
                 || !($StoreSession.frontpageProjectsCachedResult.selectedTag)
-                /* TODO: Check if selected tag section is empty and dont render if so */
+                || !($StoreSession.frontpageProjectsCachedResult.tagged)
+                || ($StoreSession.frontpageProjectsCachedResult.tagged).length <= 0
             }
                 <!-- nada dont display the # section -->
             {:else}
@@ -342,8 +384,7 @@
                             }}
                         />
                     {/snippet}
-                    <h1>Coming soon...</h1>
-                    <p>Dun dun...</p>
+                    {@render projectRow("tagged")}
                 </Category>
             {/if}
             <!-- Latest projects -->
@@ -354,8 +395,7 @@
                         key="home.sections.todaysprojects"
                     />
                 {/snippet}
-                <h1>Coming soon...</h1>
-                <p>Dun dun...</p>
+                {@render projectRow("latest")}
             </Category>
         </div>
     </div>
@@ -769,6 +809,33 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .section-categories-projects :global(div[data-penguinmodsvelteui-category="true"]) {
+        /* allow for the project list to fill the size so the scrollbar can appear if needed */
+        /* min height is so the sections arent *too* small (especiially cuz the loading spinner) */
+        /* the max height is so the svgs or error displays & such dont fill the whole screenn */
+        /*
+         * to calc min-height:
+         *
+         * the height of a project
+         * + category header height + category header border + category text margins
+         * + category container margin + category text size
+         */
+        height: unset;
+        min-height: calc((152px + 4px + 40px + ((8px + 1px) * 2))
+            + 0.35rem + 1px + 12px
+            + 6px + 18px);
+        max-height: 320px;
+    }
+    .section-categories-projects-row {
+        width: 100%;
+        height: 100%;
+        
+        display: flex;
+        flex-direction: row;
+
+        overflow: hidden;
+        overflow-x: auto;
     }
     .section-categories-projects-rowtext {
         width: 100%;

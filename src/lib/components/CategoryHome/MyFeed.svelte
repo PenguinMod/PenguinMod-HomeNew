@@ -114,6 +114,7 @@
             <div class="category-feed">
                 {#each $StoreSession.userFeedCachedData as feedItem}
                     <!-- TODO: use the right avatar URL (probably add getPfpUrl to api module) -->
+                    <!-- TODO: User display should allow 3 hrefs for the user pfp & bottom text (though we only need the image url to go elsewhere here) -->
                     <UserDisplay
                         src="https://projects.penguinmod.com/api/v1/users/getpfp?username=jeremygamer13"
                         href={getFeedUrl(feedItem.type, feedItem.username, feedItem.data)}
