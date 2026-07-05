@@ -72,7 +72,7 @@
                             key="home.introduction2"
                         />
                     </p>
-                    <Button icon="/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
+                    <Button icon="/asset/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
                         <LocalizedString
                             text="Try it out"
                             key="home.tryout"
@@ -83,9 +83,8 @@
             <div class="section-onboarding-showoff">
                 <div class="section-onboarding-showoff-inner">
                     {#if !StateApplication.loggedInProcessed}
-                        <!-- TODO: This should link to the active origin URL, not penguinmod.com -->
                         <img
-                            src="https://penguinmod.com/penguins/frontpage.svg"
+                            src="/asset/penguin/large/frontpage.svg"
                             alt="PenguinMod"
                         />
                     {:else if !($StoreSettings.loggedIn)}
