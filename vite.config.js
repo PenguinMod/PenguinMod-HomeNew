@@ -8,9 +8,17 @@ export default defineConfig({
     optimizeDeps: {
         include: [
             'PenguinMod-SvelteUI',
-            'penguinmod'
+            'penguinmod',
         ],
         force: true
+    },
+    build: {
+        commonjsOptions: {
+            include: [
+                /node_modules\/PenguinMod-SvelteUI/,
+                /node_modules\/penguinmod/,
+            ]
+        },
     },
     ssr: {
         external: [
@@ -19,6 +27,7 @@ export default defineConfig({
     },
     server: {
         watch: {
+            followSymlinks: true,
             ignored: [
                 '!**/node_modules/PenguinMod-SvelteUI/**',
                 '!**/node_modules/PenguinMod-SvelteUI/dist/index.js',
