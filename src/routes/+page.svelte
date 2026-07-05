@@ -1,16 +1,11 @@
 <script>
     import { browser } from "$app/environment";
     import { PUBLIC_STUDIO_URL } from "$env/static/public";
-
+    
     import { PenguinModAPIError } from "penguinmod";
 
     // components
-    import {
-        Button,
-        Category,
-        SwappableHolder,
-        Project,
-    } from "PenguinMod-SvelteUI";
+    import { Button, Category, SwappableHolder, Project } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import MyFeed from "$lib/components/CategoryHome/MyFeed.svelte";
     import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
@@ -35,13 +30,7 @@
     let frontPageError = $state(null);
     let frontPageRatelimited = $state(false);
     const loadingAttempt = async () => {
-        if (
-            !CacheHelper.isExpired(
-                "frontpageProjectsCachedTime",
-                CACHE_FRONTPAGE_PROJECTS,
-            )
-        )
-            return;
+        if (!CacheHelper.isExpired("frontpageProjectsCachedTime", CACHE_FRONTPAGE_PROJECTS)) return;
 
         const frontPage = await PenguinModClient.projects.getFrontPage();
         CacheHelper.update({
@@ -51,14 +40,13 @@
     $effect(async () => {
         // NOTE: Front page shows more if logged in and mod
         if (!StateApplication.loggedInProcessed) return;
-
+        
         try {
             await loadingAttempt();
         } catch (err) {
             console.error(err);
             frontPageError = err;
-            frontPageRatelimited =
-                err instanceof PenguinModAPIError && err.httpCode === 429;
+            frontPageRatelimited = (err instanceof PenguinModAPIError) && err.httpCode === 429;
         } finally {
             frontPageLoading = false;
         }
@@ -67,7 +55,7 @@
 
 <main>
     <!-- onboarding banner (logged out only) -->
-    {#if !StateApplication.loggedInProcessed || !$StoreSettings.loggedIn}
+    {#if !StateApplication.loggedInProcessed || !($StoreSettings.loggedIn)}
         <!-- TODO: UNIMPORTANT: Consider redesigning the onboarding to: not mention platforms as a key part; be a bit more engaging; actually differ in design from the original by a bit? -->
         <div class="section-onboarding">
             <div class="section-onboarding-studio">
@@ -84,12 +72,11 @@
                             key="home.introduction2"
                         />
                     </p>
-                    <Button
-                        icon="/asset/icons/blocks-blue.svg"
-                        kind="highlighted"
-                        href={externalLinks.editor}
-                    >
-                        <LocalizedString text="Try it out" key="home.tryout" />
+                    <Button icon="/asset/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
+                        <LocalizedString
+                            text="Try it out"
+                            key="home.tryout"
+                        />
                     </Button>
                 </div>
             </div>
@@ -100,7 +87,7 @@
                             src="/asset/penguin/large/frontpage.svg"
                             alt="PenguinMod"
                         />
-                    {:else if !$StoreSettings.loggedIn}
+                    {:else if !($StoreSettings.loggedIn)}
                         <!-- TODO: Add a wrapper around this where the video doesnt literally embed til you click or something so we can display YouTube privacy disclaimer -->
                         <iframe
                             class="section-onboarding-showoff-inner-video"
@@ -139,7 +126,7 @@
             key="home.scratchnote"
         />
     </p>
-
+    
     <!-- Category sections -->
     <div class="section-categories">
         <!-- feeds -->
@@ -148,17 +135,11 @@
                 <div class="section-categories-feeds-login">
                     <div class="section-categories-feeds-login-left">
                         <!-- user profile header -->
-                        <div
-                            class="section-categories-feeds-login-left-username"
-                        >
-                            <a
-                                href={`/profile/${$StoreSession.userCachedDisplayName}`}
-                            >
+                        <div class="section-categories-feeds-login-left-username">
+                            <a href={`/profile/${$StoreSession.userCachedDisplayName}`}>
                                 <!-- TODO: use the right avatar URL (probably add getPfpUrl to api module) -->
                                 <img
-                                    src={PenguinModClient.users.getPfpUrl(
-                                        feedItem.username,
-                                    )}
+                                    src="https://projects.penguinmod.com/api/v1/users/getpfp?username=jeremygamer13"
                                     alt={$StoreSession.userCachedDisplayName}
                                     title={$StoreSession.userCachedDisplayName}
                                 />
@@ -168,7 +149,7 @@
                                             text="Hello, $1!"
                                             key="home.welcome"
                                             replacers={{
-                                                $1: $StoreSession.userCachedDisplayName,
+                                                "$1": $StoreSession.userCachedDisplayName,
                                             }}
                                         />
                                     </h1>
@@ -188,9 +169,7 @@
                             </a>
                         </div>
                         <!-- profile actions -->
-                        <div
-                            class="section-categories-feeds-login-left-actions"
-                        >
+                        <div class="section-categories-feeds-login-left-actions">
                             <!-- Create Button -->
                             <a
                                 title="Create"
@@ -199,16 +178,11 @@
                             >
                                 <button
                                     title="Create"
-                                    {@attach LocalizedTooltip(
-                                        "navigation.create",
-                                    )}
+                                    {@attach LocalizedTooltip("navigation.create")}
                                 >
                                     <div></div>
                                     <span>
-                                        <Icon
-                                            style="font-variation-settings: 'FILL' 1;"
-                                            >design_services</Icon
-                                        >
+                                        <Icon style="font-variation-settings: 'FILL' 1;">design_services</Icon>
                                         <LocalizedString
                                             text="Create"
                                             key="navigation.create"
@@ -228,10 +202,7 @@
                                 >
                                     <div></div>
                                     <span>
-                                        <Icon
-                                            style="font-variation-settings: 'FILL' 1;"
-                                            >folder</Icon
-                                        >
+                                        <Icon style="font-variation-settings: 'FILL' 1;">folder</Icon>
                                         <LocalizedString
                                             text="My Stuff"
                                             key="mystuff.title"
@@ -243,22 +214,15 @@
                             <a
                                 title="Settings"
                                 href="/settings"
-                                {@attach LocalizedTooltip(
-                                    "account.settings.title",
-                                )}
+                                {@attach LocalizedTooltip("account.settings.title")}
                             >
                                 <button
                                     title="Settings"
-                                    {@attach LocalizedTooltip(
-                                        "account.settings.title",
-                                    )}
+                                    {@attach LocalizedTooltip("account.settings.title")}
                                 >
                                     <div></div>
                                     <span>
-                                        <Icon
-                                            style="font-variation-settings: 'FILL' 1;"
-                                            >settings</Icon
-                                        >
+                                        <Icon style="font-variation-settings: 'FILL' 1;">settings</Icon>
                                         <LocalizedString
                                             text="Settings"
                                             key="account.settings.title"
@@ -271,23 +235,17 @@
                     <div class="section-categories-feeds-login-right">
                         <SwappableHolder>
                             {#snippet holderWhatsNew()}
-                                <div
-                                    class="section-categories-feeds-login-right-container"
-                                >
+                                <div class="section-categories-feeds-login-right-container">
                                     <WhatsNew />
                                 </div>
                             {/snippet}
                             {#snippet holderPenguinNews()}
-                                <div
-                                    class="section-categories-feeds-login-right-container"
-                                >
+                                <div class="section-categories-feeds-login-right-container">
                                     <PenguinNews />
                                 </div>
                             {/snippet}
                             {#snippet holderMyFeed()}
-                                <div
-                                    class="section-categories-feeds-login-right-container"
-                                >
+                                <div class="section-categories-feeds-login-right-container">
                                     <MyFeed />
                                 </div>
                             {/snippet}
@@ -312,7 +270,7 @@
                         </SwappableHolder>
                     </div>
                 </div>
-            {:else if !StateApplication.loggedInProcessed || !$StoreSettings.loggedIn}
+            {:else if !StateApplication.loggedInProcessed || !($StoreSettings.loggedIn)}
                 <div class="section-categories-feeds-logout">
                     <div class="section-categories-feeds-logout-left">
                         <WhatsNew />
@@ -323,7 +281,7 @@
                 </div>
             {/if}
         </div>
-
+        
         <!-- front page projects -->
         <div class="section-categories-projects">
             <!-- snippet for each section to reuse -->
@@ -346,8 +304,7 @@
                             </p>
                         {:else}
                             <!-- TODO: UNIMPORTANT: PenguinSVG: server down penguin -->
-                            <Icon style="font-size:48px">frame_exclamation</Icon
-                            >
+                            <Icon style="font-size:48px">frame_exclamation</Icon>
                             <p>
                                 <LocalizedString
                                     text="Whoops! Our server's having some problems. Try again later."
@@ -359,9 +316,7 @@
                 {:else if $StoreSession.frontpageProjectsCachedResult[section].length <= 0}
                     <div class="section-categories-projects-rowtext">
                         <!-- TODO: UNIMPORTANT: PenguinSVG: a creative penguin like making something? -->
-                        <Icon style="font-size:48px"
-                            >indeterminate_question_box</Icon
-                        >
+                        <Icon style="font-size:48px">indeterminate_question_box</Icon>
                         <p>
                             <LocalizedString
                                 text="No projects found. Why not upload one?"
@@ -372,16 +327,11 @@
                 {:else}
                     <div class="section-categories-projects-row">
                         {#each $StoreSession.frontpageProjectsCachedResult[section] as project}
-                            <!-- TODO: use the right avatar URL (probably add getPfpUrl to api module) -->
                             <!-- TODO: User display should allow 3 hrefs for the user pfp & bottom text -->
                             <!-- TODO: Project needs some way to display fromDonator -->
                             <Project
-                                src={PenguinModClient.projects.getProjectThumbnailURL(
-                                    project.id,
-                                )}
-                                userSrc={PenguinModClient.users.getPfpUrl(
-                                    project.author.username,
-                                )}
+                                src={PenguinModClient.projects.getProjectThumbnailURL(project.id)}
+                                userSrc={PenguinModClient.users.getPfpUrl(project.author.username)}
                                 href={`${PUBLIC_STUDIO_URL}/#${project.id}`}
                                 glint={project.featured ? "featured" : null}
                             >
@@ -418,7 +368,12 @@
                 {/snippet}
                 {@render projectRow("voted")}
             </Category>
-            {#if frontPageLoading || frontPageError || !$StoreSession.frontpageProjectsCachedResult.selectedTag || !$StoreSession.frontpageProjectsCachedResult.tagged || $StoreSession.frontpageProjectsCachedResult.tagged.length <= 0}
+            {#if
+                frontPageLoading || frontPageError
+                || !($StoreSession.frontpageProjectsCachedResult.selectedTag)
+                || !($StoreSession.frontpageProjectsCachedResult.tagged)
+                || ($StoreSession.frontpageProjectsCachedResult.tagged).length <= 0
+            }
                 <!-- nada dont display the # section -->
             {:else}
                 <!-- Projects marked as # -->
@@ -428,10 +383,7 @@
                             text="Projects marked as #$1"
                             key="home.sections.sortedbytag"
                             replacers={{
-                                $1: $StoreSession.frontpageProjectsCachedResult.selectedTag.replace(
-                                    "#",
-                                    "",
-                                ),
+                                "$1": ($StoreSession.frontpageProjectsCachedResult.selectedTag).replace("#", ""),
                             }}
                         />
                     {/snippet}
@@ -450,7 +402,7 @@
             </Category>
         </div>
     </div>
-
+    
     <!-- footer -->
     <div class="section-footer">
         <p style="margin-block-end: 2px;">
@@ -568,8 +520,12 @@
                         key="home.footer.sections.donate"
                     />
                 </p>
-                <a href={"/support"}> PenguinMod </a>
-                <a href={externalLinks.scratch}> Scratch </a>
+                <a href={"/support"}>
+                    PenguinMod
+                </a>
+                <a href={externalLinks.scratch}>
+                    Scratch
+                </a>
             </div>
         </div>
     </div>
@@ -630,7 +586,7 @@
         outline-style: solid;
         outline-color: rgba(255, 255, 255, 0.35);
     }
-
+    
     .section-language-warning {
         width: calc(100% - 10%);
         padding: 0 5%;
@@ -661,7 +617,7 @@
         font-weight: bold;
         font-style: italic;
     }
-
+    
     .section-categories {
         width: 100%;
 
@@ -691,11 +647,10 @@
         width: 50%;
     }
     .section-categories-feeds-login-right-container,
-    .section-categories-feeds-login-right
-        :global(*[data-penguinmodsvelteui-swappableholder-header="true"]) {
+    .section-categories-feeds-login-right :global(*[data-penguinmodsvelteui-swappableholder-header="true"]) {
         width: 100%;
     }
-
+    
     .section-categories-feeds-login-left {
         /* we kinda just have to assume this is a good height... */
         height: 360px;
@@ -774,35 +729,28 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-
+        
         color: inherit;
         background: transparent;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
         font-weight: bold;
         font-size: 2em;
-
+        
         cursor: pointer;
     }
     .section-categories-feeds-login-left-actions > a > button > span {
         display: flex;
         align-items: center;
     }
-    .section-categories-feeds-login-left-actions
-        > a
-        > button
-        > span
-        > :global(span) {
+    .section-categories-feeds-login-left-actions > a > button > span > :global(span) {
         font-size: 1.5em;
         margin: 0 8px;
     }
     .section-categories-feeds-login-left-actions > a:last-child > button {
         border-bottom: initial;
     }
-    :global(body.app-theme-dark)
-        .section-categories-feeds-login-left-actions
-        > a
-        > button {
-        border-bottom-color: rgba(255, 255, 255, 0.1);
+    :global(body.app-theme-dark) .section-categories-feeds-login-left-actions > a > button {
+        border-bottom-color: rgba(255, 255, 255, .1);
     }
     .section-categories-feeds-login-left-actions > a > button > * {
         /* TODO: This renders above the navbar */
@@ -817,7 +765,7 @@
         top: 0;
         width: 0%;
         height: 100%;
-
+        
         outline: 0;
         border-radius: 8px;
 
@@ -825,11 +773,7 @@
         transition-property: width outline-width;
         z-index: 0;
     }
-    :global(html[dir="rtl"])
-        .section-categories-feeds-login-left-actions
-        > a
-        > button
-        > div {
+    :global(html[dir="rtl"]) .section-categories-feeds-login-left-actions > a > button > div {
         left: initial;
         right: 0;
     }
@@ -841,25 +785,16 @@
         transition: 0.1s ease-out;
         transition-property: width outline-width;
     }
-
-    .section-categories-feeds-login-left-actions
-        > a:nth-child(1)
-        > button
-        > div {
+    
+    .section-categories-feeds-login-left-actions > a:nth-child(1) > button > div {
         background: #00c3ff;
         outline-color: #00c3ff55;
     }
-    .section-categories-feeds-login-left-actions
-        > a:nth-child(2)
-        > button
-        > div {
-        background: #ffab00;
-        outline-color: #ffab0055;
+    .section-categories-feeds-login-left-actions > a:nth-child(2) > button > div {
+        background: #FFAB00;
+        outline-color: #FFAB0055;
     }
-    .section-categories-feeds-login-left-actions
-        > a:nth-child(3)
-        > button
-        > div {
+    .section-categories-feeds-login-left-actions > a:nth-child(3) > button > div {
         background: #808080;
         outline-color: #80808055;
     }
@@ -867,11 +802,7 @@
         filter: brightness(0.9);
         transform: scaleY(0.9);
     }
-    :global(body.app-theme-dark)
-        .section-categories-feeds-login-left-actions
-        > a
-        > button
-        > div {
+    :global(body.app-theme-dark) .section-categories-feeds-login-left-actions > a > button > div {
         opacity: 0.75;
     }
 
@@ -882,8 +813,7 @@
         flex-direction: column;
         align-items: center;
     }
-    .section-categories-projects
-        :global(div[data-penguinmodsvelteui-category="true"]) {
+    .section-categories-projects :global(div[data-penguinmodsvelteui-category="true"]) {
         /* allow for the project list to fill the size so the scrollbar can appear if needed */
         /* min height is so the sections arent *too* small (especiially cuz the loading spinner) */
         /* the max height is so the svgs or error displays & such dont fill the whole screenn */
@@ -895,16 +825,15 @@
          * + category container margin + category text size
          */
         height: unset;
-        min-height: calc(
-            (152px + 4px + 40px + ((8px + 1px) * 2)) + 0.35rem + 1px + 12px +
-                6px + 18px
-        );
+        min-height: calc((152px + 4px + 40px + ((8px + 1px) * 2))
+            + 0.35rem + 1px + 12px
+            + 6px + 18px);
         max-height: 320px;
     }
     .section-categories-projects-row {
         width: 100%;
         height: 100%;
-
+        
         display: flex;
         flex-direction: row;
 
@@ -931,7 +860,7 @@
         align-items: center;
         justify-content: center;
 
-        border-top: rgba(0, 0, 0, 0.3) 1px solid;
+        border-top: rgba(0, 0, 0, .3) 1px solid;
         background: #00c3ff15;
         font-weight: 700;
     }
@@ -945,7 +874,7 @@
 
         display: flex;
         flex-direction: column;
-
+        
         font-size: 14px;
     }
     .section-footer-list-item a {
