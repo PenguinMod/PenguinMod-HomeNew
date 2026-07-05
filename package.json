@@ -13,7 +13,7 @@
 	"dependencies": {
 		"penguinmod": "github:PenguinMod/PenguinMod-ApiModule",
 		"PenguinMod-MarkDown": "github:PenguinMod/PenguinMod-MarkDownNew",
-		"PenguinMod-SvelteUI": "github:PenguinMod/PenguinMod-SvelteUI#build"
+		"PenguinMod-SvelteUI": "github:PenguinMod/PenguinMod-SvelteUI"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
