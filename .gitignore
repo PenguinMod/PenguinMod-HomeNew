@@ -29,3 +29,5 @@ scripts/sheet-token.js
 
 # other
 .dev/*
+
+.zed

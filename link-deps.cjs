@@ -17,18 +17,17 @@
  * For SvelteUI specifically, you need to recompile with `npm run prepack` each time you make changes
  */
 /** */
+require("dotenv").config({ quiet: true });
 const fs = require("fs");
 const path = require("path");
+const readline = require("readline-sync");
 
 // TODO: request paths via node:readline
 
 // CONFIG
-const pathPenguinModApiModule =
-    "/home/ian/Documents/code/projects/penguinmod/PenguinMod-ApiModule";
-const pathPenguinModMarkDownNew =
-    "/home/ian/Documents/code/projects/penguinmod/PenguinMod-MarkDownNew";
-const pathPenguinModSvelteUI =
-    "/home/ian/Documents/code/projects/penguinmod/PenguinMod-SvelteUI";
+const pathPenguinModApiModule = process.env.PM_API_MODULE_PATH ?? readline.question("Path to API module (or empty if none): ");
+const pathPenguinModMarkDownNew = process.env.PM_MARKDOWN_NEW_PATH ?? readline.question("Path to Markdown New (or empty if none): ");
+const pathPenguinModSvelteUI = process.env.PM_SVELTE_UI_PATH ?? readline.question("Path to Svelte UI (or empty if none): ");
 const nodeModulesPathPenguinModApiModule = path.join(
     __dirname,
     "node_modules/penguinmod",
