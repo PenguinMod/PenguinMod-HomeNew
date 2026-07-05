@@ -1,8 +1,10 @@
 <script>
-    import { LottieSVG } from "PenguinMod-SvelteUI";
+    // components
+    import { Lottie } from "PenguinMod-SvelteUI";
+    import Icon from "$lib/components/Icon/Component.svelte";
 </script>
 
-<h1>LottieSVG</h1>
+<h1>Lottie</h1>
 
 <h3>hoverdevice</h3>
 <p>
@@ -12,13 +14,42 @@
 </p>
 <div class="row">
     <div class="card">
-        <LottieSVG
+        <Lottie
             src="/asset/penguin/animated/lottie/hoverdevice.json"
-        />
+            autoplay
+        >
+            <div class="card-lottie-placeholder">
+                <Icon style="font-size:48px;">downloading</Icon>
+            </div>
+        </Lottie>
     </div>
     <div class="card">
         <img
             src="/asset/penguin/animated/svg/hoverdevice.svg"
+            alt="Penguin"
+        />
+    </div>
+</div>
+<h3>test</h3>
+<p>
+    <span><b>{"/asset/penguin/animated/lottie/test.json"}</b></span>
+    <span>vs.</span>
+    <span><b>{"/asset/penguin/animated/svg/test.svg"}</b></span>
+</p>
+<div class="row">
+    <div class="card">
+        <Lottie
+            src="/asset/penguin/animated/lottie/test.json"
+            autoplay
+        >
+            <div class="card-lottie-placeholder">
+                <Icon style="font-size:48px;">downloading</Icon>
+            </div>
+        </Lottie>
+    </div>
+    <div class="card">
+        <img
+            src="/asset/penguin/animated/svg/test.svg"
             alt="Penguin"
         />
     </div>
@@ -36,11 +67,27 @@
         width: 480px;
         height: 480px;
     }
-
-    img {
+    
+    .card :global(div[data-penguinmodsvelteui-lottie-placeholder="true"]) {
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
-        
+    }
+    .card-lottie-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .card :global(div[data-penguinmodsvelteui-lottie="true"]),
+    .card img {
+        width: 100%;
+        height: 100%;
+    }
+    .card img {
         object-fit: contain;
     }
 </style>
