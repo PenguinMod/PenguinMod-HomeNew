@@ -7,7 +7,6 @@ export default defineConfig({
 	plugins: [sveltekit()],
     optimizeDeps: {
         include: [
-            'PenguinMod-SvelteUI',
             'penguinmod',
         ],
         force: true
@@ -15,7 +14,6 @@ export default defineConfig({
     build: {
         commonjsOptions: {
             include: [
-                /node_modules\/PenguinMod-SvelteUI/,
                 /node_modules\/penguinmod/,
             ]
         },
@@ -24,19 +22,5 @@ export default defineConfig({
         external: [
             'penguinmod'
         ],
-    },
-    server: {
-        watch: {
-            followSymlinks: true,
-            ignored: [
-                '!**/node_modules/PenguinMod-SvelteUI/**',
-                '!**/node_modules/PenguinMod-SvelteUI/dist/index.js',
-            ]
-        }
-    },
-    resolve: {
-        alias: {
-            'PenguinMod-SvelteUI': path.resolve('node_modules/PenguinMod-SvelteUI/dist/index.js')
-        }
     }
 });
