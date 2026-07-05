@@ -3,7 +3,7 @@
  * - PenguinMod-ApiModule (penguinmod)
  * - PenguinMod-MarkDownNew (PenguinMod-MarkDown)
  * - PenguinMod-SvelteUI
- * 
+ *
  * How to use this:
  * - Download all the specified repos, and change the hardcoded URLs to the ones on your system
  * - Install all the dependencies for PM Home first
@@ -13,52 +13,109 @@
  *   - If you get an error about paths not existing, its likely that you ran the script once as non-admin/sudo, and you need to reinstall the modules for pm home to fix it
  * - Run this script with `node link-deps.cjs` as administrator
  *   - If you get an error about paths not existing, its likely that you ran the script once as non-admin/sudo, and you need to reinstall the modules for pm home to fix it
- * 
+ *
  * For SvelteUI specifically, you need to recompile with `npm run prepack` each time you make changes
  */
 /** */
 const fs = require("fs");
 const path = require("path");
 
-
-
-
+// TODO: request paths via node:readline
 
 // CONFIG
-const pathPenguinModApiModule = "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-ApiModule";
-const pathPenguinModMarkDownNew = "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-MarkDownNew";
-const pathPenguinModSvelteUI = "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-SvelteUI";
-const nodeModulesPathPenguinModApiModule = path.join(__dirname, "node_modules/penguinmod");
-const nodeModulesPathPenguinModMarkDownNew = path.join(__dirname, "node_modules/PenguinMod-MarkDown");
-const nodeModulesPathPenguinModSvelteUI = path.join(__dirname, "node_modules/PenguinMod-SvelteUI");
-
-
-
+const pathPenguinModApiModule =
+    "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-ApiModule";
+const pathPenguinModMarkDownNew =
+    "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-MarkDownNew";
+const pathPenguinModSvelteUI =
+    "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-SvelteUI";
+const nodeModulesPathPenguinModApiModule = path.join(
+    __dirname,
+    "node_modules/penguinmod",
+);
+const nodeModulesPathPenguinModMarkDownNew = path.join(
+    __dirname,
+    "node_modules/PenguinMod-MarkDown",
+);
+const nodeModulesPathPenguinModSvelteUI = path.join(
+    __dirname,
+    "node_modules/PenguinMod-SvelteUI",
+);
 
 // script
-console.log("Linking with LOCAL Paths (make sure you configured them), run this script as administrator/sudo if you have an issue");
+console.log(
+    "Linking with LOCAL Paths (make sure you configured them), run this script as administrator/sudo if you have an issue",
+);
 
 // nodeModulesPathPenguinModApiModule
-if (fs.existsSync(pathPenguinModApiModule) && fs.existsSync(nodeModulesPathPenguinModApiModule)) {
-    fs.rmSync(nodeModulesPathPenguinModApiModule, { recursive: true, force: true });
+if (
+    fs.existsSync(pathPenguinModApiModule) &&
+    fs.existsSync(nodeModulesPathPenguinModApiModule)
+) {
+    fs.rmSync(nodeModulesPathPenguinModApiModule, {
+        recursive: true,
+        force: true,
+    });
     fs.symlinkSync(pathPenguinModApiModule, nodeModulesPathPenguinModApiModule);
-    console.log("symlinked:", pathPenguinModApiModule, "to", nodeModulesPathPenguinModApiModule);
+    console.log(
+        "symlinked:",
+        pathPenguinModApiModule,
+        "to",
+        nodeModulesPathPenguinModApiModule,
+    );
 } else {
-    console.warn("one of these is missing:", pathPenguinModApiModule, nodeModulesPathPenguinModApiModule);
+    console.warn(
+        "one of these is missing:",
+        pathPenguinModApiModule,
+        nodeModulesPathPenguinModApiModule,
+    );
 }
 // nodeModulesPathPenguinModMarkDownNew
-if (fs.existsSync(pathPenguinModMarkDownNew) && fs.existsSync(nodeModulesPathPenguinModMarkDownNew)) {
-    fs.rmSync(nodeModulesPathPenguinModMarkDownNew, { recursive: true, force: true });
-    fs.symlinkSync(pathPenguinModMarkDownNew, nodeModulesPathPenguinModMarkDownNew);
-    console.log("symlinked:", pathPenguinModMarkDownNew, "to", nodeModulesPathPenguinModMarkDownNew);
+if (
+    fs.existsSync(pathPenguinModMarkDownNew) &&
+    fs.existsSync(nodeModulesPathPenguinModMarkDownNew)
+) {
+    fs.rmSync(nodeModulesPathPenguinModMarkDownNew, {
+        recursive: true,
+        force: true,
+    });
+    fs.symlinkSync(
+        pathPenguinModMarkDownNew,
+        nodeModulesPathPenguinModMarkDownNew,
+    );
+    console.log(
+        "symlinked:",
+        pathPenguinModMarkDownNew,
+        "to",
+        nodeModulesPathPenguinModMarkDownNew,
+    );
 } else {
-    console.warn("one of these is missing:", pathPenguinModMarkDownNew, nodeModulesPathPenguinModMarkDownNew);
+    console.warn(
+        "one of these is missing:",
+        pathPenguinModMarkDownNew,
+        nodeModulesPathPenguinModMarkDownNew,
+    );
 }
 // nodeModulesPathPenguinModSvelteUI
-if (fs.existsSync(pathPenguinModSvelteUI) && fs.existsSync(nodeModulesPathPenguinModSvelteUI)) {
-    fs.rmSync(nodeModulesPathPenguinModSvelteUI, { recursive: true, force: true });
+if (
+    fs.existsSync(pathPenguinModSvelteUI) &&
+    fs.existsSync(nodeModulesPathPenguinModSvelteUI)
+) {
+    fs.rmSync(nodeModulesPathPenguinModSvelteUI, {
+        recursive: true,
+        force: true,
+    });
     fs.symlinkSync(pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
-    console.log("symlinked:", pathPenguinModSvelteUI, "to", nodeModulesPathPenguinModSvelteUI);
+    console.log(
+        "symlinked:",
+        pathPenguinModSvelteUI,
+        "to",
+        nodeModulesPathPenguinModSvelteUI,
+    );
 } else {
-    console.warn("one of these is missing:", pathPenguinModSvelteUI, nodeModulesPathPenguinModSvelteUI);
+    console.warn(
+        "one of these is missing:",
+        pathPenguinModSvelteUI,
+        nodeModulesPathPenguinModSvelteUI,
+    );
 }
