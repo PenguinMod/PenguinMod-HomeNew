@@ -11,6 +11,7 @@
 		"indexl10n": "node scripts/programatic-langs.js && node scripts/translation-index.js"
 	},
 	"dependencies": {
+		"@lottiefiles/dotlottie-svelte": "^0.10.6",
 		"penguinmod": "github:PenguinMod/PenguinMod-ApiModule",
 		"PenguinMod-MarkDown": "github:PenguinMod/PenguinMod-MarkDownNew",
 		"PenguinMod-SvelteUI": "github:PenguinMod/PenguinMod-SvelteUI"
