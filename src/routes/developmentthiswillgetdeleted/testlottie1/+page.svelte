@@ -1,9 +1,8 @@
 <script>
-    import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte';
+    import { LottieSVG } from "PenguinMod-SvelteUI";
 </script>
 
-<h1>DotLottieSvelte</h1>
-<h2>@lottiefiles/dotlottie-svelte</h2>
+<h1>LottieSVG</h1>
 
 <h3>hoverdevice</h3>
 <p>
@@ -13,10 +12,8 @@
 </p>
 <div class="row">
     <div class="card">
-        <DotLottieSvelte
+        <LottieSVG
             src="/asset/penguin/animated/lottie/hoverdevice.json"
-            autoplay={true}
-            loop={true}
         />
     </div>
     <div class="card">
