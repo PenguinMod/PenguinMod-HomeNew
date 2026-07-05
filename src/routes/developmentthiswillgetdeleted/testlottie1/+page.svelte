@@ -6,18 +6,44 @@
 <h2>@lottiefiles/dotlottie-svelte</h2>
 
 <h3>hoverdevice</h3>
-<p>{"/asset/penguin/animated/lottie/hoverdevice.json"}</p>
-<div>
-    <DotLottieSvelte
-        src="/asset/penguin/animated/lottie/hoverdevice.json"
-        autoplay={true}
-        loop={true}
-    />
+<p>
+    <span><b>{"/asset/penguin/animated/lottie/hoverdevice.json"}</b></span>
+    <span>vs.</span>
+    <span><b>{"/asset/penguin/animated/svg/hoverdevice.svg"}</b></span>
+</p>
+<div class="row">
+    <div class="card">
+        <DotLottieSvelte
+            src="/asset/penguin/animated/lottie/hoverdevice.json"
+            autoplay={true}
+            loop={true}
+        />
+    </div>
+    <div class="card">
+        <img
+            src="/asset/penguin/animated/svg/hoverdevice.svg"
+            alt="Penguin"
+        />
+    </div>
 </div>
 
 <style>
-    div {
+    .row {
+        width: 100%;
+        height: 480px;
+
+        display: flex;
+        flex-direction: row;
+    }
+    .card {
         width: 480px;
         height: 480px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        
+        object-fit: contain;
     }
 </style>
