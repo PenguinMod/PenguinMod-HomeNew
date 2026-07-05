@@ -24,11 +24,11 @@ const path = require("path");
 
 // CONFIG
 const pathPenguinModApiModule =
-    "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-ApiModule";
+    "/home/ian/Documents/code/projects/penguinmod/PenguinMod-ApiModule";
 const pathPenguinModMarkDownNew =
-    "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-MarkDownNew";
+    "/home/ian/Documents/code/projects/penguinmod/PenguinMod-MarkDownNew";
 const pathPenguinModSvelteUI =
-    "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-SvelteUI";
+    "/home/ian/Documents/code/projects/penguinmod/PenguinMod-SvelteUI";
 const nodeModulesPathPenguinModApiModule = path.join(
     __dirname,
     "node_modules/penguinmod",
