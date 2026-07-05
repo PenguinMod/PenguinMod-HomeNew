@@ -8,6 +8,7 @@
     import { Button, Category, SwappableHolder, Project } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import MyFeed from "$lib/components/CategoryHome/MyFeed.svelte";
+    import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
     import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
     import PenguinNews from "$lib/components/CategoryHome/PenguinNews.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
@@ -287,7 +288,9 @@
             <!-- snippet for each section to reuse -->
             {#snippet projectRow(section)}
                 {#if frontPageLoading}
-                    TODO: Loading spinner
+                    <div class="section-categories-projects-rowtext">
+                        <LoadingSpinner />
+                    </div>
                 {:else if frontPageError}
                     <div
                         class="section-categories-projects-rowtext"
@@ -842,7 +845,7 @@
     }
     .section-categories-projects-rowtext {
         width: 100%;
-        height: 100%;
+        height: 200px;
 
         display: flex;
         flex-direction: column;

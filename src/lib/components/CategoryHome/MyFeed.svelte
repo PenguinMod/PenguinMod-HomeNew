@@ -5,6 +5,7 @@
     // components
     import { Category, UserDisplay } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
+    import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     
     import { CACHE_USER_FEED } from "$lib/resources/cache/cache-time";
@@ -102,7 +103,9 @@
         </div>
     {:else}
         {#if loading}
-            <p>TODO: Loading spinner</p>
+            <div class="category-textdisplay">
+                <LoadingSpinner />
+            </div>
         {:else if failed}
             <div class="category-textdisplay" style="color:red">
                 <p>

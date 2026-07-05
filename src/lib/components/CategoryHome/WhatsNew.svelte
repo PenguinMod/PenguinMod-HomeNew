@@ -4,6 +4,7 @@
     // components
     import { Category, UserDisplay } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
+    import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     
     import { CACHE_BASIC_API_UPDATES } from "$lib/resources/cache/cache-time";
@@ -65,7 +66,9 @@
         </a>
     {/snippet}
     {#if loading}
-        <p>TODO: Loading spinner</p>
+        <div class="single-container">
+            <LoadingSpinner />
+        </div>
     {:else if failed}
         <div class="single-container" style="color:red">
             <!-- TODO: UNIMPORTANT: PenguinSVG: server down icon -->
