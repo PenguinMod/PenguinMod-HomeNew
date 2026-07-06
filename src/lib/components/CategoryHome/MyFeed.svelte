@@ -20,7 +20,7 @@
     import StoreSession from "$lib/stores/session";
     
     let props = $props();
-    let loading = $state(false);
+    let loading = $state(true);
     let failed = $state(false);
     const loadingAttempt = async () => {
         // NOTE: We only actually ask the API if our own cache is expired (or doesnt exist, which is also counted as expired)
@@ -33,8 +33,6 @@
     };
     onMount(async () => {
         if (!($StoreSettings.loggedIn)) return;
-        if (loading) return; // TODO: remove these loading false then true then false things
-        loading = true;
         
         try {
             await loadingAttempt();
