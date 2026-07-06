@@ -7,7 +7,7 @@
     import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
     import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
-    
+
     import { CACHE_BASIC_API_UPDATES } from "$lib/resources/cache/cache-time";
     import CacheHelper from "$lib/resources/cache/cache-helper";
 
@@ -106,6 +106,7 @@
                     src={update.authorImage}
                     alt={update.authorName}
                     kind="detail"
+                    style="width:100%;overflow:hidden;"
                 >
                     {#snippet textTop()}
                         <!-- TODO: UNIMPORTANT: This should be "Written by {{USERNAME}}" or smething, this feels awkward -->

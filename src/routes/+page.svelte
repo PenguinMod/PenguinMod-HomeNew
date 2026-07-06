@@ -347,6 +347,7 @@
                                 userSrc={PenguinModClient.users.getPfpUrl(project.author.username)}
                                 href={`${PUBLIC_STUDIO_URL}/#${project.id}`}
                                 glint={project.featured ? "featured" : null}
+                                title={project.title}
                             >
                                 {#snippet textTop()}
                                     <!-- TODO: This should be rendered with inline untrusted markdown -->
