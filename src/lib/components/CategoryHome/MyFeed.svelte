@@ -6,6 +6,7 @@
     import { Category, UserDisplay } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
+    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     
     import { CACHE_USER_FEED } from "$lib/resources/cache/cache-time";
@@ -109,8 +110,11 @@
         {:else if failed}
             <div class="category-textdisplay" style="color:red">
                 <p>
-                    <!-- TODO: UNIMPORTANT: PenguinSVG: penguin with an overloaded mailbox -->
-                    <Icon style="font-size:48px">cloud_alert</Icon>
+                    <img
+                        src="/asset/penguin/mailboxfull.svg"
+                        alt="Whoops! Our server's having some problems. Try again later."
+                        {@attach LocalizedAlt("home.server.error")}
+                    />
                 </p>
                 <p>
                     <LocalizedString
@@ -138,8 +142,11 @@
                 {:else}
                     <div class="category-textdisplay">
                         <p>
-                            <!-- TODO: UNIMPORTANT: PenguinSVG: penguin with a caught up mailbox -->
-                            <Icon style="font-size:48px">chat_dashed</Icon>
+                            <img
+                                src="/asset/penguin/mailbox.svg"
+                                alt="Nothing yet!"
+                                {@attach LocalizedAlt("generic.noneyet")}
+                            />
                         </p>
                         <p>
                             <!-- TODO: UNIMPORTANT: This should be like "Seems like no one's home. Follow more users, and their activity will appear here." -->

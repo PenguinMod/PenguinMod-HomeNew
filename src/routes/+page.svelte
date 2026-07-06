@@ -297,8 +297,11 @@
                         style={frontPageRatelimited ? "" : "color:red"}
                     >
                         {#if frontPageRatelimited}
-                            <!-- TODO: UNIMPORTANT: PenguinSVG: penguin with some sort of thing that shows "hey wait some time" -->
-                            <Icon style="font-size:48px">schedule</Icon>
+                            <img
+                                src="/asset/penguin/wait.svg"
+                                alt="Please wait before trying to access this page again."
+                                {@attach LocalizedAlt("navigation.error.429")}
+                            />
                             <p>
                                 <LocalizedString
                                     text="Please wait before trying to access this page again."
@@ -306,8 +309,11 @@
                                 />
                             </p>
                         {:else}
-                            <!-- TODO: UNIMPORTANT: PenguinSVG: server down penguin -->
-                            <Icon style="font-size:48px">frame_exclamation</Icon>
+                            <img
+                                src="/asset/penguin/server.svg"
+                                alt="Whoops! Our server's having some problems. Try again later."
+                                {@attach LocalizedAlt("home.server.error")}
+                            />
                             <p>
                                 <LocalizedString
                                     text="Whoops! Our server's having some problems. Try again later."
@@ -318,8 +324,12 @@
                     </div>
                 {:else if $StoreSession.frontpageProjectsCachedResult[section].length <= 0}
                     <div class="section-categories-projects-rowtext">
-                        <!-- TODO: UNIMPORTANT: PenguinSVG: a creative penguin like making something? -->
-                        <Icon style="font-size:48px">indeterminate_question_box</Icon>
+                        <img
+                            src="/asset/penguin/drawing.svg"
+                            alt="No projects found. Why not upload one?"
+                            height="80px"
+                            {@attach LocalizedAlt("mystuff.none")}
+                        />
                         <p>
                             <LocalizedString
                                 text="No projects found. Why not upload one?"

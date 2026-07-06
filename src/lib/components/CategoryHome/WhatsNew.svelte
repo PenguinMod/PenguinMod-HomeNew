@@ -5,6 +5,7 @@
     import { Category, UserDisplay } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
+    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     
     import { CACHE_BASIC_API_UPDATES } from "$lib/resources/cache/cache-time";
@@ -71,8 +72,11 @@
         </div>
     {:else if failed}
         <div class="single-container" style="color:red">
-            <!-- TODO: UNIMPORTANT: PenguinSVG: server down icon -->
-            <Icon style="font-size:48px">cloud_alert</Icon>
+            <img
+                src="/asset/penguin/server.svg"
+                alt="Whoops! Our server's having some problems. Try again later."
+                {@attach LocalizedAlt("home.server.error")}
+            />
             <span>
                 <LocalizedString
                     text="An error occurred while the server tried to access content on another server."
@@ -139,5 +143,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+    .single-container img {
+        margin-top: 8px;
+        margin-bottom: 8px;
     }
 </style>
