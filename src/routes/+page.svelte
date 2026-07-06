@@ -137,10 +137,9 @@
                     <div class="section-categories-feeds-login-left">
                         <!-- user profile header -->
                         <div class="section-categories-feeds-login-left-username">
-                            <a href={`/profile/${$StoreSession.userCachedDisplayName}`}>
-                                <!-- TODO: use the right avatar URL (probably add getPfpUrl to api module) -->
+                            <a href={`/profile/${$StoreSession.userCachedUsername}`}>
                                 <img
-                                    src="https://projects.penguinmod.com/api/v1/users/getpfp?username=jeremygamer13"
+                                    src={PenguinModClient.users.getPfpUrl($StoreSession.userCachedUsername)}
                                     alt={$StoreSession.userCachedDisplayName}
                                     title={$StoreSession.userCachedDisplayName}
                                 />
@@ -154,18 +153,13 @@
                                             }}
                                         />
                                     </h1>
-                                    {#if $StoreSession.userCachedBio}
-                                        <p style="opacity: 0.7;">
-                                            “{$StoreSession.userCachedBio}”
-                                        </p>
-                                    {:else}
-                                        <p>
-                                            <LocalizedString
-                                                text="My Account"
-                                                key="account.title"
-                                            />
-                                        </p>
-                                    {/if}
+                                    <!-- TODO: Replace this with a welcome translation -->
+                                    <p>
+                                        <LocalizedString
+                                            text="My Account"
+                                            key="account.title"
+                                        />
+                                    </p>
                                 </div>
                             </a>
                         </div>
@@ -183,7 +177,7 @@
                                 >
                                     <div></div>
                                     <span>
-                                        <Icon style="font-variation-settings: 'FILL' 1;">design_services</Icon>
+                                        <Icon filled={true}>design_services</Icon>
                                         <LocalizedString
                                             text="Create"
                                             key="navigation.create"
@@ -203,7 +197,7 @@
                                 >
                                     <div></div>
                                     <span>
-                                        <Icon style="font-variation-settings: 'FILL' 1;">folder</Icon>
+                                        <Icon filled={true}>folder</Icon>
                                         <LocalizedString
                                             text="My Stuff"
                                             key="mystuff.title"
@@ -223,7 +217,7 @@
                                 >
                                     <div></div>
                                     <span>
-                                        <Icon style="font-variation-settings: 'FILL' 1;">settings</Icon>
+                                        <Icon filled={true}>settings</Icon>
                                         <LocalizedString
                                             text="Settings"
                                             key="account.settings.title"

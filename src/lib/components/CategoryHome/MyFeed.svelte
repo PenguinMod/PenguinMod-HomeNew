@@ -130,6 +130,7 @@
                     <UserDisplay
                         src={PenguinModClient.users.getPfpUrl(feedItem.username)}
                         href={getFeedUrl(feedItem.type, feedItem.username, feedItem.data)}
+                        title={getFeedText(feedItem.type, feedItem.username, feedItem.data)}
                         kind="detail"
                     >
                         {#snippet textTop()}
