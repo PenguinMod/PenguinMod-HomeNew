@@ -1,7 +1,7 @@
 <script>
     import { browser } from "$app/environment";
     import { PUBLIC_STUDIO_URL } from "$env/static/public";
-    
+
     import { PenguinModAPIError } from "penguinmod";
 
     // components
@@ -41,7 +41,7 @@
     $effect(async () => {
         // NOTE: Front page shows more if logged in and mod
         if (!StateApplication.loggedInProcessed) return;
-        
+
         try {
             await loadingAttempt();
         } catch (err) {
@@ -127,7 +127,7 @@
             key="home.scratchnote"
         />
     </p>
-    
+
     <!-- Category sections -->
     <div class="section-categories">
         <!-- feeds -->
@@ -276,7 +276,7 @@
                 </div>
             {/if}
         </div>
-        
+
         <!-- front page projects -->
         <div class="section-categories-projects">
             <!-- snippet for each section to reuse -->
@@ -410,7 +410,7 @@
             </Category>
         </div>
     </div>
-    
+
     <!-- footer -->
     <div class="section-footer">
         <p style="margin-block-end: 2px;">
@@ -594,7 +594,7 @@
         outline-style: solid;
         outline-color: rgba(255, 255, 255, 0.35);
     }
-    
+
     .section-language-warning {
         width: calc(100% - 10%);
         padding: 0 5%;
@@ -625,7 +625,7 @@
         font-weight: bold;
         font-style: italic;
     }
-    
+
     .section-categories {
         width: 100%;
 
@@ -658,7 +658,7 @@
     .section-categories-feeds-login-right :global(*[data-penguinmodsvelteui-swappableholder-header="true"]) {
         width: 100%;
     }
-    
+
     .section-categories-feeds-login-left {
         /* we kinda just have to assume this is a good height... */
         height: 360px;
@@ -699,7 +699,7 @@
         margin-block: 4px;
     }
     .section-categories-feeds-login-left-username > a > div h1 {
-        height: 1.1em;
+        height: 1.3em;
 
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -737,13 +737,13 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        
+
         color: inherit;
         background: transparent;
         border-bottom: 1px solid rgba(0, 0, 0, .1);
         font-weight: bold;
         font-size: 2em;
-        
+
         cursor: pointer;
     }
     .section-categories-feeds-login-left-actions > a > button > span {
@@ -773,7 +773,7 @@
         top: 0;
         width: 0%;
         height: 100%;
-        
+
         outline: 0;
         border-radius: 8px;
 
@@ -793,7 +793,7 @@
         transition: 0.1s ease-out;
         transition-property: width outline-width;
     }
-    
+
     .section-categories-feeds-login-left-actions > a:nth-child(1) > button > div {
         background: #00c3ff;
         outline-color: #00c3ff55;
@@ -841,7 +841,7 @@
     .section-categories-projects-row {
         width: 100%;
         height: 100%;
-        
+
         display: flex;
         flex-direction: row;
 
@@ -882,7 +882,7 @@
 
         display: flex;
         flex-direction: column;
-        
+
         font-size: 14px;
     }
     .section-footer-list-item a {
