@@ -59,7 +59,7 @@
         <!-- TODO: Search bar should be here. Should probably be its own element if we want to attach autofill and stuff to it -->
         <!-- TODO: Add search suggestions like ext gallery, but they'll be like "Search for projects, search for users, etc" -->
         <!-- TODO: Add some autofill & standards in general for the selectors used in legacy home -->
-        
+
         <!-- account buttons -->
         {#if StateApplication.loggedInProcessed && $StoreSettings.loggedIn}
             <!-- TODO: This should link to the messages tab -->
@@ -95,7 +95,7 @@
                 </a>
             {/if}
         {/if}
-        
+
         <!-- login buttons -->
         {#if StateApplication.loggedInProcessed && !($StoreSettings.loggedIn)}
             <!-- TODO: Link to the sign in page -->
@@ -141,7 +141,7 @@
 		top: 0;
 		width: 100%;
         height: 3rem;
-        
+
 		display: flex;
 		flex-direction: row;
         justify-content: space-between;
@@ -149,9 +149,9 @@
         background: #00c3ff;
         color: white;
         overflow: hidden;
-        
-        /* TODO: we should probably consider using a big z-index but there's problems with portals & popups potentially */
-        z-index: 1;
+
+        /* TODO: there might be problems with portals & popups potentially bc of the z index */
+        z-index: 1000;
     }
     .navigation-bar > * {
         margin: 0 2px;
@@ -185,7 +185,7 @@
         width: 3rem;
 		height: 3rem;
         margin: 0 4px;
-        
+
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
