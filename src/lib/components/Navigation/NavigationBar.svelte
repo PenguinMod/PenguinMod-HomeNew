@@ -150,8 +150,7 @@
         color: white;
         overflow: hidden;
 
-        /* TODO: there might be problems with portals & popups potentially bc of the z index */
-        z-index: 1000;
+        z-index: 99999;
     }
     .navigation-bar > * {
         margin: 0 2px;
@@ -167,6 +166,10 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+    }
+    :global(body.app-theme-dark) .navigation-bar {
+        background: #111;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .navigation-options,
