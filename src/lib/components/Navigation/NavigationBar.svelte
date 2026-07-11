@@ -167,6 +167,7 @@
 		justify-content: center;
 		align-items: center;
     }
+    /* TODO: does this look good or does this look like Buns */
     :global(body.app-theme-dark) .navigation-bar {
         background: #111;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
