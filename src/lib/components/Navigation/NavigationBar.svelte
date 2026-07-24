@@ -37,7 +37,7 @@
         <a class="navigation-logo" href="/">
             <img
                 class="navigation-logo-image"
-                src="/favicon.svg"
+                src="/asset/icons/penguinmod-white-outline.svg"
                 alt="PenguinMod"
             />
         </a>

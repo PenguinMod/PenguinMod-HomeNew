@@ -59,14 +59,4 @@
             style="width:100%;border-radius:8px;"
         />
     </div>
-    {#snippet footer()}
-        {#if browser && TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage) !== "en"}
-            <LocalizedString
-                text="PenguinNews is not translated in your language. Sorry! :("
-                key="home.sections.informational.notranslation"
-            />
-        {:else}
-            TODO: UNIMPORTANT: This should be a fun fact
-        {/if}
-    {/snippet}
 </Category>
