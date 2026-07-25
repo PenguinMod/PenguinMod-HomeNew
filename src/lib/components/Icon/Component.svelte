@@ -2,10 +2,9 @@
     let props = $props();
 </script>
 
-<!-- TODO: Should add a simple filled prop so we dont need to type the whole style tag gfor it -->
 <span
+    {...props}
     class={`material-symbols-outlined${props.filled ? " material-symbols-filled" : ""}`}
-    style={props.style}
 >
     {@render props.children?.()}
 </span>

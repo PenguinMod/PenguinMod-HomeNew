@@ -50,7 +50,7 @@
                     text="Switch Language"
                     key="navigation.language"
                 />
-                <Icon>arrow_right</Icon>
+                <Icon data-pm-navbar-dropdown-right={true}>arrow_right</Icon>
             </DropdownItem>
             <Dropdown
                 id="pm-dropdown-navigation-bar-settings-language"
@@ -59,7 +59,7 @@
             >
                 <!-- same as browser -->
                 <DropdownItem onclick={() => optionLanguage("browser")}>
-                    <Icon>captive_portal</Icon>
+                    <Icon style={$StoreSettings.appLanguage === "browser" ? "" : "opacity:0"}>check</Icon>
                     <LocalizedString
                         text="Same as browser"
                         key="lang.default"
@@ -67,7 +67,7 @@
                 </DropdownItem>
                 <DropdownDivider />
                 <!-- language selection -->
-                <span><b>
+                <span style="color:white;margin:0 8px"><b><small>
                     <LocalizedString
                         text="$1 languages translated"
                         key="lang.count"
@@ -75,9 +75,10 @@
                             "$1": languageInfo.languageCountListed
                         }}
                     />
-                </b></span>
+                </small></b></span>
                 {#each languageInfo.languageOrderListed as langCode}
                     <DropdownItem onclick={() => optionLanguage(langCode)}>
+                        <Icon style={$StoreSettings.appLanguage === langCode ? "" : "opacity:0"}>check</Icon>
                         {languageInfo.languageName[langCode] || "You should never see this text"}
                     </DropdownItem>
                 {/each}
@@ -88,7 +89,7 @@
                         text="See more"
                         key="home.seemore"
                     />
-                    <Icon>open_in_new</Icon>
+                    <Icon data-pm-navbar-dropdown-right={true}>link_2</Icon>
                 </DropdownItem>
             </Dropdown>
             <!-- theme switcher -->
@@ -102,7 +103,7 @@
                     text="Switch theme"
                     key="navigation.theme"
                 />
-                <Icon>arrow_right</Icon>
+                <Icon data-pm-navbar-dropdown-right={true}>arrow_right</Icon>
             </DropdownItem>
             <Dropdown
                 id="pm-dropdown-navigation-bar-settings-theme"
@@ -145,7 +146,7 @@
                     text="See more"
                     key="home.seemore"
                 />
-                <Icon>open_in_new</Icon>
+                <Icon data-pm-navbar-dropdown-right={true}>link_2</Icon>
             </DropdownItem>
         </Dropdown>
     </div>
@@ -348,5 +349,15 @@
     .navigation-button-link button img {
         width: 20px;
         height: 20px;
+    }
+
+    /* TODO: UNIMPORTANT: Consider putting this into svelteui as a snippet you can define inside dropdown items */
+    :global(*[data-pm-navbar-dropdown-right=true]) {
+        margin-left: auto;
+    } 
+    :global(html[dir="rtl"] *[data-pm-navbar-dropdown-right=true]) {
+        margin-left: initial;
+        margin-right: auto;
+        transform: rotateY(180deg);
     }
 </style>
