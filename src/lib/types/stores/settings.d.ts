@@ -5,7 +5,9 @@ declare interface StoreSettingsInterface {
     token: string,
 
     /** The theme of the site */
-    appTheme: "light"|"dark",
+    appTheme: "light"|"dark"|"contrast"|"amoled",
+    /** The accent of the site */
+    appAccent: "red"|"orange"|"yellow"|"green"|"cyan"|"blue"|"purple",
     /** The language of the site */
     appLanguage: "browser"|TranslationIndex.LanguageCode,
 

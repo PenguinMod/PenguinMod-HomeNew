@@ -10,6 +10,7 @@ export const defaultSettings = {
     token: "",
 
     appTheme: "light",
+    appAccent: "cyan",
     appLanguage: "browser",
 
     alertDismissed: [],

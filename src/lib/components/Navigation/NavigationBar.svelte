@@ -112,11 +112,25 @@
                         key="profile.donator.themetype.light"
                     />
                 </DropdownItem>
+                <DropdownItem onclick={() => optionTheme("contrast")}>
+                    <Icon filled={true}>light_mode</Icon>
+                    <LocalizedString
+                        text="Light (Contrast)"
+                        key="TODO: This needs to be done"
+                    />
+                </DropdownItem>
                 <DropdownItem onclick={() => optionTheme("dark")}>
                     <Icon>dark_mode</Icon>
                     <LocalizedString
                         text="Dark Theme"
                         key="profile.donator.themetype.dark"
+                    />
+                </DropdownItem>
+                <DropdownItem onclick={() => optionTheme("amoled")}>
+                    <Icon filled={true}>dark_mode</Icon>
+                    <LocalizedString
+                        text="Dark (Contrast)"
+                        key="TODO: This needs to be done"
                     />
                 </DropdownItem>
             </Dropdown>

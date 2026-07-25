@@ -613,7 +613,8 @@
         font-weight: bold;
         text-align: center;
     }
-    :global(body.app-theme-dark) .section-language-warning {
+    :global(body.app-theme-dark) .section-language-warning,
+    :global(body.app-theme-amoled) .section-language-warning {
         color: white;
     }
 
@@ -759,6 +760,9 @@
     }
     :global(body.app-theme-dark) .section-categories-feeds-login-left-actions > a > button {
         border-bottom-color: rgba(255, 255, 255, .1);
+    }
+    :global(body.app-theme-amoled) .section-categories-feeds-login-left-actions > a > button {
+        border-bottom-color: rgba(255, 255, 255, 1);
     }
     .section-categories-feeds-login-left-actions > a > button > * {
         z-index: 5;

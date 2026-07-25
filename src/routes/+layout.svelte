@@ -62,6 +62,11 @@
         background: #111;
         color: white;
     }
+    :global(body.app-theme-amoled) main {
+        /* why is black not #000? ive been lied to */
+        background: #000;
+        color: white;
+    }
 
     .navigation-margin {
 		width: 100%;

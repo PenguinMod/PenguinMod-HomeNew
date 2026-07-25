@@ -75,7 +75,8 @@
 
 <div class="loading">
     <img
-        src={$StoreSettings.appTheme === "light" ? "/asset/icons/loading-blue.svg" : "/asset/icons/loading-white.svg"}
+        src={$StoreSettings.appTheme === "light" ? "/asset/icons/loading-blue.svg"
+            : ($StoreSettings.appTheme === "contrast" ? "/asset/icons/loading-black.svg" : "/asset/icons/loading-white.svg")}
         alt="Loading"
         {@attach LocalizedAlt("generic.loading")}
         {@attach LocalizedTooltip("generic.loading")}
