@@ -36,7 +36,7 @@
         </button>
         <Dropdown
             id="pm-dropdown-navigation-bar-settings"
-            style="position-anchor: --pm-dropdown-navigation-bar-settings;"
+            anchor="--pm-dropdown-navigation-bar-settings"
         >
             <!-- language switcher -->
             <DropdownItem
@@ -52,7 +52,8 @@
             </DropdownItem>
             <Dropdown
                 id="pm-dropdown-navigation-bar-settings-language"
-                style="position-anchor: --pm-dropdown-navigation-bar-settings-language;"
+                anchor="--pm-dropdown-navigation-bar-settings-language"
+                position="left-top"
             >
                 <!-- same as browser -->
                 <DropdownItem onclick={() => optionLanguage("browser")}>
@@ -103,7 +104,8 @@
             </DropdownItem>
             <Dropdown
                 id="pm-dropdown-navigation-bar-settings-theme"
-                style="position-anchor: --pm-dropdown-navigation-bar-settings-theme;"
+                anchor="--pm-dropdown-navigation-bar-settings-theme"
+                position="left-top"
             >
                 <DropdownItem onclick={() => optionTheme("light")}>
                     <Icon>light_mode</Icon>
