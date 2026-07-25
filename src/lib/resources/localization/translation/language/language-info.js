@@ -202,6 +202,68 @@ languageInfo.languageOrder = [
 "ja",
 ];
 /**
+ * The order that languages should be listed in alphabetically (A-Z).
+ * Only lists non-joke langs.
+ */
+languageInfo.languageOrderListed = [
+"id",
+"cs",
+"da",
+"de",
+"en",
+"es",
+"es-419",
+"fr",
+"fr-ca",
+"hr",
+"it",
+"nl",
+"no",
+"pl",
+"pt-br",
+"ro",
+"sk",
+"sv",
+"vi",
+"tr",
+"ru",
+"uk",
+"he",
+"ar",
+"fa",
+"ja",
+];
+/**
+ * The order that languages should be listed in alphabetically (A-Z).
+ * Only lists joke langs.
+ */
+languageInfo.languageOrderJoke = [
+"nothing",
+"zwspace",
+"en-braille",
+"en-leetspeak",
+"bleh",
+"en-but-again",
+"en-but-rtl",
+"en-scream",
+"en-reversed",
+"test",
+"really-big",
+"en-flipped",
+];
+/**
+ * The number of languages we have.
+ */
+languageInfo.languageCount = 38;
+/**
+ * The number of actual languages we have.
+ */
+languageInfo.languageCountListed = 26;
+/**
+ * The number of joke languages we have.
+ */
+languageInfo.languageCountJoke = 12;
+/**
  * Maps the percentage (0-1) that a language has been translated.
  */
 languageInfo.finishedPercentage = {

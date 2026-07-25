@@ -2,36 +2,134 @@
 	import { PUBLIC_API_URL, PUBLIC_STUDIO_URL } from "$env/static/public";
 
     // Components
+    import { Dropdown, DropdownItem, DropdownDivider } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte.js";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte.js";
 
+    import languageInfo from "$lib/resources/localization/translation/language/language-info";
+
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings";
     import StoreSession from "$lib/stores/session";
 
-    const optionThemeToggle = () => {
-        $StoreSettings.appTheme = $StoreSettings.appTheme === "light" ? "dark" : "light";
+    const optionLanguage = (newLangCode) => {
+        $StoreSettings.appLanguage = newLangCode;
+    };
+    const optionTheme = (newTheme) => {
+        $StoreSettings.appTheme = newTheme;
     };
 </script>
 
 <div class="navigation-bar">
     <div class="navigation-bar-section navigation-options">
-        <!-- TODO: This should open a menu that shows a language picker -->
+        <!-- site settings small button -->
         <button
             class="navigation-button"
-            {@attach LocalizedTooltip("navigation.language")}
+            style="anchor-name: --pm-dropdown-navigation-bar-settings"
+            popovertarget="pm-dropdown-navigation-bar-settings"
+            {@attach LocalizedTooltip("account.settings.title")}
         >
-            <Icon>language</Icon>
+            <Icon filled={true}>settings</Icon>
+            <Icon>arrow_drop_down</Icon>
         </button>
-        <button
-            class="navigation-button"
-            onclick={optionThemeToggle}
-            {@attach LocalizedTooltip("navigation.theme")}
+        <Dropdown
+            id="pm-dropdown-navigation-bar-settings"
+            style="position-anchor: --pm-dropdown-navigation-bar-settings;"
         >
-            <Icon filled={$StoreSettings.appTheme !== "light"}>dark_mode</Icon>
-        </button>
+            <!-- language switcher -->
+            <DropdownItem
+                style="anchor-name: --pm-dropdown-navigation-bar-settings-language"
+                popovertarget="pm-dropdown-navigation-bar-settings-language"
+            >
+                <Icon>language</Icon>
+                <LocalizedString
+                    text="Switch Language"
+                    key="navigation.language"
+                />
+                <Icon>arrow_right</Icon>
+            </DropdownItem>
+            <Dropdown
+                id="pm-dropdown-navigation-bar-settings-language"
+                style="position-anchor: --pm-dropdown-navigation-bar-settings-language;"
+            >
+                <!-- same as browser -->
+                <DropdownItem onclick={() => optionLanguage("browser")}>
+                    <Icon>captive_portal</Icon>
+                    <LocalizedString
+                        text="Same as browser"
+                        key="lang.default"
+                    />
+                </DropdownItem>
+                <DropdownDivider />
+                <!-- language selection -->
+                <span><b>
+                    <LocalizedString
+                        text="$1 languages translated"
+                        key="lang.count"
+                        replacers={{
+                            "$1": languageInfo.languageCountListed
+                        }}
+                    />
+                </b></span>
+                {#each languageInfo.languageOrderListed as langCode}
+                    <DropdownItem onclick={() => optionLanguage(langCode)}>
+                        {languageInfo.languageName[langCode] || "You should never see this text"}
+                    </DropdownItem>
+                {/each}
+                <!-- joke lang link -->
+                <!-- TODO: This should link to /settingssite and thatll have the joke langs available -->
+                <DropdownItem href="/settingssite">
+                    <LocalizedString
+                        text="See more"
+                        key="home.seemore"
+                    />
+                    <Icon>open_in_new</Icon>
+                </DropdownItem>
+            </Dropdown>
+            <!-- theme switcher -->
+            <!-- TODO: This should open a menu that shows a theme picker -->
+            <DropdownItem
+                style="anchor-name: --pm-dropdown-navigation-bar-settings-theme"
+                popovertarget="pm-dropdown-navigation-bar-settings-theme"
+            >
+                <Icon>dark_mode</Icon>
+                <LocalizedString
+                    text="Switch theme"
+                    key="navigation.theme"
+                />
+                <Icon>arrow_right</Icon>
+            </DropdownItem>
+            <Dropdown
+                id="pm-dropdown-navigation-bar-settings-theme"
+                style="position-anchor: --pm-dropdown-navigation-bar-settings-theme;"
+            >
+                <DropdownItem onclick={() => optionTheme("light")}>
+                    <Icon>light_mode</Icon>
+                    <LocalizedString
+                        text="Light Theme"
+                        key="profile.donator.themetype.light"
+                    />
+                </DropdownItem>
+                <DropdownItem onclick={() => optionTheme("dark")}>
+                    <Icon>dark_mode</Icon>
+                    <LocalizedString
+                        text="Dark Theme"
+                        key="profile.donator.themetype.dark"
+                    />
+                </DropdownItem>
+            </Dropdown>
+            <!-- site settings link  -->
+            <!-- TODO: This should link to /settingssite -->
+            <DropdownItem href="/settingssite">
+                <LocalizedString
+                    text="See more"
+                    key="home.seemore"
+                />
+                <Icon>open_in_new</Icon>
+            </DropdownItem>
+        </Dropdown>
     </div>
     <div class="navigation-bar-section navigation-links">
         <a class="navigation-logo" href="/">

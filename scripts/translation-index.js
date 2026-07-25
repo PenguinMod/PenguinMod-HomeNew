@@ -148,6 +148,32 @@ languageInfo.languageOrder = [
 ${mapping.toSorted((langA, langB) => (langA.json["lang.name"]).localeCompare(langB.json["lang.name"])).map(lang => `"${lang.languageCode}",`).join("\n")}
 ];
 /**
+ * The order that languages should be listed in alphabetically (A-Z).
+ * Only lists non-joke langs.
+ */
+languageInfo.languageOrderListed = [
+${mapping.filter(lang => !jokeLangsArray.includes(lang.languageCode)).toSorted((langA, langB) => (langA.json["lang.name"]).localeCompare(langB.json["lang.name"])).map(lang => `"${lang.languageCode}",`).join("\n")}
+];
+/**
+ * The order that languages should be listed in alphabetically (A-Z).
+ * Only lists joke langs.
+ */
+languageInfo.languageOrderJoke = [
+${mapping.filter(lang => jokeLangsArray.includes(lang.languageCode)).toSorted((langA, langB) => (langA.json["lang.name"]).localeCompare(langB.json["lang.name"])).map(lang => `"${lang.languageCode}",`).join("\n")}
+];
+/**
+ * The number of languages we have.
+ */
+languageInfo.languageCount = ${mapping.length};
+/**
+ * The number of actual languages we have.
+ */
+languageInfo.languageCountListed = ${mapping.filter(lang => !jokeLangsArray.includes(lang.languageCode)).length};
+/**
+ * The number of joke languages we have.
+ */
+languageInfo.languageCountJoke = ${mapping.filter(lang => jokeLangsArray.includes(lang.languageCode)).length};
+/**
  * Maps the percentage (0-1) that a language has been translated.
  */
 languageInfo.finishedPercentage = {
