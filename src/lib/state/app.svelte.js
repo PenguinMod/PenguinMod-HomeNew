@@ -4,6 +4,10 @@ const StateApplication = $state({
     navigationBar: false,
     /** Whether or not loggedIn has been processed (always access before accessing loggedIn) */
     loggedInProcessed: false,
+    /** Whether or not the PenguinActionIndicator is enabled. */
+    penguinActionIndicator: true,
+    /** Which Lottie is displaying on the PenguinActionIndicator right now. */
+    penguinActionIndicatorLottie: "",
 });
 
 export default StateApplication;

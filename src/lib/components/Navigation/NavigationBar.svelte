@@ -16,9 +16,11 @@
 
     const optionLanguage = (newLangCode) => {
         $StoreSettings.appLanguage = newLangCode;
+        StateApplication.penguinActionIndicatorLottie = "/asset/penguin/animated/lottie/drawingthinking.json";
     };
     const optionTheme = (newTheme) => {
         $StoreSettings.appTheme = newTheme;
+        StateApplication.penguinActionIndicatorLottie = "/asset/penguin/animated/lottie/splashbucket.json";
     };
 </script>
 

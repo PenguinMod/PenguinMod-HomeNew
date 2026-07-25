@@ -5,6 +5,7 @@
 
     // Components
     import NavigationBar from "$lib/components/Navigation/NavigationBar.svelte";
+    import PenguinActionIndicator from "$lib/components/PenguinActionIndicator.svelte";
     
     import TranslationLoader from "$lib/resources/localization/translation/loader.js";
     import Authenticator from "$lib/resources/penguinmod/authentication/authenticator.js";
@@ -42,6 +43,9 @@
 </script>
 
 <NavigationBar />
+{#if browser && StateApplication.penguinActionIndicator}
+    <PenguinActionIndicator />
+{/if}
 <main>
     <div class="navigation-margin"></div>
     {@render children()}
