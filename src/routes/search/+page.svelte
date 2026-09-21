@@ -7,12 +7,26 @@
     let query = $derived(page.url.searchParams.get('q') ?? '');
 
     let projects = $state([]);
+    let total = $state(0);
+    let total_seen = $state(0);
     $effect(async () => {
-        projects = await PenguinModClient.projects.searchProjects({
+        // NOTE FOR THE FUTURE: we should ONLY update total when QUERY changes.
+        // this effect will probably be called when page changes.
+        // Make total only update when QUERY changes (note the boolean on search projects)
+
+        const res = await PenguinModClient.projects.searchProjects({
             query,
-        });
+        }, true);
+
+        projects = res.projects;
+        total = res.total;
+
+        // TODO: when query changes, this should reset
+        total_seen += projects.length;
     })
 </script>
+
+{total_seen} / {total}
 
 {#each projects as project}
     <Project
