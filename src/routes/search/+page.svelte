@@ -12,12 +12,22 @@
     });
     let reverse = $state(false);
     let sort = $state();
+    let before = $state({
+        include: false,
+        val: undefined
+    });
+    let after = $state({
+        include: false,
+        val: undefined
+    });
 
     let query = $derived({
         query: page.url.searchParams.get("q") ?? "",
         featured: featured.include ? featured.val : null,
         reverse,
         sort,
+        before: before.include ? before.val : null,
+        after: after.include ? after.val : null,
     });
 
     let cur_page = $derived(Number(page.url.searchParams.get("page") ?? "0"));
@@ -73,6 +83,7 @@
 
 <div class="search-grid">
     <!-- TODO: translate text -->
+
     <div class="chud-box">
         include feature:
         <input bind:checked={featured.include} type="checkbox" />
@@ -87,7 +98,6 @@
         <input bind:checked={reverse} type="checkbox" />
     </div>
 
-    <!-- sort?: "newest-update" | "newest-upload" | "views" | "votes" | "loves" -->
     <div class="chud-box">
         sort:
         <select bind:value={sort}>
@@ -98,6 +108,24 @@
             <option value="newest-update"> newest update </option>
             <option value="newest-upload"> newest upload </option>
         </select>
+    </div>
+
+    <div class="chud-box">
+        include before:
+        <input bind:checked={before.include} type="checkbox" />
+        {#if before.include}
+            before this date:
+            <input bind:value={before.val} type="date" />
+        {/if}
+    </div>
+
+    <div class="chud-box">
+        include after:
+        <input bind:checked={after.include} type="checkbox" />
+        {#if after.include}
+            after this date:
+            <input bind:value={after.val} type="date" />
+        {/if}
     </div>
 </div>
 
