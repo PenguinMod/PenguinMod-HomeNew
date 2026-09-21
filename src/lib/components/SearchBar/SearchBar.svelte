@@ -1,11 +1,12 @@
 <script>
 	import { goto } from '$app/navigation';
+    import { page } from '$app/state';
     import TranslationMapper from '$lib/resources/localization/translation/mapper';
     import { DropdownItem } from 'PenguinMod-SvelteUI';
     import { Dropdown } from 'PenguinMod-SvelteUI';
     import { onMount } from 'svelte';
 
-	let query = $state("");
+    let query = $derived(page.url.searchParams.get("q") ?? "");
 	let focused = $state(false);
 
 	let show_dropdown = $derived(focused && query.trim().length > 0);
