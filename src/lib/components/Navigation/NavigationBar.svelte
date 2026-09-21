@@ -13,6 +13,7 @@
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings";
     import StoreSession from "$lib/stores/session";
+    import SearchBar from "../SearchBar/SearchBar.svelte";
 
     const optionLanguage = (newLangCode) => {
         $StoreSettings.appLanguage = newLangCode;
@@ -173,6 +174,14 @@
             </button>
         </a>
 
+        <SearchBar />
+
+        <Dropdown id="pm-dropdown-test1-2" anchor="--pm-dropdown-test1-2">
+            <DropdownItem>
+                i am evil
+            </DropdownItem>
+        </Dropdown>
+
         <!-- TODO: Search bar should be here. Should probably be its own element if we want to attach autofill and stuff to it -->
         <!-- TODO: Add search suggestions like ext gallery, but they'll be like "Search for projects, search for users, etc" -->
         <!-- TODO: Add some autofill & standards in general for the selectors used in legacy home -->
@@ -215,10 +224,10 @@
 
         <!-- login buttons -->
         {#if StateApplication.loggedInProcessed && !($StoreSettings.loggedIn)}
-            <!-- TODO: Link to the sign in page -->
+            <!-- TODO: Link to the real sign in page -->
             <!-- TODO: When redirecting to the sign in page, we should preserve ALL of the "referrer" URL. ALL of it. -->
             <a
-                href={PUBLIC_STUDIO_URL}
+                href="/developmentthiswillgetdeleted/testlogin"
                 class="navigation-button-link"
                 {@attach LocalizedTooltip("navigation.login")}
             >
@@ -354,7 +363,7 @@
     /* TODO: UNIMPORTANT: Consider putting this into svelteui as a snippet you can define inside dropdown items */
     :global(*[data-pm-navbar-dropdown-right=true]) {
         margin-left: auto;
-    } 
+    }
     :global(html[dir="rtl"] *[data-pm-navbar-dropdown-right=true]) {
         margin-left: initial;
         margin-right: auto;
