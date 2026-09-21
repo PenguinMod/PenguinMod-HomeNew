@@ -6,8 +6,14 @@
 
     import { goto } from "$app/navigation";
 
+    let featured = $state({
+        include: false,
+        val: true,
+    });
+
     let query = $derived({
         query: page.url.searchParams.get("q") ?? "",
+        featured: featured.include ? featured.val : null,
     });
 
     let cur_page = $derived(Number(page.url.searchParams.get("page") ?? "0"));
@@ -58,6 +64,18 @@
         goto(url);
     }
 </script>
+
+<div class="search-grid">
+    <!-- TODO: translate text -->
+    <div>
+    include feature:
+    <input bind:checked={featured.include} type="checkbox" />
+    {#if featured.include}
+        only featured or only not
+        <input bind:checked={featured.val} type="checkbox" />
+    {/if}
+    </div>
+</div>
 
 <div class="search-grid">
 {#each projects as project}
