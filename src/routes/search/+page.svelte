@@ -10,10 +10,14 @@
         include: false,
         val: true,
     });
+    let reverse = $state(false);
+    let sort = $state();
 
     let query = $derived({
         query: page.url.searchParams.get("q") ?? "",
         featured: featured.include ? featured.val : null,
+        reverse,
+        sort,
     });
 
     let cur_page = $derived(Number(page.url.searchParams.get("page") ?? "0"));
@@ -65,15 +69,35 @@
     }
 </script>
 
+<br>
+
 <div class="search-grid">
     <!-- TODO: translate text -->
-    <div>
-    include feature:
-    <input bind:checked={featured.include} type="checkbox" />
-    {#if featured.include}
-        only featured or only not
-        <input bind:checked={featured.val} type="checkbox" />
-    {/if}
+    <div class="chud-box">
+        include feature:
+        <input bind:checked={featured.include} type="checkbox" />
+        {#if featured.include}
+            only featured or only not
+            <input bind:checked={featured.val} type="checkbox" />
+        {/if}
+    </div>
+
+    <div class="chud-box">
+        reverse:
+        <input bind:checked={reverse} type="checkbox" />
+    </div>
+
+    <!-- sort?: "newest-update" | "newest-upload" | "views" | "votes" | "loves" -->
+    <div class="chud-box">
+        sort:
+        <select bind:value={sort}>
+            <!-- NOTE: to translate, translate the thing inside the option, not the value parameter -->
+            <option value="views"> views </option>
+            <option value="votes"> votes </option>
+            <option value="loves"> loves </option>
+            <option value="newest-update"> newest update </option>
+            <option value="newest-upload"> newest upload </option>
+        </select>
     </div>
 </div>
 
@@ -124,5 +148,7 @@
         width: 100%;
     }
 
-
+    .chud-box {
+        outline: 2px solid green;
+    }
 </style>
